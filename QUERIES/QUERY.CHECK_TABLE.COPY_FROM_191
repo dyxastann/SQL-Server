@@ -1,0 +1,70 @@
+DECLARE @NAME AS VARCHAR(MAX), @sql_query VARCHAR(MAX)
+
+DECLARE load_cursor CURSOR FOR 
+	SELECT table_name FROM 
+(
+	SELECT
+		[191].table_name
+	FROM
+
+	(
+		SELECT
+			o.name AS table_name
+			,p.[rows] AS table_rows
+		FROM [10.4.60.191].[BSI_COLLECTION].sys.objects o
+		LEFT JOIN [10.4.60.191].[BSI_COLLECTION].sys.partitions p ON o.object_id = p.object_id
+		WHERE o.type_desc = 'USER_TABLE'
+	) [191]
+
+	LEFT JOIN
+	(
+		SELECT
+			o.name AS table_name
+			,p.[rows] AS table_rows
+			
+		FROM sys.objects o
+		LEFT JOIN sys.partitions p ON o.object_id = p.object_id
+		WHERE o.type_desc = 'USER_TABLE'	
+	) [LOCAL] ON [LOCAL].table_name = [191].table_name AND [LOCAL].table_rows = [191].table_rows
+
+	WHERE [LOCAL].table_name IS NULL
+	AND
+	(	
+		[191].table_name LIKE ('%.LOAN_DAILY.____-__-__%')
+		OR
+		[191].table_name LIKE ('%.LOAN_DETAIL.____-__-__%')	
+	)
+	AND [191].table_name NOT LIKE ('TB%')
+	AND [191].table_name NOT LIKE ('%Backup')
+	AND [191].table_name NOT LIKE ('%_copy')
+) [TEMP]
+
+OPEN load_cursor
+FETCH NEXT FROM load_cursor INTO @NAME
+
+WHILE @@FETCH_STATUS = 0 
+BEGIN
+	IF EXISTS (SELECT name FROM sys.objects WHERE type_desc = 'USER_TABLE' AND name = @NAME)
+	BEGIN
+		SET @sql_query = CONCAT('DROP TABLE [', @NAME, ']')
+		EXECUTE(@sql_query)
+	END
+	SET @sql_query = CONCAT('SELECT * INTO [', @NAME, '] FROM [10.4.60.191].[BSI_COLLECTION].dbo.[', @NAME, ']')
+	EXECUTE(@sql_query)
+/*
+	SELECT
+		c.*
+	FROM
+		[10.4.60.191].[BSI_COLLECTION].sys.columns c 
+	LEFT JOIN [10.4.60.191].[BSI_COLLECTION].sys.objects o
+		ON o.object_id = c.object_id 
+	WHERE
+		o.name = @NAME 
+	ORDER BY c.column_id, o.Name, c.Name
+*/
+	PRINT(@NAME)
+	FETCH NEXT FROM load_cursor INTO @NAME
+END
+
+CLOSE load_cursor
+DEALLOCATE load_cursor; 
