@@ -1,0 +1,209 @@
+CREATE PROCEDURE [dbo].[sp_procc_portofolio_daily]
+AS
+BEGIN
+
+--------------------------------------------DECLARE--------------------------------------------
+
+	DECLARE
+		@sql_query varchar(MAX)
+		,@tgl_bnis_last_month DATE
+		,@tgl_bris_last_month DATE
+		,@tgl_bsm_last_month DATE
+		,@tgl_hc_current DATE
+		,@tgl_bnis_current DATE
+		,@tgl_bris_current DATE
+		,@tgl_bsm_current DATE;
+	
+--------------------------------------------PRIOR PROCEDURE--------------------------------------------		
+
+		EXEC dbo.sp_procc_cleanse_BNIS_loan_daily;
+		EXEC dbo.sp_procc_cleanse_BRIS_loan_daily;
+		EXEC dbo.sp_procc_cleanse_BSM_loan_daily;
+		EXEC dbo.sp_procc_dataget_noloan_tgl_aktif;
+		EXEC dbo.sp_procc_dataget_mutasi_restru_daily;
+		EXEC dbo.sp_procc_duplicate_loan_daily;
+
+--------------------------------------------MOVE CURRENT TO BEFORE--------------------------------------------
+
+	DROP TABLE [PORTOFOLIO_ONBS.GENERATED.JOIN.PORTOFOLIO_BEFORE];
+	SELECT * INTO [PORTOFOLIO_ONBS.GENERATED.JOIN.PORTOFOLIO_BEFORE] FROM [PORTOFOLIO_ONBS.GENERATED.JOIN.PORTOFOLIO_CURRENT];
+	TRUNCATE TABLE [PORTOFOLIO_ONBS.GENERATED.JOIN.PORTOFOLIO_CURRENT];
+
+--------------------------------------------GET DATE--------------------------------------------
+
+	set @tgl_bsm_current = (
+		SELECT
+			MAX(TRY_CAST(FICMISDATE AS DATE)) AS TGL_CURRENT
+		FROM
+		[PORTOFOLIO_ONBS.SOURCE.BSM.LOAN_DAILY]
+	);
+
+	set @tgl_hc_current = COALESCE(
+		(
+			SELECT
+				CAST(MAX(FILE_DATE) AS DATE) AS TGL_CURRENT
+			FROM
+			[PORTOFOLIO_ONBS.SOURCE.BNIS.HASANAH_CARD]
+		), @tgl_bsm_current
+	);
+
+	set @tgl_bnis_current = COALESCE(
+		(
+			SELECT
+				MAX(TRY_CAST(TANGGAL_DATA AS DATE)) AS TGL_CURRENT
+			FROM
+			[PORTOFOLIO_ONBS.SOURCE.BNIS.LOAN_DAILY]
+		), @tgl_bsm_current
+	);
+
+	set @tgl_bris_current = COALESCE(
+		(
+			SELECT
+				MAX(TRY_CAST(TANGGAL AS DATE)) AS TGL_CURRENT
+			FROM
+			[PORTOFOLIO_ONBS.SOURCE.BRIS.LOAN_DAILY]
+		), @tgl_bsm_current
+	);
+
+	SET @tgl_bnis_last_month = COALESCE(
+		(
+		SELECT
+			MAX(TRY_CAST([(SOURCE) TGL_CURRENT] AS DATE)) AS TGL_LAST_MONTH
+		FROM
+		[PORTOFOLIO_ONBS.DATABASE.BNIS.PORTOFOLIO_LAST_MONTH]
+		), EOMONTH(@tgl_bnis_current, -1)
+	);
+
+	SET @tgl_bris_last_month = COALESCE(
+		(
+		SELECT
+			MAX(TRY_CAST([(SOURCE) TGL_CURRENT] AS DATE)) AS TGL_LAST_MONTH
+		FROM
+		[PORTOFOLIO_ONBS.DATABASE.BRIS.PORTOFOLIO_LAST_MONTH]
+		), EOMONTH(@tgl_bnis_current, -1)
+	);
+
+	SET @tgl_bsm_last_month = COALESCE(
+		(
+		SELECT
+			MAX(TRY_CAST([(SOURCE) TGL_CURRENT] AS DATE)) AS TGL_LAST_MONTH
+		FROM
+		[PORTOFOLIO_ONBS.DATABASE.BSM.PORTOFOLIO_LAST_MONTH]
+		), EOMONTH(@tgl_bsm_current, -1)
+	);
+
+	EXEC dbo.sp_procc_dataget_mutasi_noloan_daily @TGL_BEFORE = @tgl_bsm_last_month, @TGL_CURRENT = @tgl_bsm_current;
+
+--------------------------------------------LIST LOAN--------------------------------------------
+
+	INSERT INTO [PORTOFOLIO_ONBS.GENERATED.JOIN.PORTOFOLIO_CURRENT]
+		(
+			[(RCG) SOURCE_CURRENT]
+			,[(SOURCE) NOLOAN_CURRENT]
+			,[(SOURCE) NOMORCIF_CURRENT]
+			,[(RCG) DIVISI_PECAH]
+			,[(RCG) DIVISI_BSI]
+			,[(SOURCE) PENCAIRAN_POKOK]
+		)
+	SELECT
+		[LIST].LEGACY
+		,[LIST].NOLOAN
+		,[LIST].NOMORCIF
+		,[LIST].DIVISI
+		,dbo.fx_adjustment_divisi_bsi([LIST].DIVISI) AS DIVISI_BSI
+		,[LIST].OS_POKOK_AWAL
+	FROM
+	[PORTOFOLIO_ONBS.COMPILE.JOIN.REKAP_NOLOAN.TGL_AKTIF] [LIST]
+	WHERE
+		[LIST].LEGACY = 'BNIS'
+		AND [LIST].TGL_AKTIF_AKHIR >= @tgl_bnis_last_month
+		AND [LIST].TGL_AKTIF_AWAL <= @tgl_bnis_current;
+
+	INSERT INTO [PORTOFOLIO_ONBS.GENERATED.JOIN.PORTOFOLIO_CURRENT]
+		(
+			[(RCG) SOURCE_CURRENT]
+			,[(SOURCE) NOLOAN_CURRENT]
+			,[(SOURCE) NOMORCIF_CURRENT]
+			,[(RCG) DIVISI_PECAH]
+			,[(RCG) DIVISI_BSI]
+			,[(SOURCE) PENCAIRAN_POKOK]
+		)
+	SELECT
+		[LIST].LEGACY
+		,[LIST].NOLOAN
+		,[LIST].NOMORCIF
+		,[LIST].DIVISI
+		,dbo.fx_adjustment_divisi_bsi([LIST].DIVISI) AS DIVISI_BSI
+		,[LIST].OS_POKOK_AWAL
+	FROM
+	[PORTOFOLIO_ONBS.COMPILE.JOIN.REKAP_NOLOAN.TGL_AKTIF] [LIST]
+	WHERE
+		[LIST].LEGACY = 'BRIS'
+		AND [LIST].TGL_AKTIF_AKHIR >= @tgl_bris_last_month
+		AND [LIST].TGL_AKTIF_AWAL <= @tgl_bris_current;
+
+	INSERT INTO [PORTOFOLIO_ONBS.GENERATED.JOIN.PORTOFOLIO_CURRENT]
+		(
+			[(RCG) SOURCE_CURRENT]
+			,[(SOURCE) NOLOAN_CURRENT]
+			,[(SOURCE) NOMORCIF_CURRENT]
+			,[(RCG) DIVISI_PECAH]
+			,[(RCG) DIVISI_BSI]
+			,[(SOURCE) PENCAIRAN_POKOK]
+		)
+	SELECT
+		[LIST].LEGACY
+		,[LIST].NOLOAN
+		,[LIST].NOMORCIF
+		,[LIST].DIVISI
+		,dbo.fx_adjustment_divisi_bsi([LIST].DIVISI) AS DIVISI_BSI
+		,[LIST].OS_POKOK_AWAL
+	FROM
+	[PORTOFOLIO_ONBS.COMPILE.JOIN.REKAP_NOLOAN.TGL_AKTIF] [LIST]
+	WHERE
+		[LIST].LEGACY = 'BSM'
+		AND [LIST].TGL_AKTIF_AKHIR >= @tgl_bsm_last_month
+		AND [LIST].TGL_AKTIF_AWAL <= @tgl_bsm_current;
+
+--------------------------------------------GENERALIZING LOAN DAILY--------------------------------------------
+
+--------------------------------------------JOIN LAST MONTH--------------------------------------------
+
+	EXEC dbo.sp_generate_bnis_loan_last_month;
+	EXEC dbo.sp_generate_bris_loan_last_month;
+	EXEC dbo.sp_generate_bsm_loan_last_month;
+
+--------------------------------------------JOIN CURRENT--------------------------------------------
+
+	EXEC dbo.sp_generate_bnis_loan_daily;
+	EXEC dbo.sp_generate_bsm_loan_daily;
+
+--------------------------------------------MUTASI ONBS--------------------------------------------
+
+	EXEC dbo.sp_generate_bsm_on_balance @tgl_bsm_current = @tgl_bsm_current;
+
+--------------------------------------------MUTASI LUNAS--------------------------------------------
+
+	EXEC dbo.sp_generate_bnis_mutasi_lunas;
+	EXEC dbo.sp_generate_bris_mutasi_lunas;
+	EXEC dbo.sp_generate_bsm_mutasi_lunas @tgl_current = @tgl_bsm_current;
+
+--------------------------------------------FINALIZATION--------------------------------------------
+	
+	EXEC dbo.sp_finalize_portofolio_onbs_result;
+
+--------------------------------------------PAYMENT--------------------------------------------
+
+	EXEC dbo.sp_generate_join_payment_mtm @tgl_bsm_current = @tgl_bsm_current;
+
+	IF EXISTS(SELECT name FROM [NEW_BSI_STORAGE].[sys].[objects] WHERE type_desc = 'USER_TABLE' AND name = CONCAT('BSI.PORTOFOLIO_DAILY.', @tgl_bsm_current))
+	BEGIN
+		SET @sql_query = CONCAT('DROP TABLE [NEW_BSI_STORAGE].[dbo].[BSI.PORTOFOLIO_DAILY.', @tgl_bsm_current, ']');
+		EXEC(@sql_query);
+	END
+
+	SET @sql_query = CONCAT('SELECT * INTO [NEW_BSI_STORAGE].[dbo].[BSI.PORTOFOLIO_DAILY.', @tgl_bsm_current, '] FROM [PORTOFOLIO_ONBS.GENERATED.JOIN.PORTOFOLIO_CURRENT]');
+	EXEC(@sql_query);
+  -- routine body goes here, e.g.
+  -- SELECT 'Navicat for SQL Server'
+END
