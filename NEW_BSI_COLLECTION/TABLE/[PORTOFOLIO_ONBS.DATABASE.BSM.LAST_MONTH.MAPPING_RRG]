@@ -1,0 +1,14 @@
+CREATE TABLE [dbo].[PORTOFOLIO_ONBS.DATABASE.BSM.LAST_MONTH.MAPPING_RRG] (
+[Noloan] varchar(1023) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[NoMORcif] varchar(1023) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[NomorCIF_Super] varchar(1023) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[KolCIF_BulanLalu] varchar(1023) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[KolLoan] varchar(1023) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Kolcif] varchar(1023) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Segmen_BSI] varchar(1023) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Produk_BSI] varchar(1023) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Produk_BSI_detail] varchar(1023) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[OSPokokConversion PSAK] varchar(1023) COLLATE SQL_Latin1_General_CP1_CI_AS NULL 
+)
+ON [PRIMARY]
+GO
