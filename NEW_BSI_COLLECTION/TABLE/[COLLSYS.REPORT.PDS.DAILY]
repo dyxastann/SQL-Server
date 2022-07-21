@@ -1,0 +1,14 @@
+CREATE TABLE [dbo].[COLLSYS.REPORT.PDS.DAILY] (
+[Nama Kolektor ] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Tanggal Dihubungi ] date NULL ,
+[Divisi] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[CIF] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Nomor Loan] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Nomor Yang Dihubungi] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Hubungan] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[HASIL] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Remark] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Bucket] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL 
+)
+ON [PRIMARY]
+GO
