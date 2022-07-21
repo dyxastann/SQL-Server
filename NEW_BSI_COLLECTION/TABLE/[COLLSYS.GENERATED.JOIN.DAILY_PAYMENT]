@@ -1,0 +1,20 @@
+CREATE TABLE [dbo].[COLLSYS.GENERATED.JOIN.DAILY_PAYMENT] (
+[TGL_UPDATE] datetime NULL ,
+[Tgl Data] date NULL ,
+[LOAN_T24] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[NOLOAN] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[NOMORCIF] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[KOLCIF] varchar(10) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[KODECABANG_BSI] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[NAMACABANG_BSI] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[AREA_BSI] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[REGION_BSI] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[DIVISI_BSI] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[PRODUK_BSI] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Pembayaran Pokok] decimal(32,2) NULL ,
+[Pembayaran Margin] decimal(32,2) NULL ,
+[Pembayaran Basil] decimal(32,2) NULL ,
+[Total Pembayaran] decimal(32,2) NULL 
+)
+ON [PRIMARY]
+GO
