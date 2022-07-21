@@ -1,0 +1,298 @@
+CREATE PROCEDURE [dbo].[sp_procc_generate_agunan]
+AS
+BEGIN
+  -- routine body goes here, e.g.
+  -- SELECT 'Navicat for SQL Server'
+
+	SELECT
+		MAX([DETAIL].AS_OF_DT) AS TGL_UPDATE_DATA
+		,[LINK].NOLOAN
+		,MIN(
+		CASE
+			WHEN [DETAIL].JENISAGUNAN IN (
+				'Apartemen / Rumah Susun'
+				,'Rumah Tinggal'
+				,'Tanah/Bangunan - Bangunan Gudang'
+				,'Tanah/Bangunan - Bangunan Pabrik'
+				,'Tanah/Bangunan - Gdg Perktr/Pertoko'
+				,'Tanah/Bangunan - Ruko/Rukan'
+				,'Tanah/Bangunan - Rumah/Rusun/Mess'
+				,'Tanah/Bangunan - Tanah'
+			)
+			OR [DETAIL].JENISAGUNAN IN (
+				'Kendaraan - Kapal Laut < 20m3'
+				,'Kendaraan - Kapal Laut > 20m3'
+				,'Kendaraan - Kendaraan Lainnya'
+				,'Kendaraan - Mesin-mesin'
+				,'Kendaraan - Mobil'
+				,'Kendaraan - Pesawat'
+				,'Kendaraan Komersil (Mobil Box, Truk'
+				,'Kendaraan Pribadi'
+				,'Kendaran - Motor'
+			)
+			OR [DETAIL].JENISAGUNAN IN ('CC - Emas (Logam Mulia)', 'CC - Emas (Non Logam Mulia)') THEN 'Fixed Asset'
+			ELSE 'Non Fixed Asset'
+		END) AS FlagAgunan
+
+		,MIN(
+		CASE
+			WHEN
+				(
+					[DETAIL].JENISAGUNAN IN (
+						'Apartemen / Rumah Susun'
+						,'Rumah Tinggal'
+						,'Tanah/Bangunan - Bangunan Gudang'
+						,'Tanah/Bangunan - Bangunan Pabrik'
+						,'Tanah/Bangunan - Gdg Perktr/Pertoko'
+						,'Tanah/Bangunan - Ruko/Rukan'
+						,'Tanah/Bangunan - Rumah/Rusun/Mess'
+						,'Tanah/Bangunan - Tanah'
+					)
+					AND [DETAIL].JENISPENGIKATAN = 'Hak Tanggungan'
+				)
+			OR
+				(
+						[DETAIL].JENISAGUNAN IN (
+						'Kendaraan - Kapal Laut < 20m3'
+						,'Kendaraan - Kapal Laut > 20m3'
+						,'Kendaraan - Kendaraan Lainnya'
+						,'Kendaraan - Mesin-mesin'
+						,'Kendaraan - Mobil'
+						,'Kendaraan - Pesawat'
+						,'Kendaraan Komersil (Mobil Box, Truk'
+						,'Kendaraan Pribadi'
+						,'Kendaran - Motor'
+					)
+					AND [DETAIL].JENISPENGIKATAN = 'Fiduciare Eigendom Overdracht (FEO)'
+				)
+			OR ([DETAIL].JENISAGUNAN IN ('CC - Emas (Logam Mulia)', 'CC - Emas (Non Logam Mulia)') AND [DETAIL].JENISPENGIKATAN = 'Gadai')
+			THEN 'Secured'
+			ELSE 'Unsecured'
+		END) AS FlagPembiayaan
+		,CAST(SUM([DETAIL].NILAIPASAR*([LINK].PERCENALLOC/100.00)) AS DECIMAL(32, 2)) AS NILAIPASARALLOC
+		,CAST(SUM([DETAIL].NILAIPENGIKATAN*([LINK].PERCENALLOC/100.00)) AS DECIMAL(32, 2)) AS NILAIPENGIKATANALLOC
+		,CAST(SUM([DETAIL].NILAILIKUIDITAS*([LINK].PERCENALLOC/100.00)) AS DECIMAL(32, 2)) AS NILAILIKUIDITASALLOC
+		,CAST(SUM([DETAIL].NILAIASURANSI*([LINK].PERCENALLOC/100.00)) AS DECIMAL(32, 2)) AS NILAIASURANSIALLOC
+		,CAST(SUM(
+			CASE
+				WHEN [DETAIL].JENISAGUNAN IN (
+					'Apartemen / Rumah Susun'
+					,'Rumah Tinggal'
+					,'Tanah/Bangunan - Bangunan Gudang'
+					,'Tanah/Bangunan - Bangunan Pabrik'
+					,'Tanah/Bangunan - Gdg Perktr/Pertoko'
+					,'Tanah/Bangunan - Ruko/Rukan'
+					,'Tanah/Bangunan - Rumah/Rusun/Mess'
+					,'Tanah/Bangunan - Tanah'
+				)
+				OR [DETAIL].JENISAGUNAN IN (
+					'Kendaraan - Kapal Laut < 20m3'
+					,'Kendaraan - Kapal Laut > 20m3'
+					,'Kendaraan - Kendaraan Lainnya'
+					,'Kendaraan - Mesin-mesin'
+					,'Kendaraan - Mobil'
+					,'Kendaraan - Pesawat'
+					,'Kendaraan Komersil (Mobil Box, Truk'
+					,'Kendaraan Pribadi'
+					,'Kendaran - Motor'
+				)
+				OR [DETAIL].JENISAGUNAN IN ('CC - Emas (Logam Mulia)', 'CC - Emas (Non Logam Mulia)') THEN [DETAIL].NILAIPASAR*([LINK].PERCENALLOC/100.00)
+			END
+		) AS DECIMAL(32, 2)) AS NILAIPASARFIXEDASSET
+		,CAST(SUM(
+			CASE
+				WHEN [DETAIL].JENISAGUNAN IN (
+					'Apartemen / Rumah Susun'
+					,'Rumah Tinggal'
+					,'Tanah/Bangunan - Bangunan Gudang'
+					,'Tanah/Bangunan - Bangunan Pabrik'
+					,'Tanah/Bangunan - Gdg Perktr/Pertoko'
+					,'Tanah/Bangunan - Ruko/Rukan'
+					,'Tanah/Bangunan - Rumah/Rusun/Mess'
+					,'Tanah/Bangunan - Tanah'
+				)
+				OR [DETAIL].JENISAGUNAN IN (
+					'Kendaraan - Kapal Laut < 20m3'
+					,'Kendaraan - Kapal Laut > 20m3'
+					,'Kendaraan - Kendaraan Lainnya'
+					,'Kendaraan - Mesin-mesin'
+					,'Kendaraan - Mobil'
+					,'Kendaraan - Pesawat'
+					,'Kendaraan Komersil (Mobil Box, Truk'
+					,'Kendaraan Pribadi'
+					,'Kendaran - Motor'
+				)
+				OR [DETAIL].JENISAGUNAN IN ('CC - Emas (Logam Mulia)', 'CC - Emas (Non Logam Mulia)') THEN [DETAIL].NILAIPENGIKATAN*([LINK].PERCENALLOC/100.00)
+			END
+		) AS DECIMAL(32, 2)) AS NILAIPENGIKATANFIXEDASSET
+		,CAST(SUM(
+			CASE
+				WHEN [DETAIL].JENISAGUNAN IN (
+					'Apartemen / Rumah Susun'
+					,'Rumah Tinggal'
+					,'Tanah/Bangunan - Bangunan Gudang'
+					,'Tanah/Bangunan - Bangunan Pabrik'
+					,'Tanah/Bangunan - Gdg Perktr/Pertoko'
+					,'Tanah/Bangunan - Ruko/Rukan'
+					,'Tanah/Bangunan - Rumah/Rusun/Mess'
+					,'Tanah/Bangunan - Tanah'
+				)
+				OR [DETAIL].JENISAGUNAN IN (
+					'Kendaraan - Kapal Laut < 20m3'
+					,'Kendaraan - Kapal Laut > 20m3'
+					,'Kendaraan - Kendaraan Lainnya'
+					,'Kendaraan - Mesin-mesin'
+					,'Kendaraan - Mobil'
+					,'Kendaraan - Pesawat'
+					,'Kendaraan Komersil (Mobil Box, Truk'
+					,'Kendaraan Pribadi'
+					,'Kendaran - Motor'
+				)
+				OR [DETAIL].JENISAGUNAN IN ('CC - Emas (Logam Mulia)', 'CC - Emas (Non Logam Mulia)') THEN [DETAIL].NILAILIKUIDITAS*([LINK].PERCENALLOC/100.00)
+			END
+		) AS DECIMAL(32, 2)) AS NILAILIKUIDITASFIXEDASSET
+		,CAST(SUM(
+			CASE
+				WHEN [DETAIL].JENISAGUNAN IN (
+					'Apartemen / Rumah Susun'
+					,'Rumah Tinggal'
+					,'Tanah/Bangunan - Bangunan Gudang'
+					,'Tanah/Bangunan - Bangunan Pabrik'
+					,'Tanah/Bangunan - Gdg Perktr/Pertoko'
+					,'Tanah/Bangunan - Ruko/Rukan'
+					,'Tanah/Bangunan - Rumah/Rusun/Mess'
+					,'Tanah/Bangunan - Tanah'
+				)
+				OR [DETAIL].JENISAGUNAN IN (
+					'Kendaraan - Kapal Laut < 20m3'
+					,'Kendaraan - Kapal Laut > 20m3'
+					,'Kendaraan - Kendaraan Lainnya'
+					,'Kendaraan - Mesin-mesin'
+					,'Kendaraan - Mobil'
+					,'Kendaraan - Pesawat'
+					,'Kendaraan Komersil (Mobil Box, Truk'
+					,'Kendaraan Pribadi'
+					,'Kendaran - Motor'
+				)
+				OR [DETAIL].JENISAGUNAN IN ('CC - Emas (Logam Mulia)', 'CC - Emas (Non Logam Mulia)') THEN [DETAIL].NILAIASURANSI*([LINK].PERCENALLOC/100.00)
+			END
+		) AS DECIMAL(32, 2)) AS NILAIASURANSIFIXEDASSET
+		
+		,COUNT([DETAIL].IDCOLL) AS JMLAGUNAN
+	INTO #TEMP_AGUNAN
+	FROM
+		[NEW_BSI_COLLECTION].dbo.[PORTOFOLIO_ONBS.DATABASE.BSM.AGUNAN_LINK] [LINK]
+	LEFT JOIN
+		[NEW_BSI_COLLECTION].dbo.[PORTOFOLIO_ONBS.DATABASE.BSM.AGUNAN_DETAIL] [DETAIL]
+		ON [LINK].IDCOLL = [DETAIL].IDCOLL
+	GROUP BY
+		[LINK].NOLOAN;
+
+	WITH CTE AS
+	(
+		SELECT
+			[LINK].NOLOAN
+			,[DETAIL].IDCOLL
+			,[DETAIL].JENISAGUNAN
+			,[DETAIL].JENISPENGIKATAN
+			,ROW_NUMBER() OVER (
+				PARTITION BY
+					[LINK].NOLOAN
+				ORDER BY
+					[DETAIL].NILAIPASAR*([LINK].PERCENALLOC/100.00) DESC
+			) AS ACCT
+
+		FROM
+			[NEW_BSI_COLLECTION].dbo.[PORTOFOLIO_ONBS.DATABASE.BSM.AGUNAN_LINK] [LINK]
+		LEFT JOIN
+			[NEW_BSI_COLLECTION].dbo.[PORTOFOLIO_ONBS.DATABASE.BSM.AGUNAN_DETAIL] [DETAIL]
+			ON [LINK].IDCOLL = [DETAIL].IDCOLL
+	) SELECT * INTO #AGUNAN_TERBESAR FROM CTE WHERE ACCT = 1;
+
+	TRUNCATE TABLE [AGUNAN_ONBS];
+
+	INSERT INTO AGUNAN_ONBS
+		(
+			[TGL_LAST_MONTH]
+			,[TGL_CURRENT]
+			,[TGL_AGUNAN]
+			,[LEGACY]
+			,[NOLOAN]
+			,[NOMORCIF]
+			,[NAMANASABAH]
+			,[KODEOUTLET]
+			,[NAMAOUTLET]
+			,[AREA]
+			,[REGION]
+			,[SEGMEN]
+			,[DIVISI]
+			,[PRODUK]
+			,[PRODUK_DETAIL]
+			,[KOL_CIF_LAST_MONTH]
+			,[KOL_LOAN]
+			,[KOL_CIF]
+			,[OS_POKOK_PSAK]
+			,[OS_POKOK]
+			,[OS_MARGIN]
+			,[PROYEKSI_BAGIHASIL]
+			,[REALISASI_BAGIHASIL]
+			,[KODEAGUNANTERBESAR]
+			,[JENISAGUNANTERBESAR]
+			,[JENISPENGIKATANTERBESAR]
+			,[FlagAgunanLOAN]
+			,[FlagPembiayaan]
+			,[NILAIPASARALLOC]
+			,[NILAIPENGIKATANALLOC]
+			,[NILAILIKUIDITASALLOC]
+			,[NILAIASURANSIALLOC]
+			,[NILAIPASARFIXEDASSET]
+			,[NILAIPENGIKATANFIXEDASSET]
+			,[NILAILIKUIDITASFIXEDASSET]
+			,[NILAIASURANSIFIXEDASSET]
+			,[CCR]
+		)
+	SELECT
+		[PORTO].[(RCG) TGL_LAST_MONTH] AS TGL_LAST_MONTH
+		,[PORTO].[(SOURCE) TGL_CURRENT] AS TGL_CURRENT
+		,[AGUNAN].[TGL_UPDATE_DATA] AS TGL_AGUNAN
+		,[PORTO].[(RCG) LEGACY] AS LEGACY
+		,[PORTO].[(SOURCE) NOLOAN_CURRENT] AS NOLOAN
+		,[PORTO].[(SOURCE) NOMORCIF_CURRENT] AS NOMORCIF
+		,[PORTO].[(SOURCE) NAMANASABAH] AS NAMANASABAH
+		,[PORTO].[(RCG) KODECABANG_BSI] AS KODECABANG
+		,[PORTO].[(RCG) NAMACABANG_BSI] AS NAMACABANG
+		,[PORTO].[(RCG) AREA_BSI] AS AREA
+		,[PORTO].[(RCG) REGION_BSI] AS REGION
+		,CASE WHEN [PORTO].[(RCG) DIVISI_BSI] IN ('KONSUMER', 'CONSUMER', 'SME', 'PAWNING', 'MIKRO', 'HASANAH CARD') THEN 'Retail' ELSE 'Wholesale' END AS SEGMEN
+		,[PORTO].[(RCG) DIVISI_PECAH] AS DIVISI
+		,[PORTO].[(EDA) PRODUK] AS PRODUK
+		,[PORTO].[(EDA) PRODUK_DETAIL] AS PRODUK_DETAIL
+		,[PORTO].[(RCG) KOL_CIF_LAST_MONTH] AS KOL_CIF_LAST_MONTH
+		,[PORTO].[(RCG) KOL_LOAN_PECAH] AS KOL_LOAN
+		,[PORTO].[(RCG) KOL_CIF_PECAH] AS KOL_CIF
+		,[PORTO].[(RCG) OS_POKOK_PSAK_CURRENT] AS OS_POKOK_PSAK
+		,[PORTO].[(SOURCE) OS_POKOK_CURRENT] AS OS_POKOK
+		,[PORTO].[(SOURCE) OS_MARGIN_CURRENT] AS OS_MARGIN
+		,[PORTO].[(SOURCE) PROYEKSI_BAGIHASIL_CURRENT] AS PROYEKSI_BAGIHASIL
+		,[PORTO].[(SOURCE) REALISASI_BAGIHASIL_CURRENT] AS REALISASI_BAGIHASIL
+		,[MAX_AGUNAN].IDCOLL AS KODEAGUNANTERBESAR
+		,[MAX_AGUNAN].JENISAGUNAN AS JENISAGUNANTERBESAR
+		,[MAX_AGUNAN].JENISPENGIKATAN AS JENISPENGIKATANTERBESAR
+		,COALESCE([AGUNAN].FlagAgunan, 'Tidak Ada Agunan') AS FlagAgunanLOAN
+		,COALESCE([AGUNAN].FlagPembiayaan, 'Tidak Ada Agunan') AS FlagPembiayaan
+		,[AGUNAN].NILAIPASARALLOC
+		,[AGUNAN].NILAIPENGIKATANALLOC
+		,[AGUNAN].NILAILIKUIDITASALLOC
+		,[AGUNAN].NILAIASURANSIALLOC
+		,[AGUNAN].NILAIPASARFIXEDASSET
+		,[AGUNAN].NILAIPENGIKATANFIXEDASSET
+		,[AGUNAN].NILAILIKUIDITASFIXEDASSET
+		,[AGUNAN].NILAIASURANSIFIXEDASSET
+		,[AGUNAN].NILAIPASARALLOC / NULLIF(CAST(NULLIF([PORTO].[(RCG) OS_POKOK_PSAK_CURRENT], 0) AS DECIMAL(32, 2)), CAST(1 AS NUMERIC(32, 2))) AS CCR
+	FROM
+		[NEW_BSI_COLLECTION].dbo.[PORTOFOLIO_ONBS.GENERATED.JOIN.PORTOFOLIO_CURRENT] [PORTO]
+	LEFT JOIN #TEMP_AGUNAN [AGUNAN]
+		ON [PORTO].[(SOURCE) NOLOAN_CURRENT] = [AGUNAN].NOLOAN
+	LEFT JOIN #AGUNAN_TERBESAR [MAX_AGUNAN]
+		ON [PORTO].[(SOURCE) NOLOAN_CURRENT] = [MAX_AGUNAN].NOLOAN;
+END
