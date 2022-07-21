@@ -1,0 +1,14 @@
+CREATE TABLE [dbo].[PORTOFOLIO_ONBS.DATABASE.BSM.LAST_MONTH.RESTRU_RRG] (
+[ficmisdate] date NULL ,
+[NoLoan] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[NomorCIF] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[NamaNasabah] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[RestructDate] date NULL ,
+[RestructFlag] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Status_Pencairan] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Status_Pembiaya] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[DIVISI FINAL] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Flag_Restru_Final] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL 
+)
+ON [PRIMARY]
+GO
