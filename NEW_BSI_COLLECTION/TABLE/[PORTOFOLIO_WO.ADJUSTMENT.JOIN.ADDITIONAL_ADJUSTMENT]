@@ -1,0 +1,11 @@
+CREATE TABLE [dbo].[PORTOFOLIO_WO.ADJUSTMENT.JOIN.ADDITIONAL_ADJUSTMENT] (
+[Tgl_Data] date NULL ,
+[NOLOAN] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[adjustment_os_pokok] decimal(32,2) NULL ,
+[adjustment_os_margin] decimal(32,2) NULL ,
+[adjustment_payment_pokok] decimal(32,2) NULL ,
+[adjustment_payment_margin] decimal(32,2) NULL ,
+[keterangan] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL 
+)
+ON [PRIMARY]
+GO
