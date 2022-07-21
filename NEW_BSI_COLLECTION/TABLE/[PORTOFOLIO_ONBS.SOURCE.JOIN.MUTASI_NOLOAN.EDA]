@@ -1,0 +1,15 @@
+CREATE TABLE [dbo].[PORTOFOLIO_ONBS.SOURCE.JOIN.MUTASI_NOLOAN.EDA] (
+[PeriodeData] nvarchar(1023) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[noRekeningLegacy] nvarchar(1023) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[bankLegacy] nvarchar(1023) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[noRekening] nvarchar(1023) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[cabangBSI] nvarchar(1023) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[noCif] nvarchar(1023) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[tanggalBuka] nvarchar(1023) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[tanggalTutup] nvarchar(1023) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[sisapokok] nvarchar(1023) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[sisapokokPSAK] nvarchar(1023) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[NUM] nvarchar(1023) COLLATE SQL_Latin1_General_CP1_CI_AS NULL 
+)
+ON [PRIMARY]
+GO
