@@ -1,0 +1,12 @@
+CREATE TABLE [dbo].[PORTOFOLIO_JOIN.MAPPING.JOIN.CABANG_BSI_UPDATE] (
+[No] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Kode Outlet] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Kode Area] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[ID RO] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Kode RO] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Nama Area] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Nama RO] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Nama Outlet] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL 
+)
+ON [PRIMARY]
+GO
