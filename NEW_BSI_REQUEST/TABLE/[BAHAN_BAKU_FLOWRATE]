@@ -1,0 +1,13 @@
+CREATE TABLE [dbo].[BAHAN_BAKU_FLOWRATE] (
+[PERIODE_DATA] date NULL ,
+[KOLCIF] varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[DIVISI] varchar(8000) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[PRODUK] varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[PRODUK_DETAIL] varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[KODEOUTLET] varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Nama Area] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Nama RO] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[OS_POKOK_PSAK_CURRENT] decimal(38,4) NULL 
+)
+ON [PRIMARY]
+GO
