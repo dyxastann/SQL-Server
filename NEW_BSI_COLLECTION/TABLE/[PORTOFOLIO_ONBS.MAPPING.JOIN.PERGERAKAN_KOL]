@@ -1,0 +1,8 @@
+CREATE TABLE [dbo].[PORTOFOLIO_ONBS.MAPPING.JOIN.PERGERAKAN_KOL] (
+[M-3] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[M-2] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[M-1] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Ket_Aging] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL 
+)
+ON [PRIMARY]
+GO
