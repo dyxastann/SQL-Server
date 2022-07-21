@@ -1,0 +1,23 @@
+CREATE TABLE [dbo].[PORTOFOLIO_JOIN.MAPPING.JOIN.MAPPING_OUTLET_EDA] (
+[bankLegacy] varchar(10) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[cabangLegacy] varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[cabangBSI] varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[cabangBSI_Desk] varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[cabangBSI_Utama] varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[areaBSI] varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[areaBSI_Desk] varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[regionBSI] varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[regionBSI_Desk] varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[provinsi] varchar(35) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[zonaWaktu] varchar(5) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[latitude] numeric(32,15) NULL ,
+[longitude] numeric(32,15) NULL ,
+[koordinat] varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[regionBSI_Number] int NULL ,
+[flagClosed] varchar(10) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[cabangBSIPenampung] varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[cabangBSIPenampung_Desk] varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[tanggalClosed] date NULL 
+)
+ON [PRIMARY]
+GO
