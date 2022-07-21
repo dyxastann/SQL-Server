@@ -1,0 +1,10 @@
+CREATE TABLE [dbo].[PORTOFOLIO_JOIN.MAPPING.JOIN.SEKTOR_EKONOMI] (
+[SEKTOR_EKONOMI_DESC] nvarchar(1023) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[SOURCE] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[STATUS] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Kelompok Sektor Ekonomi (Format Lama)] nvarchar(1023) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Kelompok Sektor Ekonomi (Format LSMK)] nvarchar(1023) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Kelompok Sektor Ekonomi (Format Reporting Package Mandiri)] nvarchar(1023) COLLATE SQL_Latin1_General_CP1_CI_AS NULL 
+)
+ON [PRIMARY]
+GO
