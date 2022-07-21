@@ -1,0 +1,11 @@
+CREATE TABLE [dbo].[COLLSYS.REPORT.WA_BLAST.DAILY] (
+[(SOURCE) NOLOAN_CURRENT] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[(SOURCE) NOMORCIF_CURRENT] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[(SOURCE) NO_TELP_RUMAH] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[(SOURCE) NO_HP] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Tgl Kirim] date NULL ,
+[Kol saat WA] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Hasil WA] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL 
+)
+ON [PRIMARY]
+GO
