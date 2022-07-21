@@ -1,0 +1,26 @@
+CREATE TABLE [dbo].[COLLSYS.REPORT.DMS_FIELD.COMPILE] (
+[Regional] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Area] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[USERID] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Nama Kolektor] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Tanggal Input] date NULL ,
+[Nomor Loan] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Nama Debitur] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Tujuan Kunjungan] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Orang Yang Dikunjungi] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Hubungan Yang Dikunjungi] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Hasil Kunjungan] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Alasan Tidak Bayar] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Rekomendasi] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Nomor CIF] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[OS Pokok] numeric(32,2) NULL ,
+[OS Margin] numeric(32,2) NULL ,
+[Total] numeric(32,2) NULL ,
+[Kode Cabang] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Divisi] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Kol] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Catatan] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[PERIODE_KUNJUNGAN] date NULL 
+)
+ON [PRIMARY]
+GO
