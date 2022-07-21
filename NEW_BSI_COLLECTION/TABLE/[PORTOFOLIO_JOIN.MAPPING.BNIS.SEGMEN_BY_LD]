@@ -1,0 +1,11 @@
+CREATE TABLE [dbo].[PORTOFOLIO_JOIN.MAPPING.BNIS.SEGMEN_BY_LD] (
+[TGL_CURRENT] date NULL ,
+[NOLOAN] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Divisi Legacy] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Segmen BSI] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Divisi BSI] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Produk Legacy] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Kode Produk Legacy] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL 
+)
+ON [PRIMARY]
+GO
