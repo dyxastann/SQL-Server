@@ -1,0 +1,14 @@
+CREATE TABLE [dbo].[COLLSYS.REPORT.VOICE_BLAST.DAILY] (
+[Tgl Kirim Voice Blast] date NULL ,
+[Nomor BSI] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[NO_HP ASELI] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Provider] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Durasi] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[status call] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[No_HP_2] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[NOLOAN] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[NOCIF] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Kol saat Televoice] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL 
+)
+ON [PRIMARY]
+GO
