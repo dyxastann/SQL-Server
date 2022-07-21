@@ -1,0 +1,17 @@
+CREATE TABLE [dbo].[PORTOFOLIO_JOIN.MAPPING.JOIN.CABANG_UPDATE] (
+[NAMA BANK] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[KODE OUTLET EKSISTING] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Kode BSI] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[JENIS OUTLET] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[NAMA OUTLET EKSISTING] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[NAMA OUTLET BSI - OJK] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[NAMA OUTLET BSI - WALLSIGN] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[AREA End State] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[REGION End State] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[KODE KC Koordinator] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[KC Koordinator] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[AREA Rekonfigurasi] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[REGION Rekonfigurasi] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL 
+)
+ON [PRIMARY]
+GO
