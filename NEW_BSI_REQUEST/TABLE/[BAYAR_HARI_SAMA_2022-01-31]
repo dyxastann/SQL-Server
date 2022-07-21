@@ -1,0 +1,27 @@
+CREATE TABLE [dbo].[BAYAR_HARI_SAMA_2022-01-31] (
+[TANGGAL_INPUT] date NULL ,
+[ARO ID] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[NOLOAN] nvarchar(1023) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[NOMORCIF] nvarchar(1023) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[AREA_BSI] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[REGION_BSI] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[DIVISI_BSI] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[KOL_BULAN_LALU] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[KOL_SAAT_PELAPORAN] varchar(10) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[POKOK_LAST_MONTH] numeric(32,2) NULL ,
+[MARGIN_LAST_MONTH] numeric(32,2) NULL ,
+[RBH_LAST_MONTH] numeric(32,2) NULL ,
+[POKOK_CURRENT] numeric(32,2) NULL ,
+[MARGIN_CURRENT] numeric(32,2) NULL ,
+[RBH_CURRENT] numeric(32,2) NULL ,
+[ANGSURAN_POKOK] numeric(32,2) NULL ,
+[ANGSURAN_MARGIN] numeric(32,2) NULL ,
+[TUNGGAKAN_POKOK] numeric(32,2) NULL ,
+[TUNGGAKAN_MARGIN] numeric(32,2) NULL ,
+[Pembayaran Pokok] decimal(32,2) NULL ,
+[Pembayaran Margin] decimal(32,2) NULL ,
+[Pembayaran Basil] decimal(32,2) NULL ,
+[Total Pembayaran] decimal(32,2) NULL 
+)
+ON [PRIMARY]
+GO
