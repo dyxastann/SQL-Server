@@ -1,0 +1,17 @@
+CREATE TABLE [dbo].[COLLSYS.REPORT.DMS_TELE.DAILY] (
+[Nama Kolektor] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Tanggal Dihubungi] date NULL ,
+[Jam Dihubungi] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[CIF] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Nomor Loan] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Nomor Yang Dihubungi] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Tujuan Menghubungi] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Orang Yang Hubungi] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Hubungan] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Hasil] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Alasan Tidak Bayar] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Rekomendasi] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Catatan] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL 
+)
+ON [PRIMARY]
+GO
