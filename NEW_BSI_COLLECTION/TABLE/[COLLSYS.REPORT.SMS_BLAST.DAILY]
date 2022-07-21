@@ -1,0 +1,13 @@
+CREATE TABLE [dbo].[COLLSYS.REPORT.SMS_BLAST.DAILY] (
+[(SOURCE) NOLOAN_CURRENT] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[(SOURCE) NOMORCIF_CURRENT] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[(SOURCE) NO_TELP_RUMAH] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[(SOURCE) NO_HP] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Tgl Kirim SMS] date NULL ,
+[NO_HP3] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[NO_HP4] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Kol saat SMS] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Hasil SMS] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL 
+)
+ON [PRIMARY]
+GO
