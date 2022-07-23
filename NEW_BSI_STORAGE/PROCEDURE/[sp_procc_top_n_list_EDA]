@@ -1,0 +1,151 @@
+CREATE PROCEDURE [dbo].[sp_procc_top_n_list_EDA]
+AS
+BEGIN
+  -- routine body goes here, e.g.
+  -- SELECT 'Navicat for SQL Server'
+		SELECT
+			periodeData
+			,cabangBSI
+			,noCif
+			,namaNasabah
+			,noRekening
+			,kolektibilitas
+			,segmenBSI
+			,sisaPokokPSAK
+			,CKPN
+		INTO #TEMP_TB
+		FROM
+		[EDA.LOAN_DAILY.2020-12-31]
+		WHERE sisaPokok > 0
+		AND segmenBSI IN ('CONSUMER', 'SME', 'MIKRO', 'PAWNING')
+		--AND kolektibilitas IN ('2')
+		AND kolektibilitas IN ('3', '4', '5');
+
+		SELECT
+			NOCIF_CURRENT
+			,NOCIF_AKHIR
+		INTO #MUTASI_CIF
+		FROM [NEW_BSI_COLLECTION].dbo.[PORTOFOLIO_ONBS.MAPPING.JOIN.REKAP_NOLOAN.MUTASI_NOLOAN_CURRENT]
+		GROUP BY
+			NOCIF_CURRENT
+			,NOCIF_AKHIR;
+
+		SELECT
+			cabangBSI
+			,MAX(cabangBSI_Desk) AS cabangBSI_Desk
+			,MAX(areaBSI_Desk) AS areaBSI_Desk
+			,MAX(regionBSI_Desk) AS regionBSI_Desk
+		INTO #MAPPING_OUTLET
+		FROM [NEW_BSI_COLLECTION].dbo.[PORTOFOLIO_JOIN.MAPPING.JOIN.MAPPING_OUTLET_EDA]
+		GROUP BY cabangBSI;
+
+		SELECT
+			noCif
+			,MAX(kolektibilitas) AS kolektibilitas
+			,SUM(sisaPokokPSAK) AS sisaPokokPSAK
+			,SUM(CKPN) AS CKPN
+		INTO #SEP_21
+		FROM
+			[EDA.LOAN_DAILY.2021-09-30]
+		GROUP BY
+			noCif;
+
+		SELECT
+			noCif
+			,MAX(kolektibilitas) AS kolektibilitas
+			,SUM(sisaPokokPSAK) AS sisaPokokPSAK
+			,SUM(CKPN) AS CKPN
+		INTO #DES_21
+		FROM
+			[EDA.LOAN_DAILY.2021-12-31]
+		GROUP BY
+			noCif;
+			
+
+		SELECT
+			noCif
+			,segmenBSI
+			,ROW_NUMBER() OVER (
+				PARTITION BY
+					noCif
+				ORDER BY
+					SUM(sisaPokokPSAK) DESC
+			) AS ACCT
+		INTO #SEGMEN_TERBESAR
+		FROM #TEMP_TB
+		GROUP BY
+			noCif
+			,segmenBSI;
+
+		SELECT
+			noCif
+			,cabangBSI
+			,ROW_NUMBER() OVER (
+				PARTITION BY
+					noCif
+				ORDER BY
+					SUM(sisaPokokPSAK) DESC
+			) AS ACCT
+		INTO #OUTLET_TERBESAR
+		FROM #TEMP_TB
+		GROUP BY
+			noCif
+			,cabangBSI;
+
+
+		WITH CTE AS
+		(
+			SELECT
+				#TEMP_TB.noCif AS noCif
+				,#TEMP_TB.namaNasabah AS namaNasabah
+				,MAX(kolektibilitas) AS kolektibilitas
+				,SUM(#TEMP_TB.sisaPokokPSAK) AS sisaPokokPSAK
+				,SUM(#TEMP_TB.CKPN) AS CKPN
+				,ROW_NUMBER() OVER (
+					ORDER BY
+						SUM(#TEMP_TB.sisaPokokPSAK) DESC
+				) AS RANKS
+			FROM #TEMP_TB
+			GROUP BY #TEMP_TB.noCif
+				,#TEMP_TB.namaNasabah
+		)
+		SELECT
+			CTE.RANKS
+			,CTE.noCif
+			,COALESCE(#MUTASI_CIF.NOCIF_AKHIR, CTE.noCif) AS noCifPascaMigrasi
+			,CTE.namaNasabah
+			,#OUTLET_TERBESAR.cabangBSI
+			,#MAPPING_OUTLET.cabangBSI_Desk
+			,#MAPPING_OUTLET.areaBSI_Desk
+			,#MAPPING_OUTLET.regionBSI_Desk
+			,#SEGMEN_TERBESAR.segmenBSI
+			,CTE.kolektibilitas AS kolektibilitas_DES_20
+			,#SEP_21.kolektibilitas AS kolektibilitas_SEP_21
+			,#DES_21.kolektibilitas AS kolektibilitas_DES_21
+			,CTE.sisaPokokPSAK AS CKPN_DES_20
+			,COALESCE(#SEP_21.sisaPokokPSAK, 0) AS CKPN_SEP_21
+			,COALESCE(#DES_21.sisaPokokPSAK, 0) AS CKPN_DES_21
+			,CTE.CKPN AS CKPN_DES_20
+			,COALESCE(#SEP_21.CKPN, 0) AS CKPN_SEP_21
+			,COALESCE(#DES_21.CKPN, 0) AS CKPN_DES_21
+		FROM CTE
+		LEFT JOIN #SEGMEN_TERBESAR
+			ON CTE.noCif = #SEGMEN_TERBESAR.noCif
+			AND #SEGMEN_TERBESAR.ACCT = 1
+		LEFT JOIN #OUTLET_TERBESAR
+			ON CTE.noCif = #OUTLET_TERBESAR.noCif
+			AND #OUTLET_TERBESAR.ACCT = 1
+		LEFT JOIN #MAPPING_OUTLET
+			ON #OUTLET_TERBESAR.cabangBSI = #MAPPING_OUTLET.cabangBSI
+		LEFT JOIN #MUTASI_CIF
+			ON #MUTASI_CIF.NOCIF_CURRENT = CTE.noCif
+		LEFT JOIN #SEP_21
+			ON #SEP_21.noCif = COALESCE(#MUTASI_CIF.NOCIF_AKHIR, CTE.noCif)
+		LEFT JOIN #DES_21
+			ON #DES_21.noCif = COALESCE(#MUTASI_CIF.NOCIF_AKHIR, CTE.noCif)
+		WHERE CTE.RANKS <= 20
+
+		ORDER BY CTE.RANKS ASC
+
+END
+GO
