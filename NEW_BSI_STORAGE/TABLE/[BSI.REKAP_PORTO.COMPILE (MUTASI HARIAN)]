@@ -1,0 +1,23 @@
+CREATE TABLE [dbo].[BSI.REKAP_PORTO.COMPILE (MUTASI HARIAN)] (
+[FicMisDate] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Legacy] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[SourceDataCode] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[KodeOutlet_BSI] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Nama_Outlet_BSI] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Area_BSI] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Regional_BSI] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Segmen_BSI] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Produk_BSI] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Produk_BSI_Detail] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Kol_LAST] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Kol CIF] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[KolLoan] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[KolCIF_Pecah] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[Keterangan_Mutasi] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[OS Pokok PSAK] decimal(32,2) NULL ,
+[Nominal_CKPN-PPAP] decimal(32,2) NULL ,
+[Acct ] int NULL ,
+[Kelolaan RCG] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL 
+)
+ON [PRIMARY]
+GO
