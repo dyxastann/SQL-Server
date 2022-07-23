@@ -1,0 +1,9 @@
+CREATE TABLE [dbo].[BSM.AGUNAN_LINK.yyyy-mm-dd] (
+[AS_OF_DT] date NULL ,
+[IDCOLL] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[NOLOAN] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+[PERCENALLOC] numeric(38,8) NULL ,
+[LIMIT_REFERENCE] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS NULL 
+)
+ON [PRIMARY]
+GO
