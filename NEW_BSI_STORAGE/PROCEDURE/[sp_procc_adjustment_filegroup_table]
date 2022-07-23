@@ -1,0 +1,33 @@
+CREATE PROCEDURE [dbo].[sp_procc_adjustment_filegroup_table]
+  @NAMA AS nvarchar(MAX) 
+  ,@FILEGROUP AS nvarchar(MAX) = 'PRIMARY'
+AS
+BEGIN
+  -- routine body goes here, e.g.
+  -- SELECT 'Navicat for SQL Server'
+
+	DECLARE
+		@columns AS nvarchar(MAX) = ''
+		,@sql_query AS nvarchar(MAX) = ''
+	
+
+		IF EXISTS (SELECT * FROM sys.filegroups WHERE name = @FILEGROUP) AND EXISTS (SELECT name FROM sys.objects WHERE type_desc = 'USER_TABLE' AND name = @NAMA)
+		BEGIN
+			PRINT(CONCAT('MEMINDAHKAN TABEL [', @NAMA, '] KE FILEGROUP [', @FILEGROUP, ']!! ',CURRENT_TIMESTAMP));
+			SET @columns = (SELECT column_name
+				from information_schema.columns
+				where table_name=@NAMA
+				and ordinal_position = 1);
+			SET @sql_query =CONCAT('
+			CREATE CLUSTERED INDEX [UIX_', @columns, '] ON [', @NAMA, ']([', @columns, ']) ON [', @FILEGROUP, '];
+			DROP INDEX [', @NAMA, '].[UIX_', @columns, '];');
+			EXEC(@sql_query);
+
+			PRINT(CONCAT('PEMINDAHAN SELESAI!! ',CURRENT_TIMESTAMP));
+		END
+		ELSE BEGIN
+			PRINT(CONCAT('PEMINDAHAN TABEL [', @NAMA, '] KE FILEGROUP [', @FILEGROUP, '] GAGAL!! ',CURRENT_TIMESTAMP));
+		END
+END
+
+GO
