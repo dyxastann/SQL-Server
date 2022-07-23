@@ -1,0 +1,106 @@
+CREATE PROCEDURE [dbo].[procc_EDA_loan_daily]
+  @TGL_DATA AS VARCHAR(MAX) 
+AS
+BEGIN
+	DECLARE @sql_query nvarchar(max), @retVal int, @cur_date date, @total_saldo decimal(32, 2), @total_saldo_source decimal(32, 2);
+  
+	IF EXISTS (SELECT name FROM sys.objects WHERE type_desc = 'USER_TABLE' AND name = 'TB_TEMP')
+	BEGIN
+		DROP TABLE TB_TEMP;
+	END
+	SET @sql_query = CONCAT('SELECT * INTO [TB_TEMP] FROM [10.0.32.91].EDA_WH.dbo.masterPembiayaan_BSI a WHERE a.periodeData = ''', @TGL_DATA, '''');
+	EXEC(@sql_query);
+
+---------------------------------------------CURRENT---------------------------------------------
+
+	IF EXISTS(SELECT * FROM [TB_TEMP])
+	BEGIN
+		IF EXISTS (SELECT name FROM sys.objects WHERE type_desc = 'USER_TABLE' AND name = 'EDA.LOAN_DAILY.CURRENT')
+		BEGIN
+			SET @cur_date = (SELECT TOP 1 MAX(periodeData) FROM [EDA.LOAN_DAILY.CURRENT] GROUP BY periodeData);
+			SET @total_saldo = (SELECT TOP 1 SUM(saldoDPK) FROM [EDA.LOAN_DAILY.CURRENT] WHERE periodeData = @cur_date GROUP BY periodeData);
+			SET @total_saldo_source = (SELECT TOP 1 SUM(saldoDPK) FROM [TB_TEMP] WHERE periodeData = @cur_date GROUP BY periodeData);
+			IF try_cast(@TGL_DATA AS DATE) >= COALESCE(@cur_date, try_cast(@TGL_DATA AS DATE))-- AND COALESCE(@total_saldo, 0.00) != COALESCE(@total_saldo_source, 0.00)
+			BEGIN
+				/*
+				BEGIN TRY
+					TRUNCATE TABLE [EDA.LOAN_DAILY.CURRENT];
+					INSERT INTO [EDA.LOAN_DAILY.CURRENT] SELECT * FROM [TB_TEMP];
+				END TRY
+				BEGIN CATCH
+				*/
+					DROP TABLE [EDA.LOAN_DAILY.CURRENT];
+					SELECT * INTO [EDA.LOAN_DAILY.CURRENT] FROM [TB_TEMP];
+				/*END CATCH*/
+			END
+		END
+		ELSE
+		BEGIN
+			BEGIN TRY
+				SELECT * INTO [EDA.LOAN_DAILY.CURRENT] FROM [TB_TEMP];
+			END TRY
+			BEGIN CATCH
+				DROP TABLE [EDA.LOAN_DAILY.CURRENT];
+				SELECT * INTO [EDA.LOAN_DAILY.CURRENT] FROM [TB_TEMP];
+			END CATCH
+		END
+
+---------------------------------------------CURRENT---------------------------------------------
+
+		IF EXISTS (SELECT name FROM NEW_BSI_COLLECTION.sys.objects WHERE type_desc = 'USER_TABLE' AND name = 'PORTOFOLIO_ONBS.SOURCE.EDA.LOAN_DAILY')
+		BEGIN
+			SET @cur_date = (SELECT TOP 1 MAX(periodeData) FROM [NEW_BSI_COLLECTION].[dbo].[PORTOFOLIO_ONBS.SOURCE.EDA.LOAN_DAILY] GROUP BY periodeData);
+			SET @total_saldo = (SELECT TOP 1 SUM(saldoDPK) FROM [NEW_BSI_COLLECTION].[dbo].[PORTOFOLIO_ONBS.SOURCE.EDA.LOAN_DAILY] WHERE periodeData = @cur_date GROUP BY periodeData);
+			SET @total_saldo_source = (SELECT TOP 1 SUM(saldoDPK) FROM [TB_TEMP] WHERE periodeData = @cur_date GROUP BY periodeData);
+			IF try_cast(@TGL_DATA AS DATE) >= COALESCE(@cur_date, try_cast(@TGL_DATA AS DATE))-- AND COALESCE(@total_saldo, 0.00) != COALESCE(@total_saldo_source, 0.00)
+			BEGIN
+				DROP TABLE [NEW_BSI_COLLECTION].[dbo].[PORTOFOLIO_ONBS.SOURCE.EDA.LOAN_DAILY];
+				SELECT * INTO [NEW_BSI_COLLECTION].[dbo].[PORTOFOLIO_ONBS.SOURCE.EDA.LOAN_DAILY] FROM [TB_TEMP];
+			END
+		END
+		ELSE
+		BEGIN
+			BEGIN TRY
+				SELECT * INTO [NEW_BSI_COLLECTION].[dbo].[PORTOFOLIO_ONBS.SOURCE.EDA.LOAN_DAILY] FROM [TB_TEMP];
+			END TRY
+			BEGIN CATCH
+				DROP TABLE [NEW_BSI_COLLECTION].[dbo].[PORTOFOLIO_ONBS.SOURCE.EDA.LOAN_DAILY];
+				SELECT * INTO [NEW_BSI_COLLECTION].[dbo].[PORTOFOLIO_ONBS.SOURCE.EDA.LOAN_DAILY] FROM [TB_TEMP];
+			END CATCH
+		END
+
+---------------------------------------------CURRENT---------------------------------------------
+
+		IF NOT EXISTS (SELECT name FROM sys.objects WHERE type_desc = 'USER_TABLE' AND name = CONCAT('EDA.LOAN_DAILY.', @TGL_DATA))
+		BEGIN
+			SET @sql_query = CONCAT('SELECT * INTO [EDA.LOAN_DAILY.', @TGL_DATA,'] FROM [TB_TEMP]');
+			EXEC(@sql_query);
+		END
+		ELSE
+		BEGIN
+				SET @sql_query = (CONCAT('DROP TABLE [EDA.LOAN_DAILY.', @TGL_DATA, ']'));
+				EXEC(@sql_query);
+				SET @sql_query = CONCAT('SELECT * INTO [EDA.LOAN_DAILY.', @TGL_DATA,'] FROM [TB_TEMP]');
+				EXEC(@sql_query);
+		END
+	END
+	ELSE
+	BEGIN
+		PRINT(CONCAT('DATA TANGGAL ', @TGL_DATA, ' TIDAK TERSEDIA!!'));
+	END
+	
+	/*
+	SET @sql_query = 'SELECT @retVal = COUNT(periodeData) FROM #TEMP_TB GROUP BY periodeData';
+	EXECUTE sp_executesql @sql_query, '@retVal int output', @retVal;
+	IF(@retVal > 1)
+	BEGIN
+		PRINT('Ada!');
+	END
+	*/
+
+	DROP TABLE [TB_TEMP];
+	-- routine body goes here, e.g.
+  -- SELECT 'Navicat for SQL Server'
+END
+
+GO
