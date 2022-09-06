@@ -1,0 +1,152 @@
+CREATE PROCEDURE [dbo].[sp_get_portofolio_daily]
+(
+	@tgl_data varchar(max) = NULL
+	,@area varchar(max) = NULL
+	,@region varchar(max) = NULL
+	,@segmen varchar(max) = NULL
+	,@divisi varchar(max) = NULL
+	,@produk varchar(max) = NULL
+	,@data_type varchar(max) = NULL
+)
+AS
+BEGIN
+
+	DECLARE @sql_query varchar(max);
+
+	SELECT TOP 0 * INTO #TEMP_TB FROM [PORTOFOLIO.ONBS.CURRENT];
+
+	
+	SET @sql_query = 'SELECT * FROM [PORTOFOLIO.ONBS.CURRENT]';
+	INSERT INTO #TEMP_TB exec (@sql_query);
+
+-------------------------------------XXXX-------------------------------------
+
+	CREATE TABLE #RESULT_TABLE
+	(
+		[TGL_CURRENT] DATE
+		,[NOLOAN] VARCHAR(255)
+		,[NOMORCIF] VARCHAR(255)
+		,[NAMANASABAH] VARCHAR(255)
+		,[KODEOUTLET] VARCHAR(255)
+		,[NAMAOUTLET] VARCHAR(255)
+		,[AREA] VARCHAR(255)
+		,[REGION] VARCHAR(255)
+		,[SEGMEN] VARCHAR(255)
+		,[DIVISI] VARCHAR(255)
+		,[PRODUK] VARCHAR(255)
+		,[PRODUK_DETAIL] VARCHAR(255)
+		,[JENISPIUTANGPEMBIAYAAN] VARCHAR(255)
+		,[DPD] INTEGER
+		,[KOL_LOAN] VARCHAR(255)
+		,[KOL_CIF] VARCHAR(255)
+		,[OS_POKOK] DECIMAL(20 ,2)
+		,[OS_MARGIN] DECIMAL(20 ,2)
+	);
+
+-------------------------------------XXXX-------------------------------------
+
+	INSERT INTO #RESULT_TABLE
+		(
+			[TGL_CURRENT]
+			,[NOLOAN]
+			,[NOMORCIF]
+			,[JENISPIUTANGPEMBIAYAAN]
+			,[DPD]
+			,[KOL_LOAN]
+			,[KOL_CIF]
+			,[OS_POKOK]
+			,[OS_MARGIN]
+		)
+	SELECT		
+		[TGL_CURRENT]
+		,[NOLOAN]
+		,[NOMORCIF]
+		,[JENISPIUTANGPEMBIAYAAN]
+		,[DPD]
+		,[KOL_LOAN]
+		,[KOL_CIF]
+		,[OS_POKOK_CURRENT]
+		,[OS_MARGIN_CURRENT]
+	FROM #TEMP_TB [CUR]
+
+-------------------------------------XXXX-------------------------------------
+
+	UPDATE #RESULT_TABLE
+	SET
+		[DIVISI] = COALESCE([SOURCE].[DIVISI], [SOURCE].[DIVISI])
+		,[PRODUK] = COALESCE([SOURCE].[PRODUK], [SOURCE].[PRODUK])
+		,[PRODUK_DETAIL] = COALESCE([SOURCE].[PRODUK_DETAIL], [SOURCE].[PRODUK_DETAIL])
+		,[JENISPIUTANGPEMBIAYAAN] = COALESCE([SOURCE].[JENISPIUTANGPEMBIAYAAN], [SOURCE].[JENISPIUTANGPEMBIAYAAN])
+		,[KODEOUTLET] = COALESCE([SOURCE].[KODEOUTLET], [SOURCE].[KODEOUTLET])
+	FROM #RESULT_TABLE [TARGET]
+	LEFT JOIN [PORTOFOLIO.ONBS.LOAN_DETAIL] [SOURCE]
+		ON [TARGET].[NOLOAN] = [SOURCE].[NOLOAN]
+		AND [TARGET].[NOMORCIF] = [SOURCE].[NOMORCIF];
+	
+-------------------------------------XXXX-------------------------------------
+
+	UPDATE #RESULT_TABLE
+	SET
+		[NAMANASABAH] = COALESCE([SOURCE].[NAMANASABAH], [TARGET].[NAMANASABAH])
+	FROM #RESULT_TABLE [TARGET]
+	LEFT JOIN [PORTOFOLIO.ONBS.CIF_DETAIL] [SOURCE]
+		ON [TARGET].[NOMORCIF] = [SOURCE].[NOMORCIF];
+	
+-------------------------------------XXXX-------------------------------------
+
+	UPDATE #RESULT_TABLE
+	SET
+		[NAMAOUTLET] = COALESCE([SOURCE].[Nama Outlet], [TARGET].[NAMAOUTLET])
+		,[AREA] = COALESCE([SOURCE].[Nama Area], [TARGET].[AREA])
+		,[REGION] = COALESCE([SOURCE].[Nama RO], [TARGET].[REGION])
+	FROM #RESULT_TABLE [TARGET]
+	LEFT JOIN [NEW_BSI_COLLECTION].[dbo].[PORTOFOLIO_JOIN.MAPPING.JOIN.CABANG_BSI_UPDATE] [SOURCE]
+		ON [TARGET].[KODEOUTLET] = [SOURCE].[kode outlet]
+	
+-------------------------------------XXXX-------------------------------------
+
+	CREATE TABLE #TEMP (
+		KOL VARCHAR(255)
+	);
+
+	IF(NULLIF(@data_type, '') IS NULL OR @data_type IN ('ONBS'))
+	BEGIN
+		INSERT INTO #TEMP VALUES('1');
+	END
+
+	IF(NULLIF(@data_type, '') IS NULL OR @data_type IN ('Kol 2', 'ONBS'))
+	BEGIN
+		INSERT INTO #TEMP VALUES('2'), ('2A'), ('2B'), ('2C');
+	END
+
+	IF(NULLIF(@data_type, '') IS NULL OR @data_type IN ('NPF', 'ONBS'))
+	BEGIN
+		INSERT INTO #TEMP VALUES('3'), ('3A'), ('3B'), ('3C'), ('4'), ('4A'), ('4B'), ('4C'), ('5'), ('5A'), ('5B'), ('5C');
+	END
+
+	IF(NULLIF(@data_type, '') IS NULL)
+	BEGIN
+		INSERT INTO #TEMP VALUES('WO'), ('Lunas'), ('Suspect');
+	END
+
+-------------------------------------XXXX-------------------------------------
+
+	SELECT
+		*
+	FROM #RESULT_TABLE
+
+	WHERE
+		[KOL_CIF] IN (SELECT KOL FROM #TEMP) 
+		AND
+			(
+				COALESCE([REGION], '') LIKE CONCAT('%', @region, '%')
+				AND COALESCE([AREA], '') LIKE CONCAT('%', @area, '%')
+				AND COALESCE([DIVISI], '') LIKE CONCAT('%', @divisi, '%')
+				AND COALESCE([PRODUK], '') LIKE CONCAT('%', @produk, '%')
+				AND COALESCE([SEGMEN], '') LIKE CONCAT('%', @segmen, '%')
+			);
+
+  -- routine body goes here, e.g.
+  -- SELECT 'Navicat for SQL Server'
+END
+GO
