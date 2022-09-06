@@ -1,0 +1,20 @@
+DECLARE @sql_query varchar(max) = '', @POINTER INTEGER = 1, @periode_data varchar(max) = '2022-07-01'
+
+WHILE @POINTER <= RIGHT(DATEADD(DAY, -1, EOMONTH(LEFT(@periode_data, 10))), 2)
+BEGIN 
+	BEGIN TRY
+		PRINT @POINTER
+		SET @sql_query = CONCAT('SELECT TOP 0 * FROM [NEW_BSI_STORAGE].[dbo].[BSM.IFOS_JFAST.', LEFT(@periode_data, 8), [NEW_BSI_COLLECTION].[dbo].[fx_ndigit_code](@POINTER, 2), ']')
+		EXEC(@sql_query)
+	END TRY
+	BEGIN CATCH
+/*
+		SET @sql_query = CONCAT('SELECT * INTO [NEW_BSI_STORAGE].[dbo].[BSM.IFOS_JFAST.', LEFT(@periode_data, 8), [NEW_BSI_COLLECTION].[dbo].[fx_ndigit_code](@POINTER, 2), ']
+				FROM [NEW_BSI_STORAGE].[dbo].[BSM.IFOS_JFAST.', LEFT(@periode_data, 8), [NEW_BSI_COLLECTION].[dbo].[fx_ndigit_code](@POINTER - 1, 2), ']')
+		EXEC(@sql_query)
+		PRINT CONCAT('Data Tanggal ', LEFT(@periode_data, 8), [NEW_BSI_COLLECTION].[dbo].[fx_ndigit_code](@POINTER, 2), ' Berhasil dibuat')
+*/
+		PRINT CONCAT('Data Tanggal ', LEFT(@periode_data, 8), [NEW_BSI_COLLECTION].[dbo].[fx_ndigit_code](@POINTER, 2), ' ERROR : ', ERROR_MESSAGE())
+	END CATCH
+	SET @POINTER = @POINTER + 1
+END
