@@ -1,0 +1,24 @@
+DROP TABLE [PORTOFOLIO.ONBS.LIST_LOAN];
+
+CREATE TABLE [dbo].[PORTOFOLIO.ONBS.LIST_LOAN] (
+[TGL_DATA] date NULL ,
+[LEGACY] varchar(10) NULL ,
+[NOLOAN] varchar(50) NULL ,
+[CARD_NO] varchar(50) NULL ,
+[NOMORCIF] varchar(50) NULL ,
+[KODEOUTLET] varchar(50) NULL ,
+[CURRENCY] varchar(10) NULL ,
+[JENISPIUTANGPEMBIAYAAN] varchar(50) NULL ,
+[DAYPASTDUE] int NULL ,
+[TGL_CAIR] date NULL ,
+[TGL_JT_TEMPO] date NULL ,
+[DIVISI] varchar(50) NULL ,
+[KOL_LOAN] varchar(10) NULL ,
+[KOL_CIF] varchar(10) NULL ,
+[CAIR_POKOK] decimal(32,2) NULL ,
+[CAIR_MARGIN] decimal(32,2) NULL ,
+[SISA_POKOK] decimal(32,2) NULL ,
+[SISA_MARGIN] decimal(32,2) NULL ,
+[REALISASI_BASIL] decimal(32,2) NULL ,
+[PROYEKSI_BASIL] decimal(32,2) NULL 
+)
