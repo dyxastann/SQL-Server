@@ -1,0 +1,54 @@
+TRUNCATE TABLE [NEW_BSI_REQUEST].[dbo].[REQUEST.IBNU.2022-08-24];
+
+DECLARE @sql_query varchar(max) = '', @NAME varchar(max) = '', @COLUMN_NAME varchar(max) = ''
+DECLARE load_cursor CURSOR FOR 
+	SELECT name FROM sys.objects WHERE type_desc = 'USER_TABLE'
+		AND
+			(
+				(
+					name LIKE ('BSI.PORTOFOLIO_DAILY.____-__-__')
+					AND COALESCE(TRY_CAST(RIGHT(name, 10) AS DATE), '1900-01-01') != EOMONTH(COALESCE(TRY_CAST(RIGHT(name, 10) AS DATE), '1900-01-01'))
+				)
+				OR name LIKE ('BSI.PORTOFOLIO_DAILY.____-__-__ (EDA)')
+			)
+	ORDER BY name ASC
+
+OPEN load_cursor
+FETCH NEXT FROM load_cursor INTO @NAME
+
+WHILE @@FETCH_STATUS = 0 
+BEGIN
+	
+	SET @sql_query = CONCAT('INSERT INTO [NEW_BSI_REQUEST].[dbo].[REQUEST.IBNU.2022-08-24]
+	SELECT
+		EOMONTH(''', LEFT(REPLACE(@NAME, 'BSI.PORTOFOLIO_DAILY.', ''), 10), ''') AS PERIODE
+		,RIGHT(''', LEFT(REPLACE(@NAME, 'BSI.PORTOFOLIO_DAILY.', ''), 10), ''', 2) AS TGL
+		,[(RCG) DIVISI_BSI] AS DIVISI
+		,[(EDA) PRODUK] AS PRODUK
+		,[(RCG) AREA_BSI] AS AREA
+		,[(RCG) REGION_BSI] AS REGION
+		,SUM([(RCG) OS_POKOK_PSAK_CURRENT]) AS OS
+		,COUNT([(SOURCE) NOLOAN_CURRENT]) AS NOA
+		,[(RCG) KOL_CIF_PECAH] AS KOLCIF
+	FROM [', @NAME, ']
+	WHERE [(RCG) DIVISI_BSI] IN (''Hasanah Card'', ''SME'', ''Mikro'', ''Pawning'', ''Konsumer'', ''Consumer'')
+	AND [(RCG) KOL_CIF_PECAH] NOT IN (''Lunas'', ''Suspect'', ''WO'')
+	GROUP BY	
+		[(SOURCE) TGL_CURRENT]
+		,[(RCG) DIVISI_BSI]
+		,[(EDA) PRODUK]
+		,[(RCG) AREA_BSI]
+		,[(RCG) REGION_BSI]
+		,[(RCG) KOL_CIF_PECAH]')
+	BEGIN TRY
+		EXEC(@sql_query)
+		PRINT CONCAT('SUKSES! | DATA: ', @NAME)
+	END TRY
+	BEGIN CATCH
+		PRINT CONCAT('ERROR: ', ERROR_MESSAGE(), ' | DATA: ', @NAME)
+	END CATCH
+	FETCH NEXT FROM load_cursor INTO @NAME
+END
+
+CLOSE load_cursor
+DEALLOCATE load_cursor;
