@@ -1,0 +1,22 @@
+DECLARE @sql_query varchar(max), @tgl_proses varchar(10) = '2022-07-23'
+
+CREATE TABLE [TEMP_SALDO]
+(
+	TANGGAL_DATA varchar(255)
+	,SALDO_MAX DECIMAL(20, 2)
+)
+
+INSERT INTO [TEMP_TB] (TANGGAL_DATA) VALUES (@tgl_proses)
+
+SET @sql_query = CONCAT('UPDATE [TEMP_SALDO] SET SALDO_MAX = (SELECT MAX(saldoDPK) FROM [EDA.LOAN_DAILY.', @tgl_proses,']) WHERE TANGGAL_DATA = ''', @tgl_proses, '''')
+
+BEGIN TRY
+	EXEC(@sql_query)
+END TRY
+BEGIN CATCH
+	PRINT(CONCAT('ERROR: ', ERROR_MESSAGE()))
+END CATCH
+
+SELECT * FROM TEMP_SALDO
+
+DROP TABLE TEMP_SALDO
