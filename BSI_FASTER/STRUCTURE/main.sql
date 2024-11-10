@@ -1,0 +1,2947 @@
+/*
+ Navicat Premium Data Transfer
+
+ Source Server         : NEW_BSI_COLLECTION
+ Source Server Type    : SQL Server
+ Source Server Version : 11006020
+ Source Host           : PC-RCG-KP54\RCGPC004_SQLSVR:1433
+ Source Catalog        : BSI_FASTER
+ Source Schema         : main
+
+ Target Server Type    : SQL Server
+ Target Server Version : 11006020
+ File Encoding         : 65001
+
+ Date: 30/08/2023 18:25:22
+*/
+
+
+-- ----------------------------
+-- Table structure for RCG.LOAN_DAILY
+-- ----------------------------
+IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[main].[RCG.LOAN_DAILY]') AND type IN ('U'))
+	DROP TABLE [main].[RCG.LOAN_DAILY]
+GO
+
+CREATE TABLE [main].[RCG.LOAN_DAILY] (
+  [TGL_DATA] date  NULL,
+  [NOLOAN] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NOMORCIF] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [SUPERCIF] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NAMANASABAH] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [KODECABANG] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NAMACABANG] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [AREA] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [REGION] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [LOANTYPE] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [DIVISI] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [PRODUK] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [PRODUK_DETAIL] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [JENISPIUTANGPEMBIAYAAN] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [TANGGAL_CAIR] date  NULL,
+  [TANGGAL_JATUH_TEMPO] date  NULL,
+  [CYCLE] int  NULL,
+  [DPD] int  NULL,
+  [KOL_LOAN] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [KOL_CIF] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [KOL_SUPERCIF] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [OS_POKOK_PSAK] decimal(20,2)  NULL,
+  [OS_POKOK] decimal(20,2)  NULL,
+  [OS_MARGIN] decimal(20,2)  NULL,
+  [REALISASI_BAGIHASIL] decimal(20,2)  NULL,
+  [PROYEKSI_BAGIHASIL] decimal(20,2)  NULL,
+  [TUNGGAKAN_POKOK] decimal(20,2)  NULL,
+  [TUNGGAKAN_MARGIN] decimal(20,2)  NULL,
+  [ANGSURAN] decimal(20,2)  NULL,
+  [CKPN] decimal(20,2)  NULL,
+  [SALDO_DPK] decimal(20,2)  NULL,
+  [ACCT] int  NULL
+)
+GO
+
+ALTER TABLE [main].[RCG.LOAN_DAILY] SET (LOCK_ESCALATION = TABLE)
+GO
+
+
+-- ----------------------------
+-- Table structure for RCG.PORTOFOLIO_DAILY
+-- ----------------------------
+IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[main].[RCG.PORTOFOLIO_DAILY]') AND type IN ('U'))
+	DROP TABLE [main].[RCG.PORTOFOLIO_DAILY]
+GO
+
+CREATE TABLE [main].[RCG.PORTOFOLIO_DAILY] (
+  [TGL_DATA] date  NULL,
+  [NOLOAN] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NOMORCIF] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [SUPERCIF] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NAMANASABAH] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [KODECABANG] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NAMACABANG] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [AREA] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [REGION] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [DIVISI] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [PRODUK] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [PRODUK_DETAIL] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [TANGGAL_CAIR] date  NULL,
+  [TANGGAL_JATUH_TEMPO] date  NULL,
+  [CYCLE] int  NULL,
+  [DPD] int  NULL,
+  [KOL_LOAN] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [KOL_CIF] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [KOL_SUPERCIF] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [FLAG_MUTASI] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [PENCAIRAN_POKOK] decimal(20,2)  NULL,
+  [PENCAIRAN_MARGIN] decimal(20,2)  NULL,
+  [OS_POKOK_PSAK] decimal(20,2)  NULL,
+  [OS_POKOK] decimal(20,2)  NULL,
+  [OS_MARGIN] decimal(20,2)  NULL,
+  [REALISASI_BAGIHASIL] decimal(20,2)  NULL,
+  [PROYEKSI_BAGIHASIL] decimal(20,2)  NULL,
+  [TUNGGAKAN_POKOK] decimal(20,2)  NULL,
+  [TUNGGAKAN_MARGIN] decimal(20,2)  NULL,
+  [ANGSURAN] decimal(20,2)  NULL,
+  [PAY_POKOK] decimal(20,2)  NULL,
+  [PAY_MARGIN] decimal(20,2)  NULL,
+  [PAY_BAGIHASIL] decimal(20,2)  NULL,
+  [CASH_IN] decimal(20,2)  NULL,
+  [ACCT] int  NULL
+)
+GO
+
+ALTER TABLE [main].[RCG.PORTOFOLIO_DAILY] SET (LOCK_ESCALATION = TABLE)
+GO
+
+
+-- ----------------------------
+-- procedure structure for sp_procc_portofolio_daily
+-- ----------------------------
+IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[main].[sp_procc_portofolio_daily]') AND type IN ('P', 'PC', 'RF', 'X'))
+	DROP PROCEDURE[main].[sp_procc_portofolio_daily]
+GO
+
+CREATE PROCEDURE [main].[sp_procc_portofolio_daily]
+(
+	@TARGET varchar(max) = NULL
+	,@OVERRIDE varchar(max) = 'NO'
+	,@MODE varchar(max) = 'DETAIL'
+	,@REGION varchar(max) = ''
+	,@AREA varchar(max) = ''
+	,@SEGMEN varchar(max) = ''
+	,@DIVISI varchar(max) = ''
+	,@PRODUK varchar(max) = ''
+)
+AS
+BEGIN
+	DECLARE
+		@RESULT VARCHAR(max)
+		,@TARGET_CURRENT VARCHAR(max)
+		,@TARGET_M1 VARCHAR(max)
+		,@TARGET_M2 VARCHAR(max)
+		,@TARGET_M3 VARCHAR(max)
+		,@TARGET_M4 VARCHAR(max)
+		,@TARGET_M5 VARCHAR(max)
+		,@TARGET_M6 VARCHAR(max)
+		,@SQL_QUERY NVARCHAR(max)
+		,@TGL_DATA DATE;
+	
+	BEGIN TRY
+		CREATE TABLE [main].[RCG.PORTOFOLIO_DAILY] (
+			TGL_DATA DATE
+			,NOLOAN VARCHAR(255)
+			,NOMORCIF VARCHAR(255)
+			,SUPERCIF VARCHAR(255)
+			,NAMANASABAH VARCHAR(255)
+			,KODECABANG VARCHAR(255)
+			,NAMACABANG VARCHAR(255)
+			,AREA VARCHAR(255)
+			,REGION VARCHAR(255)
+			,DIVISI VARCHAR(255)
+			,PRODUK VARCHAR(255)
+			,PRODUK_DETAIL VARCHAR(255)
+			,TANGGAL_CAIR DATE
+			,TANGGAL_JATUH_TEMPO DATE
+			,CYCLE INT
+			,DPD INT
+			,KOL_LOAN VARCHAR(255)
+			,KOL_CIF VARCHAR(255)
+			,KOL_SUPERCIF VARCHAR(255)
+			,FLAG_MUTASI VARCHAR(255)
+			,PENCAIRAN_POKOK DECIMAL(20, 2)
+			,PENCAIRAN_MARGIN DECIMAL(20, 2)
+			,OS_POKOK_PSAK DECIMAL(20, 2)
+			,OS_POKOK DECIMAL(20, 2)
+			,OS_MARGIN DECIMAL(20, 2)
+			,REALISASI_BAGIHASIL DECIMAL(20, 2)
+			,PROYEKSI_BAGIHASIL DECIMAL(20, 2)
+			,TUNGGAKAN_POKOK DECIMAL(20, 2)
+			,TUNGGAKAN_MARGIN DECIMAL(20, 2)
+			,ANGSURAN DECIMAL(20, 2)
+			,PAY_POKOK DECIMAL(20, 2)
+			,PAY_MARGIN DECIMAL(20, 2)
+			,PAY_BAGIHASIL DECIMAL(20, 2)
+			,CASH_IN DECIMAL(20, 2)
+			,ACCT INTEGER
+		);
+		PRINT ('CREATE TABEL [main].[RCG.PORTOFOLIO_DAILY]!');
+	END TRY
+	BEGIN CATCH
+		PRINT ('TABEL [main].[RCG.PORTOFOLIO_DAILY] SUDAH ADA!');
+	END CATCH
+	
+	TRUNCATE TABLE [main].[RCG.PORTOFOLIO_DAILY];
+	
+	CREATE TABLE #RESULT (
+		TGL_DATA DATE
+		,NOLOAN VARCHAR(255)
+		,NOMORCIF VARCHAR(255)
+		,SUPERCIF VARCHAR(255)
+		,NAMANASABAH VARCHAR(255)
+		,KODECABANG VARCHAR(255)
+		,NAMACABANG VARCHAR(255)
+		,AREA VARCHAR(255)
+		,REGION VARCHAR(255)
+		,DIVISI VARCHAR(255)
+		,PRODUK VARCHAR(255)
+		,PRODUK_DETAIL VARCHAR(255)
+		,TANGGAL_CAIR DATE
+		,TANGGAL_JATUH_TEMPO DATE
+		,CYCLE INT
+		,DPD INT
+		,KOL_LOAN VARCHAR(255)
+		,KOL_CIF VARCHAR(255)
+		,KOL_SUPERCIF VARCHAR(255)
+		,FLAG_MUTASI VARCHAR(255)
+		,OS_POKOK_PSAK DECIMAL(20, 2)
+		,OS_POKOK DECIMAL(20, 2)
+		,OS_MARGIN DECIMAL(20, 2)
+		,REALISASI_BAGIHASIL DECIMAL(20, 2)
+		,PROYEKSI_BAGIHASIL DECIMAL(20, 2)
+		,TUNGGAKAN_POKOK DECIMAL(20, 2)
+		,TUNGGAKAN_MARGIN DECIMAL(20, 2)
+		,ANGSURAN DECIMAL(20, 2)
+		,PAY_POKOK DECIMAL(20, 2)
+		,PAY_MARGIN DECIMAL(20, 2)
+		,PAY_BAGIHASIL DECIMAL(20, 2)
+		,CASH_IN DECIMAL(20, 2)
+		,ACCT INTEGER
+	);
+	
+	IF (
+		EXISTS(
+		SELECT TOP 1
+				CONCAT('[', SCHEMA_NAME(SCHEMA_ID), '].[', name, ']') AS NAME
+			FROM [sys].[objects]
+			WHERE type_desc = 'USER_TABLE'
+			AND REPLACE(name, 'RCG.PORTOFOLIO_DAILY.', '') = @TARGET
+		) OR NULLIF(@TARGET, '') IS NULL
+	) AND @OVERRIDE != 'YES'
+	BEGIN
+		SET @RESULT = (
+		SELECT TOP 1
+				CONCAT('[', SCHEMA_NAME(SCHEMA_ID), '].[', name, ']') AS NAME
+			FROM [sys].[objects]
+			WHERE type_desc = 'USER_TABLE'
+			AND REPLACE(name, 'RCG.PORTOFOLIO_DAILY.', '') = @TARGET
+		);
+	END ELSE
+	BEGIN
+	
+		---------------------------------------------------------------
+		
+		IF NULLIF(@TARGET, '') IS NOT NULL
+		BEGIN
+			SET @RESULT = CONCAT('[series].[RCG.PORTOFOLIO_DAILY.', @TARGET, ']');
+			SET @SQL_QUERY = CONCAT(
+				'DROP TABLE ', @RESULT, ';'
+			);
+			BEGIN TRY
+				EXEC(@SQL_QUERY);
+				PRINT CONCAT('DROP TABEL ', @RESULT,'!');
+			END TRY
+			BEGIN CATCH
+				PRINT CONCAT('DROP TABEL ', @RESULT,' GAGAL! ', ERROR_MESSAGE());
+			END CATCH
+			
+			SET @SQL_QUERY = CONCAT(
+				'SELECT TOP 0 * INTO ', @RESULT, 'FROM [main].[RCG.PORTOFOLIO_DAILY];'
+			);
+			BEGIN TRY
+				EXEC(@SQL_QUERY);
+				PRINT CONCAT('CREATE TABEL ', @RESULT,'!');
+			END TRY
+			BEGIN CATCH
+				PRINT CONCAT('CREATE TABEL ', @RESULT,' GAGAL! ', ERROR_MESSAGE());
+			END CATCH
+						
+			SET @TARGET_CURRENT = (
+				SELECT TOP 1
+					CONCAT('[', SCHEMA_NAME(SCHEMA_ID), '].[', name, ']') AS NAME
+				FROM [sys].[objects]
+				WHERE type_desc = 'USER_TABLE'
+				AND name LIKE 'RCG.LOAN_DAILY.____-__-__%'
+				AND TRY_CAST(LEFT(REPLACE(name, 'RCG.LOAN_DAILY.', ''), 10) AS DATE) <= TRY_CAST(LEFT(@TARGET, 10) AS DATE)
+				ORDER BY
+					TRY_CAST(LEFT(REPLACE(name, 'RCG.LOAN_DAILY.', ''), 10) AS DATE) DESC
+					,CASE
+						WHEN REPLACE(name, 'RCG.LOAN_DAILY.', '') = @TARGET THEN 2
+						WHEN name LIKE ('%(FINAL)') THEN 1
+						WHEN name LIKE ('%(QC)') THEN -1
+						ELSE 0
+					END DESC
+			);
+		
+		END ELSE BEGIN
+			SET @RESULT = '[main].[RCG.PORTOFOLIO_DAILY]';
+			SET @SQL_QUERY = CONCAT(
+				'TRUNCATE TABLE ', @RESULT, ';'
+			);
+			BEGIN TRY
+				EXEC(@SQL_QUERY);
+			END TRY
+			BEGIN CATCH
+			END CATCH
+			
+			SET @TARGET_CURRENT = (
+				SELECT TOP 1
+					CONCAT('[', SCHEMA_NAME(SCHEMA_ID), '].[', name, ']') AS NAME
+				FROM [sys].[objects]
+				WHERE type_desc = 'USER_TABLE'
+				AND name LIKE 'RCG.LOAN_DAILY.____-__-__%'
+				ORDER BY
+					TRY_CAST(LEFT(REPLACE(name, 'RCG.LOAN_DAILY.', ''), 10) AS DATE) DESC
+					,CASE
+						WHEN REPLACE(name, 'RCG.LOAN_DAILY.', '') = @TARGET THEN 2
+						WHEN name LIKE ('%(FINAL)') THEN 1
+						WHEN name LIKE ('%(QC)') THEN -1
+						ELSE 0
+					END DESC
+			);
+		END
+		
+		---------------------------------------------------------------
+		
+		SET @sql_query = CONCAT('SELECT @x = MAX([TGL_DATA]) FROM ', @TARGET_CURRENT);
+		EXEC sp_executesql @sql_query, N'@x DATE out', @TGL_DATA out;
+		
+		---------------------------------------------------------------
+		
+		SET @TARGET_M1 = (
+			SELECT TOP 1
+				CONCAT('[', SCHEMA_NAME(SCHEMA_ID), '].[', name, ']') AS NAME
+			FROM [sys].[objects]
+			WHERE type_desc = 'USER_TABLE'
+			AND name LIKE 'RCG.LOAN_DAILY.____-__-__%'
+			AND TRY_CAST(LEFT(REPLACE(name, 'RCG.LOAN_DAILY.', ''), 10) AS DATE) < @TGL_DATA
+			AND TRY_CAST(LEFT(REPLACE(name, 'RCG.LOAN_DAILY.', ''), 10) AS DATE) = EOMONTH(TRY_CAST(LEFT(REPLACE(name, 'RCG.LOAN_DAILY.', ''), 10) AS DATE))
+			ORDER BY
+				TRY_CAST(LEFT(REPLACE(name, 'RCG.LOAN_DAILY.', ''), 10) AS DATE) DESC
+				,CASE
+					WHEN name LIKE ('%(FINAL)') THEN 1
+					WHEN name LIKE ('%(FINAL)') THEN 0.5
+					WHEN name LIKE ('%(QC)') THEN -1
+					ELSE 0
+				END DESC
+		);
+		
+		SET @TARGET_M2 = (
+			SELECT TOP 1
+				CONCAT('[', SCHEMA_NAME(SCHEMA_ID), '].[', name, ']') AS NAME
+			FROM [sys].[objects]
+			WHERE type_desc = 'USER_TABLE'
+			AND name LIKE 'RCG.LOAN_DAILY.____-__-__%'
+			AND TRY_CAST(LEFT(REPLACE(name, 'RCG.LOAN_DAILY.', ''), 10) AS DATE) < DATEADD(MONTH, -1, @TGL_DATA)
+			AND TRY_CAST(LEFT(REPLACE(name, 'RCG.LOAN_DAILY.', ''), 10) AS DATE) = EOMONTH(TRY_CAST(LEFT(REPLACE(name, 'RCG.LOAN_DAILY.', ''), 10) AS DATE))
+			ORDER BY
+				TRY_CAST(LEFT(REPLACE(name, 'RCG.LOAN_DAILY.', ''), 10) AS DATE) DESC
+				,CASE
+					WHEN name LIKE ('%(FINAL)') THEN 1
+					WHEN name LIKE ('%(FINAL)') THEN 0.5
+					WHEN name LIKE ('%(QC)') THEN -1
+					ELSE 0
+				END DESC
+		);
+		
+		SET @TARGET_M3 = (
+			SELECT TOP 1
+				CONCAT('[', SCHEMA_NAME(SCHEMA_ID), '].[', name, ']') AS NAME
+			FROM [sys].[objects]
+			WHERE type_desc = 'USER_TABLE'
+			AND name LIKE 'RCG.LOAN_DAILY.____-__-__%'
+			AND TRY_CAST(LEFT(REPLACE(name, 'RCG.LOAN_DAILY.', ''), 10) AS DATE) < DATEADD(MONTH, -2, @TGL_DATA)
+			AND TRY_CAST(LEFT(REPLACE(name, 'RCG.LOAN_DAILY.', ''), 10) AS DATE) = EOMONTH(TRY_CAST(LEFT(REPLACE(name, 'RCG.LOAN_DAILY.', ''), 10) AS DATE))
+			ORDER BY
+				TRY_CAST(LEFT(REPLACE(name, 'RCG.LOAN_DAILY.', ''), 10) AS DATE) DESC
+				,CASE
+					WHEN name LIKE ('%(FINAL)') THEN 1
+					WHEN name LIKE ('%(FINAL)') THEN 0.5
+					WHEN name LIKE ('%(QC)') THEN -1
+					ELSE 0
+				END DESC
+		);
+		
+		SET @TARGET_M4 = (
+			SELECT TOP 1
+				CONCAT('[', SCHEMA_NAME(SCHEMA_ID), '].[', name, ']') AS NAME
+			FROM [sys].[objects]
+			WHERE type_desc = 'USER_TABLE'
+			AND name LIKE 'RCG.LOAN_DAILY.____-__-__%'
+			AND TRY_CAST(LEFT(REPLACE(name, 'RCG.LOAN_DAILY.', ''), 10) AS DATE) < DATEADD(MONTH, -3, @TGL_DATA)
+			AND TRY_CAST(LEFT(REPLACE(name, 'RCG.LOAN_DAILY.', ''), 10) AS DATE) = EOMONTH(TRY_CAST(LEFT(REPLACE(name, 'RCG.LOAN_DAILY.', ''), 10) AS DATE))
+			ORDER BY
+				TRY_CAST(LEFT(REPLACE(name, 'RCG.LOAN_DAILY.', ''), 10) AS DATE) DESC
+				,CASE
+					WHEN name LIKE ('%(FINAL)') THEN 1
+					WHEN name LIKE ('%(FINAL)') THEN 0.5
+					WHEN name LIKE ('%(QC)') THEN -1
+					ELSE 0
+				END DESC
+		);
+		
+		SET @TARGET_M5 = (
+			SELECT TOP 1
+				CONCAT('[', SCHEMA_NAME(SCHEMA_ID), '].[', name, ']') AS NAME
+			FROM [sys].[objects]
+			WHERE type_desc = 'USER_TABLE'
+			AND name LIKE 'RCG.LOAN_DAILY.____-__-__%'
+			AND TRY_CAST(LEFT(REPLACE(name, 'RCG.LOAN_DAILY.', ''), 10) AS DATE) < DATEADD(MONTH, -4, @TGL_DATA)
+			AND TRY_CAST(LEFT(REPLACE(name, 'RCG.LOAN_DAILY.', ''), 10) AS DATE) = EOMONTH(TRY_CAST(LEFT(REPLACE(name, 'RCG.LOAN_DAILY.', ''), 10) AS DATE))
+			ORDER BY
+				TRY_CAST(LEFT(REPLACE(name, 'RCG.LOAN_DAILY.', ''), 10) AS DATE) DESC
+				,CASE
+					WHEN name LIKE ('%(FINAL)') THEN 1
+					WHEN name LIKE ('%(FINAL)') THEN 0.5
+					WHEN name LIKE ('%(QC)') THEN -1
+					ELSE 0
+				END DESC
+		);
+		
+		SET @TARGET_M6 = (
+			SELECT TOP 1
+				CONCAT('[', SCHEMA_NAME(SCHEMA_ID), '].[', name, ']') AS NAME
+			FROM [sys].[objects]
+			WHERE type_desc = 'USER_TABLE'
+			AND name LIKE 'RCG.LOAN_DAILY.____-__-__%'
+			AND TRY_CAST(LEFT(REPLACE(name, 'RCG.LOAN_DAILY.', ''), 10) AS DATE) < DATEADD(MONTH, -5, @TGL_DATA)
+			AND TRY_CAST(LEFT(REPLACE(name, 'RCG.LOAN_DAILY.', ''), 10) AS DATE) = EOMONTH(TRY_CAST(LEFT(REPLACE(name, 'RCG.LOAN_DAILY.', ''), 10) AS DATE))
+			ORDER BY
+				TRY_CAST(LEFT(REPLACE(name, 'RCG.LOAN_DAILY.', ''), 10) AS DATE) DESC
+				,CASE
+					WHEN name LIKE ('%(FINAL)') THEN 1
+					WHEN name LIKE ('%(FINAL)') THEN 0.5
+					WHEN name LIKE ('%(QC)') THEN -1
+					ELSE 0
+				END DESC
+		);
+		
+		---------------------------------------------------------------
+		
+		SET @SQL_QUERY = CONCAT(
+			'MERGE ', @RESULT,' [TARGET]
+			USING (
+				SELECT
+					[TGL_DATA]
+					,[NOLOAN]
+					,[NOMORCIF]
+					,[SUPERCIF]
+					,[KODECABANG]
+					,[NAMACABANG]
+					,[AREA]
+					,[REGION]
+					,[DIVISI]
+					,[PRODUK]
+					,[PRODUK_DETAIL]
+					,[TANGGAL_CAIR]
+					,[TANGGAL_JATUH_TEMPO]
+					,[DPD]
+					,[CYCLE]
+					,[KOL_LOAN]
+					,[KOL_CIF]
+					,[KOL_SUPERCIF]
+					,[OS_POKOK_PSAK]
+					,[OS_POKOK]
+					,[OS_MARGIN]
+					,[REALISASI_BAGIHASIL]
+					,[PROYEKSI_BAGIHASIL]
+					,[TUNGGAKAN_POKOK]
+					,[TUNGGAKAN_MARGIN]
+					,[ANGSURAN]
+					,[ACCT]
+				FROM ', @TARGET_CURRENT, '
+			) [SOURCE]
+				ON [TARGET].[NOLOAN] = [SOURCE].[NOLOAN]
+				AND [TARGET].[SUPERCIF] = [SOURCE].[SUPERCIF]
+			WHEN NOT MATCHED BY TARGET THEN INSERT
+			(
+				[TGL_DATA]
+				,[NOLOAN]
+				,[NOMORCIF]
+				,[SUPERCIF]
+				,[KODECABANG]
+				,[NAMACABANG]
+				,[AREA]
+				,[REGION]
+				,[DIVISI]
+				,[PRODUK]
+				,[PRODUK_DETAIL]
+				,[TANGGAL_CAIR]
+				,[TANGGAL_JATUH_TEMPO]
+				,[DPD]
+				,[CYCLE]
+				,[KOL_LOAN]
+				,[KOL_CIF]
+				,[KOL_SUPERCIF]
+				,[OS_POKOK_PSAK]
+				,[OS_POKOK]
+				,[OS_MARGIN]
+				,[REALISASI_BAGIHASIL]
+				,[PROYEKSI_BAGIHASIL]
+				,[TUNGGAKAN_POKOK]
+				,[TUNGGAKAN_MARGIN]
+				,[ANGSURAN]
+				,[ACCT]
+			) VALUES (
+				[SOURCE].[TGL_DATA]
+				,[SOURCE].[NOLOAN]
+				,[SOURCE].[NOMORCIF]
+				,[SOURCE].[SUPERCIF]
+				,[SOURCE].[KODECABANG]
+				,[SOURCE].[NAMACABANG]
+				,[SOURCE].[AREA]
+				,[SOURCE].[REGION]
+				,[SOURCE].[DIVISI]
+				,[SOURCE].[PRODUK]
+				,[SOURCE].[PRODUK_DETAIL]
+				,[SOURCE].[TANGGAL_CAIR]
+				,[SOURCE].[TANGGAL_JATUH_TEMPO]
+				,[SOURCE].[DPD]
+				,[SOURCE].[CYCLE]
+				,[SOURCE].[KOL_LOAN]
+				,[SOURCE].[KOL_CIF]
+				,[SOURCE].[KOL_SUPERCIF]
+				,[SOURCE].[OS_POKOK_PSAK]
+				,[SOURCE].[OS_POKOK]
+				,[SOURCE].[OS_MARGIN]
+				,[SOURCE].[REALISASI_BAGIHASIL]
+				,[SOURCE].[PROYEKSI_BAGIHASIL]
+				,[SOURCE].[TUNGGAKAN_POKOK]
+				,[SOURCE].[TUNGGAKAN_MARGIN]
+				,[SOURCE].[ANGSURAN]
+				,[SOURCE].[ACCT]
+			);'
+		);
+		
+	BEGIN TRY
+		EXEC(@SQL_QUERY);
+		PRINT CONCAT('MERGE DATA ', @TARGET_CURRENT, ' SUKSES!');
+	END TRY
+	BEGIN CATCH
+		PRINT CONCAT('MERGE DATA ', @TARGET_CURRENT, ' GAGAL! ', ERROR_MESSAGE());
+	END CATCH
+		
+	SET @SQL_QUERY = CONCAT(
+		'MERGE ', @RESULT,' [TARGET]
+		USING (
+			SELECT
+				''', @TGL_DATA, ''' [TGL_DATA]
+				,[NOLOAN]
+				,[NOMORCIF]
+				,[SUPERCIF]
+				,[NAMANASABAH]
+				,[KODECABANG]
+				,[NAMACABANG]
+				,[AREA]
+				,[REGION]
+				,[DIVISI]
+				,[PRODUK]
+				,[PRODUK_DETAIL]
+				,[TANGGAL_CAIR]
+				,[TANGGAL_JATUH_TEMPO]
+				,[CYCLE]
+				,[KOL_LOAN]
+				,[KOL_CIF]
+				,[KOL_SUPERCIF]
+				,[ANGSURAN]
+				,[ACCT]
+			FROM ', @TARGET_M1, '
+		) [SOURCE]
+			ON [TARGET].[NOLOAN] = [SOURCE].[NOLOAN]
+			AND [TARGET].[SUPERCIF] = [SOURCE].[SUPERCIF]
+		WHEN NOT MATCHED BY TARGET THEN INSERT
+		(
+			[TGL_DATA]
+			,[NOLOAN]
+			,[NOMORCIF]
+			,[SUPERCIF]
+			,[NAMANASABAH]
+			,[KODECABANG]
+			,[NAMACABANG]
+			,[AREA]
+			,[REGION]
+			,[DIVISI]
+			,[PRODUK]
+			,[PRODUK_DETAIL]
+			,[TANGGAL_CAIR]
+			,[TANGGAL_JATUH_TEMPO]
+			,[CYCLE]
+			,[ANGSURAN]
+			,[ACCT]
+		) VALUES (
+			[SOURCE].[TGL_DATA]
+			,[SOURCE].[NOLOAN]
+			,[SOURCE].[NOMORCIF]
+			,[SOURCE].[SUPERCIF]
+			,[SOURCE].[NAMANASABAH]
+			,[SOURCE].[KODECABANG]
+			,[SOURCE].[NAMACABANG]
+			,[SOURCE].[AREA]
+			,[SOURCE].[REGION]
+			,[SOURCE].[DIVISI]
+			,[SOURCE].[PRODUK]
+			,[SOURCE].[PRODUK_DETAIL]
+			,[SOURCE].[TANGGAL_CAIR]
+			,[SOURCE].[TANGGAL_JATUH_TEMPO]
+			,[SOURCE].[CYCLE]
+			,[SOURCE].[ANGSURAN]
+			,[SOURCE].[ACCT]
+		);'
+	);
+	
+	BEGIN TRY
+		EXEC(@SQL_QUERY);
+		PRINT CONCAT('MERGE DATA ', @TARGET_M1, ' SUKSES!');
+	END TRY
+	BEGIN CATCH
+		PRINT CONCAT('MERGE DATA ', @TARGET_M1, ' GAGAL! ', ERROR_MESSAGE());
+	END CATCH
+		
+	SET @SQL_QUERY = CONCAT(
+		'UPDATE ', @RESULT,'
+		SET
+			[PENCAIRAN_POKOK] = [SOURCE].[PENCAIRANPOKOKCONVERSION]
+			,[PENCAIRAN_MARGIN] = [SOURCE].[PENCAIRANMARGINCONVERSION]
+		FROM ', @RESULT,' [TARGET]
+		LEFT JOIN [mapping].[PORTOFOLIO.ONBS.LOAN_DETAIL] [SOURCE]
+			ON [TARGET].[NOLOAN] = [SOURCE].[NOLOAN]
+			AND [TARGET].[NOMORCIF] = [SOURCE].[NOMORCIF];'
+	);
+	
+	BEGIN TRY
+		EXEC(@SQL_QUERY);
+		PRINT ('UPDATE DATA PENCAIRAN SUKSES!');
+	END TRY
+	BEGIN CATCH
+		PRINT CONCAT('UPDATE DATA PENCAIRAN GAGAL! ', ERROR_MESSAGE());
+	END CATCH
+		
+	SET @SQL_QUERY = CONCAT(
+		'UPDATE ', @RESULT,'
+		SET
+			[NAMANASABAH] = COALESCE([TARGET].[NAMANASABAH], [SOURCE].[NAMANASABAH])
+			,[KODECABANG] = COALESCE([TARGET].[KODECABANG], [SOURCE].[KODECABANG])
+			,[NAMACABANG] = COALESCE([TARGET].[NAMACABANG], [SOURCE].[NAMACABANG])
+			,[AREA] = COALESCE([TARGET].[AREA], [SOURCE].[AREA])
+			,[REGION] = COALESCE([TARGET].[REGION], [SOURCE].[REGION])
+			,[DIVISI] = COALESCE([TARGET].[DIVISI], [SOURCE].[DIVISI])
+			,[PRODUK] = COALESCE([TARGET].[PRODUK], [SOURCE].[PRODUK])
+			,[PRODUK_DETAIL] = COALESCE([TARGET].[PRODUK_DETAIL], [SOURCE].[PRODUK_DETAIL])
+			,[TANGGAL_CAIR] = COALESCE([TARGET].[TANGGAL_CAIR], [SOURCE].[TANGGAL_CAIR])
+			,[TANGGAL_JATUH_TEMPO] = COALESCE([TARGET].[TANGGAL_JATUH_TEMPO], [SOURCE].[TANGGAL_JATUH_TEMPO])
+			,[CYCLE] = COALESCE([TARGET].[CYCLE], [SOURCE].[CYCLE])
+			,[ANGSURAN] = COALESCE([TARGET].[ANGSURAN], [SOURCE].[ANGSURAN])
+			,[KOL_LOAN] = COALESCE([TARGET].[KOL_LOAN], [CHECK_BUKA_TUTUP].[FLAG], [CHECK_WO].[FLAG], ''Lunas'')
+			,[KOL_CIF] = COALESCE([TARGET].[KOL_CIF], [CHECK_BUKA_TUTUP].[FLAG], [CHECK_WO].[FLAG], ''Lunas'')
+			,[KOL_SUPERCIF] = COALESCE([TARGET].[KOL_SUPERCIF], [CHECK_BUKA_TUTUP].[FLAG], [CHECK_WO].[FLAG], ''Lunas'')
+			,[FLAG_MUTASI] =
+				CASE
+					WHEN [SOURCE].[KOL_SUPERCIF] IS NULL AND LEFT([TARGET].[KOL_SUPERCIF], 1) IN (''1'') THEN ''CAIR BARU''
+					WHEN LEFT(COALESCE([SOURCE].[KOL_SUPERCIF], [M_1].[KOL_SUPERCIF], ''1''), 1) IN (''1'') AND LEFT([TARGET].[KOL_SUPERCIF], 1) IN (''1'') THEN ''STAY KOL 1''
+					WHEN LEFT(COALESCE([SOURCE].[KOL_SUPERCIF], [M_1].[KOL_SUPERCIF], ''1''), 1) IN (''2'') AND LEFT([TARGET].[KOL_SUPERCIF], 1) IN (''1'') THEN ''UPGRADE KOL 2 KE KOL 1''
+					WHEN LEFT(COALESCE([SOURCE].[KOL_SUPERCIF], [M_1].[KOL_SUPERCIF], ''1''), 1) IN (''3'', ''4'', ''5'') AND LEFT([TARGET].[KOL_SUPERCIF], 1) IN (''1'') THEN ''UPGRADE NPF KE KOL 1''
+					WHEN LEFT(COALESCE([SOURCE].[KOL_SUPERCIF], [M_1].[KOL_SUPERCIF], ''1''), 1) IN (''1'') AND LEFT([TARGET].[KOL_SUPERCIF], 1) IN (''2'') THEN ''DOWNGRADE KOL 1 KE KOL 2''
+					WHEN LEFT(COALESCE([SOURCE].[KOL_SUPERCIF], [M_1].[KOL_SUPERCIF], ''1''), 1) IN (''2'') AND LEFT([TARGET].[KOL_SUPERCIF], 1) IN (''2'') THEN ''STAY KOL 2''
+					WHEN LEFT(COALESCE([SOURCE].[KOL_SUPERCIF], [M_1].[KOL_SUPERCIF], ''1''), 1) IN (''3'', ''4'', ''5'') AND LEFT([TARGET].[KOL_SUPERCIF], 1) IN (''2'') THEN ''UPGRADE NPF KE KOL 2''
+					WHEN LEFT(COALESCE([SOURCE].[KOL_SUPERCIF], [M_1].[KOL_SUPERCIF], ''1''), 1) IN (''1'') AND LEFT([TARGET].[KOL_SUPERCIF], 1) IN (''3'', ''4'', ''5'') THEN ''DOWNGRADE KOL 1 KE NPF''
+					WHEN LEFT(COALESCE([SOURCE].[KOL_SUPERCIF], [M_1].[KOL_SUPERCIF], ''1''), 1) IN (''2'') AND LEFT([TARGET].[KOL_SUPERCIF], 1) IN (''3'', ''4'', ''5'') THEN ''DOWNGRADE KOL 2 KE NPF''
+					WHEN LEFT(COALESCE([SOURCE].[KOL_SUPERCIF], [M_1].[KOL_SUPERCIF], ''1''), 1) IN (''3'', ''4'', ''5'') AND LEFT([TARGET].[KOL_SUPERCIF], 1) IN (''3'', ''4'', ''5'') THEN ''STAY NPF''
+					WHEN COALESCE([CHECK_BUKA_TUTUP].[FLAG], [CHECK_WO].[FLAG]) IS NOT NULL THEN COALESCE([CHECK_BUKA_TUTUP].[FLAG], [CHECK_WO].[FLAG])
+					WHEN LEFT(COALESCE([SOURCE].[KOL_SUPERCIF], [M_1].[KOL_SUPERCIF], ''1''), 1) IN (''1'') AND [TARGET].[KOL_SUPERCIF] IS NULL THEN ''LUNAS KOL 1''
+					WHEN LEFT(COALESCE([SOURCE].[KOL_SUPERCIF], [M_1].[KOL_SUPERCIF], ''1''), 1) IN (''2'') AND [TARGET].[KOL_SUPERCIF] IS NULL THEN ''LUNAS KOL 2''
+					WHEN LEFT(COALESCE([SOURCE].[KOL_SUPERCIF], [M_1].[KOL_SUPERCIF], ''1''), 1) IN (''3'', ''4'', ''5'') AND [TARGET].[KOL_SUPERCIF] IS NULL THEN ''LUNAS NPF''
+					END
+			,[PAY_POKOK] =
+				[dbo].[fx_common_zerofy](CASE
+					WHEN [SOURCE].[KOL_SUPERCIF] IS NULL AND [TARGET].[KOL_SUPERCIF] IS NOT NULL THEN [TARGET].[PENCAIRAN_POKOK] - [TARGET].[OS_POKOK]
+					WHEN [SOURCE].[KOL_SUPERCIF] IS NOT NULL AND [TARGET].[KOL_SUPERCIF] IS NOT NULL THEN [SOURCE].[OS_POKOK] - [TARGET].[OS_POKOK]
+					WHEN [TARGET].[KOL_SUPERCIF] IS NULL AND COALESCE([CHECK_BUKA_TUTUP].[FLAG], [CHECK_WO].[FLAG], ''Lunas'') IN (''Lunas'') THEN [SOURCE].[OS_POKOK]
+					WHEN [TARGET].[KOL_SUPERCIF] IS NULL AND COALESCE([CHECK_BUKA_TUTUP].[FLAG], [CHECK_WO].[FLAG], ''Lunas'') IN (''EKSEKUSI WO'') THEN [SOURCE].[OS_POKOK] - [CHECK_WO].[EKSEKUSI_WO]
+-- 					WHEN [TARGET].[KOL_SUPERCIF] IS NULL THEN [SOURCE].[OS_POKOK]
+					ELSE 0.00
+				END)
+			,[PAY_MARGIN] =
+				[dbo].[fx_common_zerofy](CASE
+					WHEN [SOURCE].[KOL_SUPERCIF] IS NULL AND [TARGET].[KOL_SUPERCIF] IS NOT NULL THEN [TARGET].[PENCAIRAN_MARGIN] - [TARGET].[OS_MARGIN]
+					WHEN [SOURCE].[KOL_SUPERCIF] IS NOT NULL AND [TARGET].[KOL_SUPERCIF] IS NOT NULL THEN [SOURCE].[OS_MARGIN] - [TARGET].[OS_MARGIN]
+					WHEN [TARGET].[KOL_SUPERCIF] IS NULL THEN 0.00
+				END)
+			,[PAY_BAGIHASIL] =
+				[dbo].[fx_common_zerofy](CASE
+					WHEN [SOURCE].[REALISASI_BAGIHASIL] IS NULL AND [TARGET].[KOL_SUPERCIF] IS NOT NULL THEN [TARGET].[REALISASI_BAGIHASIL]
+					WHEN [SOURCE].[REALISASI_BAGIHASIL] IS NOT NULL AND [TARGET].[KOL_SUPERCIF] IS NOT NULL THEN [TARGET].[REALISASI_BAGIHASIL] - [SOURCE].[REALISASI_BAGIHASIL]
+					WHEN [TARGET].[KOL_SUPERCIF] IS NULL THEN 0.00
+				END)
+		FROM ', @RESULT,' [TARGET]
+		LEFT JOIN (
+			SELECT
+				''', @TGL_DATA, ''' [TGL_DATA]
+				,[NOLOAN]
+				,[NOMORCIF]
+				,[SUPERCIF]
+				,[NAMANASABAH]
+				,[KODECABANG]
+				,[NAMACABANG]
+				,[AREA]
+				,[REGION]
+				,[DIVISI]
+				,[PRODUK]
+				,[PRODUK_DETAIL]
+				,[TANGGAL_CAIR]
+				,[TANGGAL_JATUH_TEMPO]
+				,[CYCLE]
+				,[KOL_LOAN]
+				,[KOL_CIF]
+				,[KOL_SUPERCIF]
+				,[OS_POKOK]
+				,[OS_MARGIN]
+				,[REALISASI_BAGIHASIL]
+				,[ANGSURAN]
+			FROM ', @TARGET_M1, '
+		) [SOURCE]
+			ON [TARGET].[NOLOAN] = [SOURCE].[NOLOAN]
+		OUTER APPLY (
+			SELECT
+				MAX(CASE WHEN [NOLOAN_BARU] IS NOT NULL THEN ''BUKA TUTUP'' END) [FLAG]
+			FROM [mapping].[PORTOFOLIO_ONBS.COMPILE.JOIN.REKAP_NOLOAN.MUTASI_NOLOAN]
+			WHERE [NOLOAN_LAMA] = [SOURCE].[NOLOAN]
+			AND [NOCIF_LAMA] = [SOURCE].[NOMORCIF]
+			AND COALESCE([KETERANGAN], ''X'') NOT IN (''Invalid'', ''EKSEKUSI WO'')
+		) [CHECK_BUKA_TUTUP]
+		OUTER APPLY (
+			SELECT
+				MAX(CASE WHEN [NOLOAN_WO] IS NOT NULL THEN ''EKSEKUSI WO'' END) [FLAG]
+				,SUM(CASE WHEN [NOLOAN_WO] IS NOT NULL THEN [BAKI_DEBET_IDR] END) [EKSEKUSI_WO]
+			FROM [mapping].[PORTOFOLIO_ONBS.DATABASE.JOIN.EKSEKUSI_WO]
+			WHERE [NOLOAN] = [SOURCE].[NOLOAN]
+			AND [NOCIF] = [SOURCE].[NOMORCIF]
+		) [CHECK_WO]
+		OUTER APPLY (
+			SELECT
+				COALESCE(MAX([BY_LOAN]), MAX([BY_CIF]) , MAX([BY_SUPERCIF])) [KOL_SUPERCIF]
+			FROM (
+				SELECT
+					CASE WHEN [NOLOAN] IN (
+						SELECT
+							[NOLOAN_LAMA]
+						FROM [mapping].[PORTOFOLIO_ONBS.COMPILE.JOIN.REKAP_NOLOAN.MUTASI_NOLOAN]
+						WHERE [NOLOAN_BARU] = [TARGET].[NOLOAN]
+						AND [NOCIF_BARU] = [TARGET].[NOMORCIF]
+						AND COALESCE([KETERANGAN], ''X'') NOT IN (''Invalid'')
+					) OR [NOLOAN] = COALESCE([TARGET].[NOLOAN], ''X'') THEN [KOL_SUPERCIF]
+					WHEN [TARGET].[DIVISI] IN (''Pawning'') THEN ''1'' END [BY_LOAN]
+					,CASE WHEN [NOMORCIF] = [TARGET].[NOMORCIF] THEN [KOL_SUPERCIF] END [BY_CIF]
+					,[KOL_SUPERCIF] [BY_SUPERCIF]
+				FROM ', @TARGET_M1, '
+				WHERE
+					(
+						[TARGET].[SUPERCIF] = [SUPERCIF]
+					)
+					AND
+					(
+						(
+							[TARGET].[DIVISI] IN (''Hasanah Card'')
+							AND [DIVISI] IN (''Hasanah Card'')
+						)
+						OR
+						(
+							[TARGET].[DIVISI] NOT IN (''Hasanah Card'')
+							AND [DIVISI] NOT IN (''Hasanah Card'')
+						)
+					)
+			) [SUB]
+		) [M_1];'
+	);
+	
+	BEGIN TRY
+		EXEC(@SQL_QUERY);
+		PRINT CONCAT('UPDATE DATA BY ', @TARGET_M1, ' SUKSES!');
+	END TRY
+	BEGIN CATCH
+		PRINT CONCAT('UPDATE DATA BY ', @TARGET_M1, ' GAGAL! ', ERROR_MESSAGE());
+	END CATCH
+	
+	SET @SQL_QUERY = CONCAT(
+		'UPDATE ', @RESULT,'
+		SET [CASH_IN] = COALESCE([PAY_POKOK], 0.00) + COALESCE([PAY_MARGIN], 0.00) + COALESCE([PAY_BAGIHASIL], 0.00);'
+	);
+	
+	BEGIN TRY
+		EXEC(@SQL_QUERY);
+		PRINT CONCAT('UPDATE CASH IN ', @RESULT, ' SUKSES!');
+	END TRY
+	BEGIN CATCH
+		PRINT CONCAT('UPDATE CASH IN ', @RESULT, ' GAGAL! ', ERROR_MESSAGE());
+	END CATCH
+	
+	END
+	---------------------------------------------------------------
+		
+	
+	IF @MODE = 'HYBRID'
+	BEGIN
+		SET @SQL_QUERY = CONCAT('SELECT
+			TGL_DATA
+			,NOLOAN
+			,NOMORCIF
+			,SUPERCIF
+			,NAMANASABAH
+			,KODECABANG
+			,NAMACABANG
+			,AREA
+			,REGION
+			,DIVISI
+			,PRODUK
+			,PRODUK_DETAIL
+			,TANGGAL_CAIR
+			,TANGGAL_JATUH_TEMPO
+			,CYCLE
+			,DPD
+			,KOL_LOAN
+			,KOL_CIF
+			,KOL_SUPERCIF
+			,FLAG_MUTASI
+			,OS_POKOK_PSAK
+			,OS_POKOK
+			,OS_MARGIN
+			,REALISASI_BAGIHASIL
+			,PROYEKSI_BAGIHASIL
+			,TUNGGAKAN_POKOK
+			,TUNGGAKAN_MARGIN
+			,ANGSURAN
+			,PAY_POKOK
+			,PAY_MARGIN
+			,PAY_BAGIHASIL
+			,CASH_IN
+			,ACCT
+		FROM ', @RESULT, '
+		WHERE (
+			COALESCE([FLAG_MUTASI], '''') LIKE (''%KOL 2%'')
+			OR COALESCE([FLAG_MUTASI], '''') LIKE (''%NPF%'')
+			OR COALESCE([FLAG_MUTASI], '''') LIKE (''%WO%'')
+		)
+		AND [SUPERCIF] IN (
+			SELECT [SUPERCIF] FROM ', @RESULT, '
+			WHERE COALESCE([REGION], '''') LIKE ''%', @REGION, '%''
+			AND COALESCE([AREA], '''') LIKE ''%', @AREA, '%''
+			AND
+				CASE
+					WHEN [DIVISI] IN (''Hasanah Card'') THEN ''Konsumer Retail''
+					WHEN [DIVISI] IN (''Konsumer'') THEN ''Konsumer Retail''
+					WHEN [DIVISI] IN (''Pawning'') THEN ''Konsumer Retail''
+					WHEN [DIVISI] IN (''Mikro'') THEN ''Sub Retail''
+					WHEN [DIVISI] IN (''SME'') THEN ''Sub Retail''
+					ELSE ''Wholesale''
+				END LIKE ''%', @SEGMEN, '%''
+			AND COALESCE([DIVISI], '''') LIKE ''%', @DIVISI, '%''
+			AND COALESCE([PRODUK], '''') LIKE ''%', @PRODUK, '%''
+		)
+		AND [NOLOAN] NOT IN (SELECT [NOLOAN] FROM [mapping].[PORTOFOLIO.LIST_EXCLUDE.COP]);');
+		
+		BEGIN TRY
+			INSERT INTO #RESULT EXEC(@SQL_QUERY);
+		END TRY
+		BEGIN CATCH
+			PRINT CONCAT('ERROR: ', ERROR_MESSAGE());
+		END CATCH
+		
+		SET @SQL_QUERY = CONCAT('SELECT
+			TGL_DATA
+			,NULL NOLOAN
+			,NULL NOMORCIF
+			,NULL SUPERCIF
+			,''REKAP BY OUTLET'' NAMANASABAH
+			,KODECABANG
+			,NAMACABANG
+			,AREA
+			,REGION
+			,DIVISI
+			,PRODUK
+			,PRODUK_DETAIL
+			,NULL TANGGAL_CAIR
+			,NULL TANGGAL_JATUH_TEMPO
+			,CYCLE
+			,NULL DPD
+			,NULL KOL_LOAN
+			,NULL KOL_CIF
+			,KOL_SUPERCIF
+			,FLAG_MUTASI
+			,SUM(OS_POKOK_PSAK) OS_POKOK_PSAK
+			,SUM(OS_POKOK) OS_POKOK
+			,SUM(OS_MARGIN) OS_MARGIN
+			,NULL REALISASI_BAGIHASIL
+			,NULL PROYEKSI_BAGIHASIL
+			,NULL TUNGGAKAN_POKOK
+			,NULL TUNGGAKAN_MARGIN
+			,NULL ANGSURAN
+			,SUM(PAY_POKOK) PAY_POKOK
+			,SUM(PAY_MARGIN) PAY_MARGIN
+			,SUM(PAY_BAGIHASIL) PAY_BAGIHASIL
+			,SUM(CASH_IN) CASH_IN
+			,SUM(ACCT) ACCT
+		FROM ', @RESULT, '
+		WHERE NOT (
+			COALESCE([FLAG_MUTASI], '''') LIKE (''%KOL 2%'')
+			OR COALESCE([FLAG_MUTASI], '''') LIKE (''%NPF%'')
+			OR COALESCE([FLAG_MUTASI], '''') LIKE (''%WO%'')
+		)
+		AND [SUPERCIF] IN (
+			SELECT [SUPERCIF] FROM ', @RESULT, '
+			WHERE COALESCE([REGION], '''') LIKE ''%', @REGION, '%''
+			AND COALESCE([AREA], '''') LIKE ''%', @AREA, '%''
+			AND
+				CASE
+					WHEN [DIVISI] IN (''Hasanah Card'') THEN ''Konsumer Retail''
+					WHEN [DIVISI] IN (''Konsumer'') THEN ''Konsumer Retail''
+					WHEN [DIVISI] IN (''Pawning'') THEN ''Konsumer Retail''
+					WHEN [DIVISI] IN (''Mikro'') THEN ''Sub Retail''
+					WHEN [DIVISI] IN (''SME'') THEN ''Sub Retail''
+					ELSE ''Wholesale''
+				END LIKE ''%', @SEGMEN, '%''
+			AND COALESCE([DIVISI], '''') LIKE ''%', @DIVISI, '%''
+			AND COALESCE([PRODUK], '''') LIKE ''%', @PRODUK, '%''
+		)
+		AND [NOLOAN] NOT IN (SELECT [NOLOAN] FROM [mapping].[PORTOFOLIO.LIST_EXCLUDE.COP])
+		GROUP BY
+			TGL_DATA
+			,KODECABANG
+			,NAMACABANG
+			,AREA
+			,REGION
+			,DIVISI
+			,PRODUK
+			,PRODUK_DETAIL
+			,CYCLE
+			,KOL_SUPERCIF
+			,FLAG_MUTASI;'
+			);
+		BEGIN TRY
+			INSERT INTO #RESULT EXEC(@SQL_QUERY);
+		END TRY
+		BEGIN CATCH
+			PRINT CONCAT('ERROR: ', ERROR_MESSAGE());
+		END CATCH
+		
+	END ELSE
+	BEGIN
+		SET @SQL_QUERY = CONCAT('SELECT * FROM ', @RESULT, '
+			WHERE [SUPERCIF] IN (
+			SELECT [SUPERCIF] FROM ', @RESULT, '
+			WHERE COALESCE([REGION], '''') LIKE ''%', @REGION, '%''
+			AND COALESCE([AREA], '''') LIKE ''%', @AREA, '%''
+			AND
+				CASE
+					WHEN [DIVISI] IN (''Hasanah Card'') THEN ''Konsumer Retail''
+					WHEN [DIVISI] IN (''Konsumer'') THEN ''Konsumer Retail''
+					WHEN [DIVISI] IN (''Pawning'') THEN ''Konsumer Retail''
+					WHEN [DIVISI] IN (''Mikro'') THEN ''Sub Retail''
+					WHEN [DIVISI] IN (''SME'') THEN ''Sub Retail''
+					ELSE ''Wholesale''
+				END LIKE ''%', @SEGMEN, '%''
+			AND COALESCE([DIVISI], '''') LIKE ''%', @DIVISI, '%''
+			AND COALESCE([PRODUK], '''') LIKE ''%', @PRODUK, '%''
+			AND [NOLOAN] NOT IN (SELECT [NOLOAN] FROM [mapping].[PORTOFOLIO.LIST_EXCLUDE.COP])
+		);');
+		
+		BEGIN TRY
+			INSERT INTO #RESULT EXEC(@SQL_QUERY);
+		END TRY
+		BEGIN CATCH
+			PRINT CONCAT('ERROR: ', ERROR_MESSAGE());
+		END CATCH
+	END
+		
+	SET @SQL_QUERY = CONCAT('SELECT
+		TGL_DATA
+		,NULL NOLOAN
+		,NULL NOMORCIF
+		,NULL SUPERCIF
+		,''REKAP BY OUTLET NASABAH COP'' NAMANASABAH
+		,KODECABANG
+		,NAMACABANG
+		,AREA
+		,REGION
+		,DIVISI
+		,PRODUK
+		,PRODUK_DETAIL
+		,NULL TANGGAL_CAIR
+		,NULL TANGGAL_JATUH_TEMPO
+		,CYCLE
+		,NULL DPD
+		,NULL KOL_LOAN
+		,NULL KOL_CIF
+		,KOL_SUPERCIF
+		,FLAG_MUTASI
+		,SUM(OS_POKOK_PSAK) OS_POKOK_PSAK
+		,SUM(OS_POKOK) OS_POKOK
+		,SUM(OS_MARGIN) OS_MARGIN
+		,NULL REALISASI_BAGIHASIL
+		,NULL PROYEKSI_BAGIHASIL
+		,NULL TUNGGAKAN_POKOK
+		,NULL TUNGGAKAN_MARGIN
+		,NULL ANGSURAN
+		,SUM(PAY_POKOK) PAY_POKOK
+		,SUM(PAY_MARGIN) PAY_MARGIN
+		,SUM(PAY_BAGIHASIL) PAY_BAGIHASIL
+		,SUM(CASH_IN) CASH_IN
+		,SUM(ACCT) ACCT
+	FROM ', @RESULT, '
+	WHERE NOT (
+		COALESCE([FLAG_MUTASI], '''') LIKE (''%KOL 2%'')
+		OR COALESCE([FLAG_MUTASI], '''') LIKE (''%NPF%'')
+		OR COALESCE([FLAG_MUTASI], '''') LIKE (''%WO%'')
+	)
+	AND [SUPERCIF] IN (
+		SELECT [SUPERCIF] FROM ', @RESULT, '
+		WHERE COALESCE([REGION], '''') LIKE ''%', @REGION, '%''
+		AND COALESCE([AREA], '''') LIKE ''%', @AREA, '%''
+		AND
+			CASE
+				WHEN [DIVISI] IN (''Hasanah Card'') THEN ''Konsumer Retail''
+				WHEN [DIVISI] IN (''Konsumer'') THEN ''Konsumer Retail''
+				WHEN [DIVISI] IN (''Pawning'') THEN ''Konsumer Retail''
+				WHEN [DIVISI] IN (''Mikro'') THEN ''Sub Retail''
+				WHEN [DIVISI] IN (''SME'') THEN ''Sub Retail''
+				ELSE ''Wholesale''
+			END LIKE ''%', @SEGMEN, '%''
+		AND COALESCE([DIVISI], '''') LIKE ''%', @DIVISI, '%''
+		AND COALESCE([PRODUK], '''') LIKE ''%', @PRODUK, '%''
+	)
+	AND [NOLOAN] IN (SELECT [NOLOAN] FROM [mapping].[PORTOFOLIO.LIST_EXCLUDE.COP])
+	GROUP BY
+		TGL_DATA
+		,KODECABANG
+		,NAMACABANG
+		,AREA
+		,REGION
+		,DIVISI
+		,PRODUK
+		,PRODUK_DETAIL
+		,CYCLE
+		,KOL_SUPERCIF
+		,FLAG_MUTASI;'
+		);
+	BEGIN TRY
+		INSERT INTO #RESULT EXEC(@SQL_QUERY);
+	END TRY
+	BEGIN CATCH
+		PRINT CONCAT('ERROR: ', ERROR_MESSAGE());
+	END CATCH
+	
+	SELECT * FROM #RESULT;
+END
+GO
+
+
+-- ----------------------------
+-- procedure structure for sp_procc_loan_daily
+-- ----------------------------
+IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[main].[sp_procc_loan_daily]') AND type IN ('P', 'PC', 'RF', 'X'))
+	DROP PROCEDURE[main].[sp_procc_loan_daily]
+GO
+
+CREATE PROCEDURE [main].[sp_procc_loan_daily]
+(
+	@TARGET varchar(max) = NULL
+	,@USE_DDM varchar(max) = 'NO'
+	,@USE_FOG varchar(max) = 'NO'
+	,@USE_DAILY varchar(max) = 'YES'
+)
+AS
+BEGIN
+	
+	DECLARE @TGL_DATA DATE, @SQL_QUERY VARCHAR(MAX), @TABLE_NAME VARCHAR(MAX);
+	
+	--------------------------------------------------------------------------	
+	
+	BEGIN TRY
+		CREATE TABLE [main].[RCG.LOAN_DAILY] (
+			[TGL_DATA] date,
+			[NOLOAN] varchar(255),
+			[NOMORCIF] varchar(255),
+			[SUPERCIF] varchar(255),
+			[NAMANASABAH] varchar(255),
+			[KODECABANG] varchar(255),
+			[NAMACABANG] varchar(255),
+			[AREA] varchar(255),
+			[REGION] varchar(255),
+			[LOANTYPE] varchar(255),
+			[DIVISI] varchar(255),
+			[PRODUK] varchar(255),
+			[PRODUK_DETAIL] varchar(255),
+			[JENISPIUTANGPEMBIAYAAN] varchar(255),
+			[TANGGAL_CAIR] date,
+			[TANGGAL_JATUH_TEMPO] date,
+			[CYCLE] int,
+			[DPD] int,
+			[KOL_LOAN] varchar(255),
+			[KOL_CIF] varchar(255),
+			[KOL_SUPERCIF] varchar(255),
+			[OS_POKOK_PSAK] decimal(20,2),
+			[OS_POKOK] decimal(20,2),
+			[OS_MARGIN] decimal(20,2),
+			[REALISASI_BAGIHASIL] decimal(20,2),
+			[PROYEKSI_BAGIHASIL] decimal(20,2),
+			[TUNGGAKAN_POKOK] decimal(20,2),
+			[TUNGGAKAN_MARGIN] decimal(20,2),
+			[ANGSURAN] decimal(20,2),
+			[CKPN] decimal(20,2),
+			[SALDO_DPK] decimal(20,2),
+			[ACCT] int
+		);
+	END TRY
+	BEGIN CATCH
+	END CATCH
+	
+	--------------------------------------------------------------------------	
+	
+	TRUNCATE TABLE [main].[RCG.LOAN_DAILY];
+	
+	--------------------------------------------------------------------------	
+	
+	SET @USE_DDM = CASE WHEN COALESCE(@USE_DDM, 'NO') IN ('1', 'YES', 'YA', 'y', 'OK', 'TRUE', 'OKEH') THEN 'YES' ELSE 'NO' END;
+	SET @USE_FOG = CASE WHEN COALESCE(@USE_FOG, 'NO') IN ('1', 'YES', 'YA', 'y', 'OK', 'TRUE', 'OKEH') THEN 'YES' ELSE 'NO' END;
+	SET @USE_DAILY = CASE WHEN COALESCE(@USE_DAILY, 'YES') IN ('1', 'YES', 'YA', 'y', 'OK', 'TRUE', 'OKEH') THEN 'YES' ELSE 'NO' END;
+	
+	--------------------------------------------------------------------------
+	
+	IF @USE_DDM = 'YES'
+	BEGIN
+		IF TRY_CAST(LEFT(@TARGET, 10) AS DATE) IS NOT NULL
+		BEGIN
+			SET @TABLE_NAME = (
+				SELECT TOP 1
+					CONCAT('[', SCHEMA_NAME(SCHEMA_ID), '].[', name, ']') AS NAME
+				FROM [sys].[objects]
+				WHERE type_desc = 'USER_TABLE'
+				AND name LIKE 'DDM.LOAN_DAILY.____-__-__%'
+				AND TRY_CAST(LEFT(REPLACE(name, 'DDM.LOAN_DAILY.', ''), 10) AS DATE) = TRY_CAST(LEFT(@TARGET, 10) AS DATE)
+				ORDER BY
+					TRY_CAST(LEFT(REPLACE(name, 'DDM.LOAN_DAILY.', ''), 10) AS DATE) DESC
+					,CASE
+						WHEN REPLACE(name, 'DDM.LOAN_DAILY.', '') = @TARGET THEN 2
+						WHEN name LIKE ('%(FINAL)') THEN 1
+						WHEN name LIKE ('%(QC)') THEN -1
+						ELSE 0
+					END DESC
+			);
+		END ELSE
+		BEGIN
+			SET @TABLE_NAME = '[source].[DDM.LOAN_DAILY]';
+		END
+		
+		SET @SQL_QUERY = CONCAT(
+			'MERGE [MAIN].[RCG.LOAN_DAILY] [TARGET]
+			USING (
+				SELECT
+					[periodeData] [TGL_DATA]
+					,[noRekening] [NOLOAN]
+					,COALESCE(CASE WHEN [segmenBSI] IN (''Hasanah Card'') THEN RIGHT(COALESCE([noCIF_Legacy], [noCIF]), 15) END, [noCIF_Legacy], [noCIF]) [NOMORCIF]
+					,COALESCE(CASE WHEN [segmenBSI] IN (''Hasanah Card'') THEN RIGHT([noCIF], 15) END, [noCIF]) [SUPERCIF]
+					,[namaNasabah] [NAMANASABAH]
+					,[cabangBSI] [KODECABANG]
+					,[segmenBSI] [DIVISI]
+					,[namaProdukBSI] [PRODUK]
+					,COALESCE([subProduct1], [subProduct2]) [PRODUK_DETAIL]
+					,[kodeProduk] [LOANTYPE]
+					,MAX(TRY_CAST([tunggakanHari] AS INTEGER)) [DPD]
+					,MAX(TRY_CAST([tanggalBuka] AS DATE)) [TANGGAL_CAIR]
+					,MAX(TRY_CAST([tanggalTutup] AS DATE)) [TANGGAL_JATUH_TEMPO]
+					,MAX(COALESCE(NULLIF(TRY_CAST(RIGHT(LEFT([periodeAngsuranPokokBerikutnya], 10), 2) AS INTEGER), 0), TRY_CAST(RIGHT(LEFT([tanggalTutup], 10), 2) AS INTEGER))) [CYCLE]
+					,[kol_rek] [KOL_LOAN]
+					,[kolektibilitas] [KOL_SUPERCIF]
+					,SUM(TRY_CAST([sisaPokokPSAK] AS DECIMAL(20, 2))) [OS_POKOK_PSAK]
+					,SUM(TRY_CAST([sisaPokok] AS DECIMAL(20, 2))) [OS_POKOK]
+					,SUM(TRY_CAST([sisaMargin] AS DECIMAL(20, 2))) [OS_MARGIN]
+					,SUM(TRY_CAST([realisasiBagiHasil] AS DECIMAL(20, 2))) [REALISASI_BAGIHASIL]
+					,SUM(TRY_CAST([proyeksiBagiHasil] AS DECIMAL(20, 2))) [PROYEKSI_BAGIHASIL]
+					,SUM(TRY_CAST([tunggakanPokok] AS DECIMAL(20, 2))) [TUNGGAKAN_POKOK]
+					,SUM(TRY_CAST([tunggakanMargin] AS DECIMAL(20, 2))) [TUNGGAKAN_MARGIN]
+					,SUM(COALESCE(TRY_CAST([angsuranPokokBerikutnya] AS DECIMAL(20, 2)), 0.00) + COALESCE(TRY_CAST([angsuranMarginBerikutnya] AS DECIMAL(20, 2)), 0.00)) [ANGSURAN]
+					,SUM(TRY_CAST([CKPN] AS DECIMAL(20, 2))) [CKPN]
+					,COUNT(1) [ACCT]
+				FROM ', @TABLE_NAME, '
+				GROUP BY
+					[periodeData]
+					,[noRekening]
+					,COALESCE(CASE WHEN [segmenBSI] IN (''Hasanah Card'') THEN RIGHT(COALESCE([noCIF_Legacy], [noCIF]), 15) END, [noCIF_Legacy], [noCIF])
+					,COALESCE(CASE WHEN [segmenBSI] IN (''Hasanah Card'') THEN RIGHT([noCIF], 15) END, [noCIF])
+					,[namaNasabah]
+					,[cabangBSI]
+					,[segmenBSI]
+					,[namaProdukBSI]
+					,COALESCE([subProduct1], [subProduct2])
+					,[kodeProduk]
+					,[kol_rek]
+					,[kolektibilitas]
+			) [SOURCE]
+				ON 
+					(
+						[TARGET].[NOMORCIF] = [SOURCE].[NOMORCIF]
+						OR [TARGET].[SUPERCIF] = [SOURCE].[SUPERCIF]
+					)
+			WHEN MATCHED AND [SOURCE].[TGL_DATA] >= [TARGET].[TGL_DATA] THEN UPDATE
+			SET
+				[SUPERCIF] = COALESCE([SOURCE].[SUPERCIF], [TARGET].[SUPERCIF])
+				,[NAMANASABAH] = COALESCE([SOURCE].[NAMANASABAH], [TARGET].[NAMANASABAH])
+				,[KODECABANG] = COALESCE([SOURCE].[KODECABANG], [TARGET].[KODECABANG])
+				,[DIVISI] = COALESCE([SOURCE].[DIVISI], [TARGET].[DIVISI])
+				,[PRODUK] = COALESCE([SOURCE].[PRODUK], [TARGET].[PRODUK])
+				,[PRODUK_DETAIL] = COALESCE([SOURCE].[PRODUK_DETAIL], [TARGET].[PRODUK_DETAIL])
+				,[LOANTYPE] = COALESCE([SOURCE].[LOANTYPE], [TARGET].[LOANTYPE])
+				,[DPD] = COALESCE([SOURCE].[DPD], [TARGET].[DPD])
+				,[TANGGAL_CAIR] = COALESCE([SOURCE].[TANGGAL_CAIR], [TARGET].[TANGGAL_CAIR])
+				,[TANGGAL_JATUH_TEMPO] = COALESCE([SOURCE].[TANGGAL_JATUH_TEMPO], [TARGET].[TANGGAL_JATUH_TEMPO])
+				,[CYCLE] = COALESCE(NULLIF([SOURCE].[CYCLE], 0), [TARGET].[CYCLE])
+				,[KOL_LOAN] = COALESCE([SOURCE].[KOL_LOAN], [TARGET].[KOL_LOAN])
+				,[KOL_SUPERCIF] = COALESCE([SOURCE].[KOL_SUPERCIF], [TARGET].[KOL_SUPERCIF])
+				,[OS_POKOK_PSAK] = COALESCE([SOURCE].[OS_POKOK_PSAK], [TARGET].[OS_POKOK_PSAK])
+				,[OS_POKOK] = COALESCE([SOURCE].[OS_POKOK], [TARGET].[OS_POKOK])
+				,[OS_MARGIN] = COALESCE([SOURCE].[OS_MARGIN], [TARGET].[OS_MARGIN])
+				,[REALISASI_BAGIHASIL] = COALESCE([SOURCE].[REALISASI_BAGIHASIL], [TARGET].[REALISASI_BAGIHASIL])
+				,[PROYEKSI_BAGIHASIL] = COALESCE([SOURCE].[PROYEKSI_BAGIHASIL], [TARGET].[PROYEKSI_BAGIHASIL])
+				,[TUNGGAKAN_POKOK] = COALESCE([SOURCE].[TUNGGAKAN_POKOK], [TARGET].[TUNGGAKAN_POKOK])
+				,[TUNGGAKAN_MARGIN] = COALESCE([SOURCE].[TUNGGAKAN_MARGIN], [TARGET].[TUNGGAKAN_MARGIN])
+				,[ANGSURAN] = COALESCE([SOURCE].[ANGSURAN], [TARGET].[ANGSURAN])
+				,[CKPN] = COALESCE([SOURCE].[CKPN], [TARGET].[CKPN])
+				,[ACCT] = COALESCE([SOURCE].[ACCT], [TARGET].[ACCT])
+			WHEN NOT MATCHED BY TARGET THEN INSERT
+			(
+				[TGL_DATA]
+				,[NOLOAN]
+				,[NOMORCIF]
+				,[SUPERCIF]
+				,[NAMANASABAH]
+				,[KODECABANG]
+				,[DIVISI]
+				,[PRODUK]
+				,[PRODUK_DETAIL]
+				,[LOANTYPE]
+				,[DPD]
+				,[TANGGAL_CAIR]
+				,[TANGGAL_JATUH_TEMPO]
+				,[CYCLE]
+				,[KOL_LOAN]
+				,[KOL_SUPERCIF]
+				,[OS_POKOK_PSAK]
+				,[OS_POKOK]
+				,[OS_MARGIN]
+				,[REALISASI_BAGIHASIL]
+				,[PROYEKSI_BAGIHASIL]
+				,[TUNGGAKAN_POKOK]
+				,[TUNGGAKAN_MARGIN]
+				,[ANGSURAN]
+				,[CKPN]
+				,[ACCT]
+			) VALUES (
+				[SOURCE].[TGL_DATA]
+				,[SOURCE].[NOLOAN]
+				,[SOURCE].[NOMORCIF]
+				,[SOURCE].[SUPERCIF]
+				,[SOURCE].[NAMANASABAH]
+				,[SOURCE].[KODECABANG]
+				,[SOURCE].[DIVISI]
+				,[SOURCE].[PRODUK]
+				,[SOURCE].[PRODUK_DETAIL]
+				,[SOURCE].[LOANTYPE]
+				,[SOURCE].[DPD]
+				,[SOURCE].[TANGGAL_CAIR]
+				,[SOURCE].[TANGGAL_JATUH_TEMPO]
+				,[SOURCE].[CYCLE]
+				,[SOURCE].[KOL_LOAN]
+				,[SOURCE].[KOL_SUPERCIF]
+				,[SOURCE].[OS_POKOK_PSAK]
+				,[SOURCE].[OS_POKOK]
+				,[SOURCE].[OS_MARGIN]
+				,[SOURCE].[REALISASI_BAGIHASIL]
+				,[SOURCE].[PROYEKSI_BAGIHASIL]
+				,[SOURCE].[TUNGGAKAN_POKOK]
+				,[SOURCE].[TUNGGAKAN_MARGIN]
+				,[SOURCE].[ANGSURAN]
+				,[SOURCE].[CKPN]
+				,[SOURCE].[ACCT]
+			);'
+		);
+		
+		BEGIN TRY
+			EXEC(@SQL_QUERY);
+			PRINT CONCAT('DDM: UPDATE DATA ', @TABLE_NAME, ' SUKSES!');
+		END TRY
+		BEGIN CATCH
+			PRINT CONCAT('DDM: UPDATE DATA ', @TABLE_NAME, ' GAGAL! ', ERROR_MESSAGE());
+		END CATCH
+	END
+	
+	UPDATE [main].[RCG.LOAN_DAILY]
+	SET
+		[NOMORCIF] = '83604419' --2023-04-30--
+	WHERE [NOLOAN] = 'BSIDVC23L0000191I000'
+	AND [NOMORCIF] = '85398516';
+	
+	UPDATE [main].[RCG.LOAN_DAILY]
+	SET
+		[NOMORCIF] = '000009094401939' --2023-04-30--
+	WHERE [NOLOAN] = '54000000009255'
+	AND [NOMORCIF] = '000000000009255';
+	
+	--------------------------------------------------------------------------
+	
+	IF @USE_FOG = 'YES'
+	BEGIN
+		IF TRY_CAST(LEFT(@TARGET, 10) AS DATE) IS NOT NULL
+		BEGIN
+			SET @TABLE_NAME = (
+				SELECT TOP 1
+					CONCAT('[', SCHEMA_NAME(SCHEMA_ID), '].[', name, ']') AS NAME
+				FROM [sys].[objects]
+				WHERE type_desc = 'USER_TABLE'
+				AND name LIKE 'FOG.LOAN_DAILY.____-__-__%'
+				AND TRY_CAST(LEFT(REPLACE(name, 'FOG.LOAN_DAILY.', ''), 10) AS DATE) = TRY_CAST(LEFT(@TARGET, 10) AS DATE)
+				ORDER BY
+					TRY_CAST(LEFT(REPLACE(name, 'FOG.LOAN_DAILY.', ''), 10) AS DATE) DESC
+					,CASE
+						WHEN REPLACE(name, 'FOG.LOAN_DAILY.', '') = @TARGET THEN 2
+						WHEN name LIKE ('%(FINAL)') THEN 1
+						WHEN name LIKE ('%(QC)') THEN -1
+						ELSE 0
+					END DESC
+			);
+		END ELSE
+		BEGIN
+			SET @TABLE_NAME = '[source].[FOG.LOAN_DAILY]';
+		END
+		
+		SET @SQL_QUERY = CONCAT(
+			'MERGE [MAIN].[RCG.LOAN_DAILY] [TARGET]
+			USING (
+				SELECT
+					''', LEFT(@TARGET, 10), ''' [TGL_DATA]
+					,[NOLOAN] [NOLOAN]
+					,COALESCE(CASE WHEN [DIVISI_FINAL] IN (''CBG'') THEN RIGHT([NOMORCIF], 15) END, [NOMORCIF]) [NOMORCIF]
+					,COALESCE(CASE WHEN [DIVISI_FINAL] IN (''CBG'') THEN RIGHT([SUPERCIF_NO], 15) END, [SUPERCIF_NO]) [SUPERCIF]
+					,[NAMALENGKAP] [NAMANASABAH]
+					,[KODECABANGBARU] [KODECABANG]
+					,[NAMACABANG] [NAMACABANG]
+					,[DIVISI_FINAL] [DIVISI]
+					,MAX(TRY_CAST([TGLPENCAIRAN] AS DATE)) [TANGGAL_CAIR]
+					,[KOL_LOAN_FINAL] [KOL_LOAN]
+					,[KOL_CIF_FINAL] [KOL_CIF]
+					,[KOL_SUPERCIF_FINAL] [KOL_SUPERCIF]
+					,SUM(TRY_CAST([OSPOKOKCONVERSION] AS DECIMAL(20, 2))) [OS_POKOK]
+					,COUNT(1) [ACCT]
+				FROM ', @TABLE_NAME, '
+				GROUP BY
+					[NOLOAN]
+					,COALESCE(CASE WHEN [DIVISI_FINAL] IN (''CBG'') THEN RIGHT([NOMORCIF], 15) END, [NOMORCIF])
+					,COALESCE(CASE WHEN [DIVISI_FINAL] IN (''CBG'') THEN RIGHT([SUPERCIF_NO], 15) END, [SUPERCIF_NO])
+					,[NAMALENGKAP]
+					,[KODECABANGBARU]
+					,[NAMACABANG]
+					,[DIVISI_FINAL]
+					,[KOL_LOAN_FINAL]
+					,[KOL_CIF_FINAL]
+					,[KOL_SUPERCIF_FINAL]
+			) [SOURCE]
+				ON [TARGET].[NOLOAN] = [SOURCE].[NOLOAN]
+				/*
+				AND
+					(
+						[TARGET].[NOMORCIF] = [SOURCE].[NOMORCIF]
+						OR [TARGET].[SUPERCIF] = [SOURCE].[NOMORCIF]
+						OR [TARGET].[NOMORCIF] = [SOURCE].[SUPERCIF]
+						OR [TARGET].[SUPERCIF] = [SOURCE].[SUPERCIF]
+					)
+				*/
+			WHEN MATCHED AND [SOURCE].[TGL_DATA] >= [TARGET].[TGL_DATA] THEN UPDATE
+			SET
+				[SUPERCIF] = COALESCE([SOURCE].[SUPERCIF], [TARGET].[SUPERCIF])
+				,[NAMANASABAH] = COALESCE([SOURCE].[NAMANASABAH], [TARGET].[NAMANASABAH])
+				,[KODECABANG] = COALESCE([SOURCE].[KODECABANG], [TARGET].[KODECABANG])
+				,[NAMACABANG] = COALESCE([SOURCE].[NAMACABANG], [TARGET].[NAMACABANG])
+				,[DIVISI] = COALESCE([SOURCE].[DIVISI], [TARGET].[DIVISI])
+				,[TANGGAL_CAIR] = COALESCE([SOURCE].[TANGGAL_CAIR], [TARGET].[TANGGAL_CAIR])
+				,[KOL_LOAN] = COALESCE([SOURCE].[KOL_LOAN], [TARGET].[KOL_LOAN])
+				,[KOL_CIF] = COALESCE([SOURCE].[KOL_CIF], [TARGET].[KOL_CIF])
+				,[KOL_SUPERCIF] = COALESCE([SOURCE].[KOL_SUPERCIF], [TARGET].[KOL_SUPERCIF])
+				,[OS_POKOK] = COALESCE([SOURCE].[OS_POKOK], [TARGET].[OS_POKOK])
+				,[ACCT] = COALESCE([SOURCE].[ACCT], [TARGET].[ACCT])
+			WHEN NOT MATCHED BY TARGET THEN INSERT
+			(
+				[TGL_DATA]
+				,[NOLOAN]
+				,[NOMORCIF]
+				,[SUPERCIF]
+				,[NAMANASABAH]
+				,[KODECABANG]
+				,[NAMACABANG]
+				,[DIVISI]
+				,[TANGGAL_CAIR]
+				,[KOL_LOAN]
+				,[KOL_CIF]
+				,[KOL_SUPERCIF]
+				,[OS_POKOK]
+				,[ACCT]
+			) VALUES (
+				[SOURCE].[TGL_DATA]
+				,[SOURCE].[NOLOAN]
+				,[SOURCE].[NOMORCIF]
+				,[SOURCE].[SUPERCIF]
+				,[SOURCE].[NAMANASABAH]
+				,[SOURCE].[KODECABANG]
+				,[SOURCE].[NAMACABANG]
+				,[SOURCE].[DIVISI]
+				,[SOURCE].[TANGGAL_CAIR]
+				,[SOURCE].[KOL_LOAN]
+				,[SOURCE].[KOL_CIF]
+				,[SOURCE].[KOL_SUPERCIF]
+				,[SOURCE].[OS_POKOK]
+				,[SOURCE].[ACCT]
+			);'
+		);
+		
+		BEGIN TRY
+			EXEC(@SQL_QUERY);
+			PRINT CONCAT('FOG: UPDATE DATA ', @TABLE_NAME, ' SUKSES!');
+		END TRY
+		BEGIN CATCH
+			PRINT CONCAT('FOG: UPDATE DATA ', @TABLE_NAME, ' GAGAL! ', ERROR_MESSAGE());
+		END CATCH
+	END
+	
+	--------------------------------------------------------------------------
+	
+	IF @USE_DAILY = 'YES'
+	BEGIN
+		IF TRY_CAST(LEFT(@TARGET, 10) AS DATE) IS NOT NULL
+		BEGIN
+			SET @TABLE_NAME = (
+				SELECT TOP 1
+					CONCAT('[', SCHEMA_NAME(SCHEMA_ID), '].[', name, ']') AS NAME
+				FROM [sys].[objects]
+				WHERE type_desc = 'USER_TABLE'
+				AND name LIKE 'IFOIS.LOAN_DAILY.____-__-__%'
+				AND TRY_CAST(LEFT(REPLACE(name, 'IFOIS.LOAN_DAILY.', ''), 10) AS DATE) <= TRY_CAST(LEFT(@TARGET, 10) AS DATE)
+				ORDER BY
+					TRY_CAST(LEFT(REPLACE(name, 'IFOIS.LOAN_DAILY.', ''), 10) AS DATE) DESC
+					,CASE
+						WHEN REPLACE(name, 'IFOIS.LOAN_DAILY.', '') = @TARGET THEN 2
+						WHEN name LIKE ('%(FINAL)') THEN 1
+						WHEN name LIKE ('%(QC)') THEN -1
+						ELSE 0
+					END DESC
+			);
+		END ELSE
+		BEGIN
+			SET @TABLE_NAME = '[source].[IFOIS.LOAN_DAILY]';
+		END
+		
+		SET @SQL_QUERY = CONCAT(
+			'MERGE [MAIN].[RCG.LOAN_DAILY] [TARGET]
+			USING
+			(
+				SELECT
+					TRY_CAST(FICMISDATE AS DATE) AS TGL_DATA
+					,NOLOAN AS NOLOAN
+					,NOMORCIF AS NOMORCIF
+					,NAMALENGKAP AS NAMANASABAH
+					,KODECABANGBARU AS KODECABANG
+					,NAMACABANG AS NAMACABANG
+					,DIVISI AS DIVISI
+					,LOANTYPE AS LOANTYPE
+					,JENISPIUTANGPEMBIAYAAN AS JENISPIUTANGPEMBIAYAAN
+					,MAX(TRY_CAST(DAYPASTDUE AS INTEGER)) AS DPD
+					,MAX(TRY_CAST(TGLPENCAIRAN AS DATE)) AS TANGGAL_CAIR
+					,MAX(TRY_CAST(TGLJTTEMPO AS DATE)) AS TANGGAL_JATUH_TEMPO
+					,MAX(COALESCE(NULLIF(TRY_CAST(RIGHT(LEFT(SCHD_DT, 10), 2) AS INTEGER), 0), TRY_CAST(RIGHT(LEFT(TGLJTTEMPO, 10), 2) AS INTEGER))) AS CYCLE
+					,MAX(COALESCE(KOLBSM, KOLCIF)) AS KOL_LOAN
+					,SUM(TRY_CAST(OSPOKOKCONVERSION AS DECIMAL(20, 2))) AS OS_POKOK
+					,SUM(TRY_CAST(OSMARGINCONVERSION AS DECIMAL(20, 2))) AS OS_MARGIN
+					,SUM(TRY_CAST(REALISASI_BAGIHASIL AS DECIMAL(20, 2))) AS REALISASI_BAGIHASIL
+					,SUM(TRY_CAST(PROYEKSI_BAGIHASIL AS DECIMAL(20, 2))) AS PROYEKSI_BAGIHASIL
+					,SUM(TRY_CAST(TUNGGAKANPOKOKCONVERSION AS DECIMAL(20, 2))) AS TUNGGAKAN_POKOK
+					,SUM(TRY_CAST(TUNGGAKANMARGINCONVERSION AS DECIMAL(20, 2))) AS TUNGGAKAN_MARGIN
+					,SUM(COALESCE(TRY_CAST(ANGSURAN_POKOK AS DECIMAL(20, 2)), 0.00) + COALESCE(TRY_CAST(ANGSURAN_MARGIN AS DECIMAL(20, 2)), 0.00)) AS ANGSURAN
+					,COUNT(1) AS ACCT
+				FROM ', @TABLE_NAME,'
+				GROUP BY
+					TRY_CAST(FICMISDATE AS DATE)
+					,NOLOAN
+					,NOMORCIF
+					,NAMALENGKAP
+					,KODECABANGBARU
+					,NAMACABANG
+					,DIVISI
+					,LOANTYPE
+					,JENISPIUTANGPEMBIAYAAN
+			) [SOURCE]
+				ON [TARGET].[NOLOAN] = [SOURCE].[NOLOAN]
+			WHEN MATCHED THEN UPDATE
+			SET
+				TGL_DATA = COALESCE([TARGET].[TGL_DATA], [SOURCE].[TGL_DATA])
+				,NOMORCIF = COALESCE([TARGET].[NOMORCIF], [SOURCE].[NOMORCIF])
+				,NAMANASABAH = COALESCE([TARGET].[NAMANASABAH], [SOURCE].[NAMANASABAH])
+				,KODECABANG = COALESCE([TARGET].[KODECABANG], [SOURCE].[KODECABANG])
+				,NAMACABANG = COALESCE([TARGET].[NAMACABANG], [SOURCE].[NAMACABANG])
+				,DIVISI = COALESCE([TARGET].[DIVISI], [SOURCE].[DIVISI])
+				,LOANTYPE = COALESCE([TARGET].[LOANTYPE], [SOURCE].[LOANTYPE])
+				,JENISPIUTANGPEMBIAYAAN = COALESCE([TARGET].[JENISPIUTANGPEMBIAYAAN], [SOURCE].[JENISPIUTANGPEMBIAYAAN])
+				,DPD = COALESCE([TARGET].[DPD], [SOURCE].[DPD])
+				,TANGGAL_CAIR = COALESCE([TARGET].[TANGGAL_CAIR], [SOURCE].[TANGGAL_CAIR])
+				,TANGGAL_JATUH_TEMPO = COALESCE([TARGET].[TANGGAL_JATUH_TEMPO], [SOURCE].[TANGGAL_JATUH_TEMPO])
+				,CYCLE = COALESCE(NULLIF([TARGET].[CYCLE], 0), [SOURCE].[CYCLE])
+				,KOL_LOAN = COALESCE([TARGET].[KOL_LOAN], [SOURCE].[KOL_LOAN])
+				,OS_POKOK = COALESCE([TARGET].[OS_POKOK], [SOURCE].[OS_POKOK])
+				,OS_MARGIN = COALESCE([TARGET].[OS_MARGIN], [SOURCE].[OS_MARGIN])
+				,REALISASI_BAGIHASIL = COALESCE([TARGET].[REALISASI_BAGIHASIL], [SOURCE].[REALISASI_BAGIHASIL])
+				,PROYEKSI_BAGIHASIL = COALESCE([TARGET].[PROYEKSI_BAGIHASIL], [SOURCE].[PROYEKSI_BAGIHASIL])
+				,TUNGGAKAN_POKOK = COALESCE([TARGET].[TUNGGAKAN_POKOK], [SOURCE].[TUNGGAKAN_POKOK])
+				,TUNGGAKAN_MARGIN = COALESCE([TARGET].[TUNGGAKAN_MARGIN], [SOURCE].[TUNGGAKAN_MARGIN])
+				,ANGSURAN = COALESCE([TARGET].[ANGSURAN], [SOURCE].[ANGSURAN])
+				,ACCT = COALESCE([TARGET].[ACCT], [SOURCE].[ACCT])'
+			,CASE
+				WHEN @USE_DDM != 'YES' AND @USE_FOG != 'YES' THEN '
+			WHEN NOT MATCHED BY TARGET THEN
+			INSERT
+				(
+					TGL_DATA
+					,NOLOAN
+					,NOMORCIF
+					,NAMANASABAH
+					,KODECABANG
+					,NAMACABANG
+					,DIVISI
+					,LOANTYPE
+					,JENISPIUTANGPEMBIAYAAN
+					,DPD
+					,TANGGAL_CAIR
+					,TANGGAL_JATUH_TEMPO
+					,CYCLE
+					,KOL_LOAN
+					,OS_POKOK
+					,OS_MARGIN
+					,REALISASI_BAGIHASIL
+					,PROYEKSI_BAGIHASIL
+					,TUNGGAKAN_POKOK
+					,TUNGGAKAN_MARGIN
+					,ANGSURAN
+					,ACCT
+				)
+			VALUES
+			(
+				[SOURCE].TGL_DATA
+				,[SOURCE].NOLOAN
+				,[SOURCE].NOMORCIF
+				,[SOURCE].NAMANASABAH
+				,[SOURCE].KODECABANG
+				,[SOURCE].NAMACABANG
+				,[SOURCE].DIVISI
+				,[SOURCE].LOANTYPE
+				,[SOURCE].JENISPIUTANGPEMBIAYAAN
+				,[SOURCE].DPD
+				,[SOURCE].TANGGAL_CAIR
+				,[SOURCE].TANGGAL_JATUH_TEMPO
+				,[SOURCE].CYCLE
+				,[SOURCE].KOL_LOAN
+				,[SOURCE].OS_POKOK
+				,[SOURCE].OS_MARGIN
+				,[SOURCE].REALISASI_BAGIHASIL
+				,[SOURCE].PROYEKSI_BAGIHASIL
+				,[SOURCE].TUNGGAKAN_POKOK
+				,[SOURCE].TUNGGAKAN_MARGIN
+				,[SOURCE].ANGSURAN
+				,[SOURCE].ACCT
+			)' END, ';'
+		);
+		
+		BEGIN TRY
+			EXEC(@SQL_QUERY);
+			PRINT CONCAT('IFOIS: UPDATE DATA ', @TABLE_NAME, ' SUKSES!');
+		END TRY
+		BEGIN CATCH
+			PRINT CONCAT('IFOIS: UPDATE DATA ', @TABLE_NAME, ' GAGAL! ', ERROR_MESSAGE());
+		END CATCH
+		
+		--------------------------------------------------------------------------
+	
+		IF TRY_CAST(LEFT(@TARGET, 10) AS DATE) IS NOT NULL
+		BEGIN
+			SET @TABLE_NAME = (
+				SELECT TOP 1
+					CONCAT('[', SCHEMA_NAME(SCHEMA_ID), '].[', name, ']') AS NAME
+				FROM [sys].[objects]
+				WHERE type_desc = 'USER_TABLE'
+				AND name LIKE 'MIS.IFOS_JFAST.____-__-__%'
+				AND TRY_CAST(LEFT(REPLACE(name, 'MIS.IFOS_JFAST.', ''), 10) AS DATE) <= TRY_CAST(LEFT(@TARGET, 10) AS DATE)
+				ORDER BY
+					TRY_CAST(LEFT(REPLACE(name, 'MIS.IFOS_JFAST.', ''), 10) AS DATE) DESC
+					,CASE
+						WHEN REPLACE(name, 'MIS.IFOS_JFAST.', '') = @TARGET THEN 2
+						WHEN name LIKE ('%(FINAL)') THEN 1
+						WHEN name LIKE ('%(QC)') THEN -1
+						ELSE 0
+					END DESC
+			);
+		END ELSE
+		BEGIN
+			SET @TABLE_NAME = '[source].[MIS.IFOS_JFAST]';
+		END
+		
+		SET @SQL_QUERY = CONCAT(
+			'MERGE [MAIN].[RCG.LOAN_DAILY] [TARGET]
+			USING
+			(
+				SELECT
+					TRY_CAST(FICMISDATE AS DATE) AS TGL_DATA
+					,NOLOAN AS NOLOAN
+					,NOMORCIF AS NOMORCIF
+					,NAMALENGKAP AS NAMANASABAH
+					,KODECABANGBARU AS KODECABANG
+					,NAMACABANG AS NAMACABANG
+					,DIVISI AS DIVISI
+					,''OTO'' AS PRODUK
+					,''OTO JFAST'' AS PRODUK_DETAIL
+					,LOANTYPE AS LOANTYPE
+					,JENISPIUTANGPEMBIAYAAN AS JENISPIUTANGPEMBIAYAAN
+					,MAX(TRY_CAST(DAYPASTDUE AS INTEGER)) AS DPD
+					,MAX(TRY_CAST(TGLPENCAIRAN AS DATE)) AS TANGGAL_CAIR
+					,MAX(TRY_CAST(TGLJTTEMPO AS DATE)) AS TANGGAL_JATUH_TEMPO
+					,MAX(COALESCE(TRY_CAST(RIGHT(LEFT(SCHD_DT, 10), 2) AS INTEGER), TRY_CAST(RIGHT(left(TGLJTTEMPO, 10), 2) AS INTEGER))) AS CYCLE
+					,MAX(COALESCE(KOLCIF, KOLBSM)) AS KOL_LOAN
+					,SUM(TRY_CAST(OSPOKOKCONVERSION AS DECIMAL(20, 2))) AS OS_POKOK
+					,SUM(TRY_CAST(OSMARGINCONVERSION AS DECIMAL(20, 2))) AS OS_MARGIN
+					,SUM(TRY_CAST(REALISASI_BAGIHASIL AS DECIMAL(20, 2))) AS REALISASI_BAGIHASIL
+					,SUM(TRY_CAST(PROYEKSI_BAGIHASIL AS DECIMAL(20, 2))) AS PROYEKSI_BAGIHASIL
+					,SUM(TRY_CAST(TUNGGAKANPOKOKCONVERSION AS DECIMAL(20, 2))) AS TUNGGAKAN_POKOK
+					,SUM(TRY_CAST(TUNGGAKANMARGINCONVERSION AS DECIMAL(20, 2))) AS TUNGGAKAN_MARGIN
+					,SUM(COALESCE(TRY_CAST(ANGSURAN_POKOK AS DECIMAL(20, 2)), 0.00) + COALESCE(TRY_CAST(ANGSURAN_MARGIN AS DECIMAL(20, 2)), 0.00)) AS ANGSURAN
+					,COUNT(1) AS ACCT
+				FROM ', @TABLE_NAME, '
+				WHERE TRY_CAST(FICMISDATE AS DATE) IS NOT NULL
+				GROUP BY
+					TRY_CAST(FICMISDATE AS DATE)
+					,NOLOAN
+					,NOMORCIF
+					,NAMALENGKAP
+					,KODECABANGBARU
+					,NAMACABANG
+					,DIVISI
+					,LOANTYPE
+					,JENISPIUTANGPEMBIAYAAN
+			) [SOURCE]
+				ON [TARGET].[NOLOAN] = [SOURCE].[NOLOAN]
+			WHEN MATCHED THEN UPDATE
+			SET
+				TGL_DATA = COALESCE([TARGET].[TGL_DATA], [SOURCE].[TGL_DATA])
+				,NOMORCIF = COALESCE([TARGET].[NOMORCIF], [SOURCE].[NOMORCIF])
+				,NAMANASABAH = COALESCE([TARGET].[NAMANASABAH], [SOURCE].[NAMANASABAH])
+				,KODECABANG = COALESCE([TARGET].[KODECABANG], [SOURCE].[KODECABANG])
+				,NAMACABANG = COALESCE([TARGET].[NAMACABANG], [SOURCE].[NAMACABANG])
+				,DIVISI = COALESCE([TARGET].[DIVISI], [SOURCE].[DIVISI])
+				,PRODUK = COALESCE([TARGET].[PRODUK], [SOURCE].[PRODUK])
+				,PRODUK_DETAIL = COALESCE([TARGET].[PRODUK_DETAIL], [SOURCE].[PRODUK_DETAIL])
+				,LOANTYPE = COALESCE([TARGET].[LOANTYPE], [SOURCE].[LOANTYPE])
+				,JENISPIUTANGPEMBIAYAAN = COALESCE([TARGET].[JENISPIUTANGPEMBIAYAAN], [SOURCE].[JENISPIUTANGPEMBIAYAAN])
+				,DPD = COALESCE([TARGET].[DPD], [SOURCE].[DPD])
+				,TANGGAL_CAIR = COALESCE([TARGET].[TANGGAL_CAIR], [SOURCE].[TANGGAL_CAIR])
+				,TANGGAL_JATUH_TEMPO = COALESCE([TARGET].[TANGGAL_JATUH_TEMPO], [SOURCE].[TANGGAL_JATUH_TEMPO])
+				,CYCLE = COALESCE(NULLIF([TARGET].[CYCLE], 0), [SOURCE].[CYCLE])
+				,KOL_LOAN = COALESCE([TARGET].[KOL_LOAN], [SOURCE].[KOL_LOAN])
+				,OS_POKOK = COALESCE([TARGET].[OS_POKOK], [SOURCE].[OS_POKOK])
+				,OS_MARGIN = COALESCE([TARGET].[OS_MARGIN], [SOURCE].[OS_MARGIN])
+				,REALISASI_BAGIHASIL = COALESCE([TARGET].[REALISASI_BAGIHASIL], [SOURCE].[REALISASI_BAGIHASIL])
+				,PROYEKSI_BAGIHASIL = COALESCE([TARGET].[PROYEKSI_BAGIHASIL], [SOURCE].[PROYEKSI_BAGIHASIL])
+				,TUNGGAKAN_POKOK = COALESCE([TARGET].[TUNGGAKAN_POKOK], [SOURCE].[TUNGGAKAN_POKOK])
+				,TUNGGAKAN_MARGIN = COALESCE([TARGET].[TUNGGAKAN_MARGIN], [SOURCE].[TUNGGAKAN_MARGIN])
+				,ANGSURAN = COALESCE([TARGET].[ANGSURAN], [SOURCE].[ANGSURAN])
+				,ACCT = COALESCE([TARGET].[ACCT], [SOURCE].[ACCT])'
+			,CASE
+				WHEN @USE_DDM != 'YES' AND @USE_FOG != 'YES' THEN '
+			WHEN NOT MATCHED BY TARGET THEN
+			INSERT
+				(
+					TGL_DATA
+					,NOLOAN
+					,NOMORCIF
+					,NAMANASABAH
+					,KODECABANG
+					,NAMACABANG
+					,DIVISI
+					,PRODUK
+					,PRODUK_DETAIL
+					,LOANTYPE
+					,JENISPIUTANGPEMBIAYAAN
+					,DPD
+					,TANGGAL_CAIR
+					,TANGGAL_JATUH_TEMPO
+					,CYCLE
+					,KOL_LOAN
+					,OS_POKOK
+					,OS_MARGIN
+					,REALISASI_BAGIHASIL
+					,PROYEKSI_BAGIHASIL
+					,TUNGGAKAN_POKOK
+					,TUNGGAKAN_MARGIN
+					,ANGSURAN
+					,ACCT
+				)
+			VALUES
+			(
+				[SOURCE].TGL_DATA
+				,[SOURCE].NOLOAN
+				,[SOURCE].NOMORCIF
+				,[SOURCE].NAMANASABAH
+				,[SOURCE].KODECABANG
+				,[SOURCE].NAMACABANG
+				,[SOURCE].DIVISI
+				,[SOURCE].PRODUK
+				,[SOURCE].PRODUK_DETAIL
+				,[SOURCE].LOANTYPE
+				,[SOURCE].JENISPIUTANGPEMBIAYAAN
+				,[SOURCE].DPD
+				,[SOURCE].TANGGAL_CAIR
+				,[SOURCE].TANGGAL_JATUH_TEMPO
+				,[SOURCE].CYCLE
+				,[SOURCE].KOL_LOAN
+				,[SOURCE].OS_POKOK
+				,[SOURCE].OS_MARGIN
+				,[SOURCE].REALISASI_BAGIHASIL
+				,[SOURCE].PROYEKSI_BAGIHASIL
+				,[SOURCE].TUNGGAKAN_POKOK
+				,[SOURCE].TUNGGAKAN_MARGIN
+				,[SOURCE].ANGSURAN
+				,[SOURCE].ACCT
+			)' END , ';'
+		);
+		
+		BEGIN TRY
+			EXEC(@SQL_QUERY);
+			PRINT CONCAT('JFAST: UPDATE DATA ', @TABLE_NAME, ' SUKSES!');
+		END TRY
+		BEGIN CATCH
+			PRINT CONCAT('JFAST: UPDATE DATA ', @TABLE_NAME, ' GAGAL! ', ERROR_MESSAGE());
+		END CATCH
+	
+	--------------------------------------------------------------------------
+	
+		IF NOT EXISTS (SELECT NOLOAN FROM [MAIN].[RCG.LOAN_DAILY] WHERE [DIVISI] IN ('Hasanah Card'))
+		BEGIN
+			IF TRY_CAST(LEFT(@TARGET, 10) AS DATE) IS NOT NULL
+			BEGIN
+				SET @TABLE_NAME = (
+					SELECT TOP 1
+						CONCAT('[', SCHEMA_NAME(SCHEMA_ID), '].[', name, ']') AS NAME
+					FROM [sys].[objects]
+					WHERE type_desc = 'USER_TABLE'
+					AND name LIKE 'CARDLINK.LOAN_DAILY.____-__-__%'
+					AND TRY_CAST(LEFT(REPLACE(name, 'CARDLINK.LOAN_DAILY.', ''), 10) AS DATE) <= TRY_CAST(LEFT(@TARGET, 10) AS DATE)
+					ORDER BY
+						TRY_CAST(LEFT(REPLACE(name, 'CARDLINK.LOAN_DAILY.', ''), 10) AS DATE) DESC
+						,CASE
+							WHEN REPLACE(name, 'CARDLINK.LOAN_DAILY.', '') = @TARGET THEN 2
+							WHEN name LIKE ('%(FINAL)') THEN 1
+							WHEN name LIKE ('%(QC)') THEN -1
+							ELSE 0
+						END DESC
+				);
+			END ELSE
+			BEGIN
+				SET @TABLE_NAME = '[source].[CARDLINK.LOAN_DAILY]';
+			END
+			
+			SET @SQL_QUERY = CONCAT(
+				'MERGE [MAIN].[RCG.LOAN_DAILY] [TARGET]
+				USING
+				(
+					SELECT
+						TRY_CAST(FILE_DATE AS DATE) AS TGL_DATA
+						,CARDNO AS NOLOAN
+						,RIGHT(CUSTNO, 15) AS NOMORCIF
+						,SHORT_NAME AS NAMANASABAH
+						,''ID0010001'' AS KODECABANG
+						,''KANTOR PUSAT'' AS NAMACABANG
+						,''Hasanah Card'' AS DIVISI
+						,[JENIS] AS PRODUK
+						,[TYPE] AS PRODUK_DETAIL
+						,''HC0001'' AS LOANTYPE
+						,''Qardh'' AS JENISPIUTANGPEMBIAYAAN
+						,MAX(TRY_CAST(
+							CASE
+								WHEN [DPD] = ''0'' THEN 0
+								ELSE (
+									CASE
+										WHEN RIGHT([FILE_DATE], 2) < CYCLE THEN RIGHT([FILE_DATE], 2) + DATEPART(DAY, EOMONTH(DATEADD(MONTH, -1, [FILE_DATE])))
+										ELSE RIGHT([FILE_DATE], 2)
+									END
+									)	
+									- [CYCLE] + COALESCE(NULLIF([DPD], ''XDY''), 0)
+								END
+						 AS INTEGER)) AS DPD
+						,MAX(TRY_CAST(OPDT AS DATE)) AS TANGGAL_CAIR
+						,MAX(TRY_CAST(COALESCE(CYCLE, 18) AS INTEGER)) AS CYCLE
+						,CASE
+								WHEN GOL = ''GOL_01'' THEN ''1''
+								WHEN GOL = ''GOL_02'' AND BUCKET = ''02_XDY'' THEN ''2A''
+								WHEN GOL = ''GOL_02'' AND BUCKET = ''03_D30'' THEN ''2B''
+								WHEN GOL = ''GOL_02'' AND BUCKET = ''04_D60'' THEN ''2C''
+								WHEN GOL = ''GOL_03'' AND
+									(CASE WHEN RIGHT([FILE_DATE], 2) < CYCLE THEN RIGHT([FILE_DATE], 2) + DATEPART(DAY, EOMONTH(DATEADD(MONTH, -1, [FILE_DATE]))) ELSE RIGHT([FILE_DATE], 2) END) <= 10 THEN ''3A''
+								WHEN GOL = ''GOL_03'' AND
+									(CASE WHEN RIGHT([FILE_DATE], 2) < CYCLE THEN RIGHT([FILE_DATE], 2) + DATEPART(DAY, EOMONTH(DATEADD(MONTH, -1, [FILE_DATE]))) ELSE RIGHT([FILE_DATE], 2) END) <= 20 THEN ''3B''
+								WHEN GOL = ''GOL_03'' AND
+									(CASE WHEN RIGHT([FILE_DATE], 2) < CYCLE THEN RIGHT([FILE_DATE], 2) + DATEPART(DAY, EOMONTH(DATEADD(MONTH, -1, [FILE_DATE]))) ELSE RIGHT([FILE_DATE], 2) END) > 20 THEN ''3C''
+								WHEN GOL = ''GOL_04'' AND BUCKET = ''06_120'' THEN ''4A''
+								WHEN GOL = ''GOL_04'' AND
+									(CASE WHEN RIGHT([FILE_DATE], 2) < CYCLE THEN RIGHT([FILE_DATE], 2) + DATEPART(DAY, EOMONTH(DATEADD(MONTH, -1, [FILE_DATE]))) ELSE RIGHT([FILE_DATE], 2) END) <= 15 THEN ''4B''
+								WHEN GOL = ''GOL_04'' AND
+									(CASE WHEN RIGHT([FILE_DATE], 2) < CYCLE THEN RIGHT([FILE_DATE], 2) + DATEPART(DAY, EOMONTH(DATEADD(MONTH, -1, [FILE_DATE]))) ELSE RIGHT([FILE_DATE], 2) END) > 15 THEN ''4C''
+								WHEN GOL = ''GOL_05'' THEN ''5''
+								ELSE CONCAT(RIGHT([GOL], 1), ''A'')
+							END AS KOL_LOAN
+						,SUM(TRY_CAST(MLAP AS DECIMAL(20, 2))) AS OS_POKOK
+						,SUM(TRY_CAST(rtlfeesvc AS DECIMAL(20, 2))) + SUM(TRY_CAST(cshfeesvc AS DECIMAL(20, 2))) AS OS_MARGIN
+						,COUNT(1) AS ACCT
+					FROM ', @TABLE_NAME, '
+					WHERE [CARDNO] IN (
+						SELECT
+							[CARDNO]
+						WHERE COALESCE([PB], ''X'') NOT IN (''A'', ''G'', ''I'', ''K'', ''O'', ''Z'')
+						AND [POSTFLG] IN (''PP'')
+						AND
+							(
+								TRY_CAST([MLAP] AS DECIMAL(20, 2)) > 0.00
+								OR TRY_CAST([CURRBAL] AS DECIMAL(20, 2)) > 0.00
+							)
+					)
+-- 					WHERE COALESCE([PB], ''X'') NOT IN (''A'', ''G'', ''I'', ''K'', ''O'', ''Z'')
+-- 					AND [POSTFLG] IN (''PP'')
+-- 					AND
+-- 						(
+-- 							TRY_CAST([MLAP] AS DECIMAL(20, 2)) > 0.00
+-- 							OR TRY_CAST([CURRBAL] AS DECIMAL(20, 2)) > 0.00
+-- 						)
+					GROUP BY
+						TRY_CAST(FILE_DATE AS DATE)
+						,CARDNO
+						,RIGHT(CUSTNO, 15)
+						,SHORT_NAME
+						,[JENIS]
+						,[TYPE]
+						,CASE
+								WHEN GOL = ''GOL_01'' THEN ''1''
+								WHEN GOL = ''GOL_02'' AND BUCKET = ''02_XDY'' THEN ''2A''
+								WHEN GOL = ''GOL_02'' AND BUCKET = ''03_D30'' THEN ''2B''
+								WHEN GOL = ''GOL_02'' AND BUCKET = ''04_D60'' THEN ''2C''
+								WHEN GOL = ''GOL_03'' AND
+									(CASE WHEN RIGHT([FILE_DATE], 2) < CYCLE THEN RIGHT([FILE_DATE], 2) + DATEPART(DAY, EOMONTH(DATEADD(MONTH, -1, [FILE_DATE]))) ELSE RIGHT([FILE_DATE], 2) END) <= 10 THEN ''3A''
+								WHEN GOL = ''GOL_03'' AND
+									(CASE WHEN RIGHT([FILE_DATE], 2) < CYCLE THEN RIGHT([FILE_DATE], 2) + DATEPART(DAY, EOMONTH(DATEADD(MONTH, -1, [FILE_DATE]))) ELSE RIGHT([FILE_DATE], 2) END) <= 20 THEN ''3B''
+								WHEN GOL = ''GOL_03'' AND
+									(CASE WHEN RIGHT([FILE_DATE], 2) < CYCLE THEN RIGHT([FILE_DATE], 2) + DATEPART(DAY, EOMONTH(DATEADD(MONTH, -1, [FILE_DATE]))) ELSE RIGHT([FILE_DATE], 2) END) > 20 THEN ''3C''
+								WHEN GOL = ''GOL_04'' AND BUCKET = ''06_120'' THEN ''4A''
+								WHEN GOL = ''GOL_04'' AND
+									(CASE WHEN RIGHT([FILE_DATE], 2) < CYCLE THEN RIGHT([FILE_DATE], 2) + DATEPART(DAY, EOMONTH(DATEADD(MONTH, -1, [FILE_DATE]))) ELSE RIGHT([FILE_DATE], 2) END) <= 15 THEN ''4B''
+								WHEN GOL = ''GOL_04'' AND
+									(CASE WHEN RIGHT([FILE_DATE], 2) < CYCLE THEN RIGHT([FILE_DATE], 2) + DATEPART(DAY, EOMONTH(DATEADD(MONTH, -1, [FILE_DATE]))) ELSE RIGHT([FILE_DATE], 2) END) > 15 THEN ''4C''
+								WHEN GOL = ''GOL_05'' THEN ''5''
+								ELSE CONCAT(RIGHT([GOL], 1), ''A'')
+							END
+				) [SOURCE]
+					ON [TARGET].[NOLOAN] = [SOURCE].[NOLOAN]
+					AND LEFT([TARGET].[KOL_LOAN], 1) = LEFT([SOURCE].[KOL_LOAN], 1)
+				WHEN MATCHED THEN UPDATE
+				SET
+					TGL_DATA = COALESCE([TARGET].[TGL_DATA], [SOURCE].[TGL_DATA])
+					,NOMORCIF = COALESCE([TARGET].[NOMORCIF], [SOURCE].[NOMORCIF])
+					,NAMANASABAH = COALESCE([TARGET].[NAMANASABAH], [SOURCE].[NAMANASABAH])
+					,KODECABANG = COALESCE([TARGET].[KODECABANG], [SOURCE].[KODECABANG])
+					,NAMACABANG = COALESCE([TARGET].[NAMACABANG], [SOURCE].[NAMACABANG])
+					,DIVISI = COALESCE([TARGET].[DIVISI], [SOURCE].[DIVISI])
+					,PRODUK = COALESCE([TARGET].[PRODUK], [SOURCE].[PRODUK])
+					,PRODUK_DETAIL = COALESCE([TARGET].[PRODUK_DETAIL], [SOURCE].[PRODUK_DETAIL])
+					,LOANTYPE = COALESCE([TARGET].[LOANTYPE], [SOURCE].[LOANTYPE])
+					,JENISPIUTANGPEMBIAYAAN = COALESCE([TARGET].[JENISPIUTANGPEMBIAYAAN], [SOURCE].[JENISPIUTANGPEMBIAYAAN])
+					,DPD = COALESCE([TARGET].[DPD], [SOURCE].[DPD])
+					,TANGGAL_CAIR = COALESCE([TARGET].[TANGGAL_CAIR], [SOURCE].[TANGGAL_CAIR])
+					,CYCLE = COALESCE([TARGET].[CYCLE], [SOURCE].[CYCLE])
+					,KOL_LOAN = COALESCE([TARGET].[KOL_LOAN], [SOURCE].[KOL_LOAN])
+					,OS_POKOK = COALESCE([TARGET].[OS_POKOK], [SOURCE].[OS_POKOK])
+					,OS_MARGIN = COALESCE([TARGET].[OS_MARGIN], [SOURCE].[OS_MARGIN])
+					,ACCT = COALESCE([TARGET].[ACCT], [SOURCE].[ACCT])'
+			,CASE
+				WHEN (@USE_DDM != 'YES' AND @USE_FOG != 'YES')
+				OR NOT EXISTS(SELECT * FROM [main].[RCG.LOAN_DAILY] WHERE [DIVISI] IN ('Hasanah Card', 'CBG')) THEN '
+				WHEN NOT MATCHED BY TARGET THEN
+				INSERT
+					(
+						TGL_DATA
+						,NOLOAN
+						,NOMORCIF
+						,NAMANASABAH
+						,KODECABANG
+						,NAMACABANG
+						,DIVISI
+						,PRODUK
+						,PRODUK_DETAIL
+						,LOANTYPE
+						,JENISPIUTANGPEMBIAYAAN
+						,DPD
+						,TANGGAL_CAIR
+						,CYCLE
+						,KOL_LOAN
+						,OS_POKOK
+						,OS_MARGIN
+						,ACCT
+					)
+				VALUES
+				(
+					[SOURCE].TGL_DATA
+					,[SOURCE].NOLOAN
+					,[SOURCE].NOMORCIF
+					,[SOURCE].NAMANASABAH
+					,[SOURCE].KODECABANG
+					,[SOURCE].NAMACABANG
+					,[SOURCE].DIVISI
+					,[SOURCE].PRODUK
+					,[SOURCE].PRODUK_DETAIL
+					,[SOURCE].LOANTYPE
+					,[SOURCE].JENISPIUTANGPEMBIAYAAN
+					,[SOURCE].DPD
+					,[SOURCE].TANGGAL_CAIR
+					,[SOURCE].CYCLE
+					,[SOURCE].KOL_LOAN
+					,[SOURCE].OS_POKOK
+					,[SOURCE].OS_MARGIN
+					,[SOURCE].ACCT
+				)' END, ';'
+			);
+			
+			BEGIN TRY
+				EXEC(@SQL_QUERY);
+				PRINT CONCAT('TB HC: UPDATE DATA ', @TABLE_NAME, ' SUKSES!');
+			END TRY
+			BEGIN CATCH
+				PRINT CONCAT('TB HC: UPDATE DATA ', @TABLE_NAME, ' GAGAL! ', ERROR_MESSAGE());
+			END CATCH
+		END
+	
+	END
+
+	--------------------------------------------------------------------------
+	
+	SET @TGL_DATA = (SELECT MAX(TGL_DATA) FROM [MAIN].[RCG.LOAN_DAILY]);
+
+	--------------------------------------------------------------------------
+	
+	UPDATE [MAIN].[RCG.LOAN_DAILY] SET [KODECABANG] = 'ID0018032' WHERE [NOLOAN] IN ('LD2105712110');
+	UPDATE [MAIN].[RCG.LOAN_DAILY] SET [KODECABANG] = 'ID0010060' WHERE [NOLOAN] IN ('BSIDVC23L0000128I000', 'BSIDVC23L0000187I000');
+	UPDATE [MAIN].[RCG.LOAN_DAILY] SET [KODECABANG] = 'ID0010151' WHERE [NOLOAN] IN ('BSIDVC23L0000191I000');
+
+	DELETE [TARGET]
+	FROM [MAIN].[RCG.LOAN_DAILY] [TARGET]
+	LEFT JOIN [mapping].[PORTOFOLIO_ONBS.DATABASE.JOIN.EKSEKUSI_WO] [SOURCE]
+		ON [TARGET].[NOLOAN] = [SOURCE].[NOLOAN]
+		AND [TARGET].[NOMORCIF] = [SOURCE].[NOCIF]
+		AND @TGL_DATA >= [SOURCE].[TGL_WO]
+	WHERE [SOURCE].[NOLOAN] IS NOT NULL;
+	
+	--------------------------------------------------------------------------
+	
+	UPDATE [MAIN].[RCG.LOAN_DAILY]
+	SET
+		[TGL_DATA] = @TGL_DATA; 
+	
+	--------------------------------------------------------------------------
+		
+	MERGE [main].[RCG.LOAN_DAILY] [TARGET]
+	USING [mapping].[PORTOFOLIO.ONBS.REMOVE_LOAN] [SOURCE]
+		ON [TARGET].[NOLOAN] = [SOURCE].[NOLOAN]
+		AND [TARGET].[NOMORCIF] = [SOURCE].[NOMORCIF]
+	WHEN MATCHED
+		AND [TARGET].[TGL_DATA] >= COALESCE([SOURCE].[TANGGAL_AWAL_EFEKTIF], [TARGET].[TGL_DATA])
+		AND [TARGET].[TGL_DATA] <= COALESCE([SOURCE].[TANGGAL_AKHIR_EFEKTIF], [TARGET].[TGL_DATA])
+	THEN DELETE;
+	
+	PRINT ('CLEANSE NOLOAN INACTIVE DONE!');
+	
+	---------------------------------------------------------------
+
+	UPDATE [MAIN].[RCG.LOAN_DAILY]
+	SET
+		[CYCLE] =RIGHT([TANGGAL_JATUH_TEMPO], 2)
+	WHERE [CYCLE] IS NULL;
+	
+	PRINT ('UPDATE CYCLE DONE!');
+	
+	---------------------------------------------------------------
+
+	UPDATE [MAIN].[RCG.LOAN_DAILY]
+	SET
+		[KODECABANG] = [SOURCE].[KODECABANGBARU]
+		,[TANGGAL_CAIR] = [SOURCE].[TGLPENCAIRAN]
+		,[PRODUK_DETAIL] = [SOURCE].[KETERANGAN]
+	FROM [MAIN].[RCG.LOAN_DAILY] [TARGET]
+	LEFT JOIN [source].[DS_CONSUMER.REFERAL_JFAST] [SOURCE]
+		ON [TARGET].[NOLOAN] = [SOURCE].[NOLOAN]
+	WHERE [SOURCE].[NOLOAN] IS NOT NULL;
+	
+	PRINT ('UPDATE MAPPING CABANG JFAST DONE!');
+	
+	---------------------------------------------------------------
+	
+	UPDATE [MAIN].[RCG.LOAN_DAILY]
+	SET
+		[LOANTYPE] = COALESCE([SOURCE].[LOANTYPE], [TARGET].[LOANTYPE])
+		,[TANGGAL_CAIR] = COALESCE([SOURCE].[TANGGAL_CAIR], [TARGET].[TANGGAL_CAIR])
+		,[TANGGAL_JATUH_TEMPO] = COALESCE([SOURCE].[TANGGAL_JATUH_TEMPO], [TARGET].[TANGGAL_JATUH_TEMPO])
+		,[JENISPIUTANGPEMBIAYAAN] = COALESCE([SOURCE].[JENISPIUTANGPEMBIAYAAN], [TARGET].[JENISPIUTANGPEMBIAYAAN])
+	FROM [MAIN].[RCG.LOAN_DAILY] [TARGET]
+	LEFT JOIN [mapping].[PORTOFOLIO.ONBS.LOAN_DETAIL] [SOURCE]
+		ON [TARGET].[NOLOAN] = [SOURCE].[NOLOAN]
+		AND [TARGET].[NOMORCIF] = [SOURCE].[NOMORCIF];
+	
+	---------------------------------------------------------------
+
+	UPDATE [MAIN].[RCG.LOAN_DAILY]
+	SET
+		[SUPERCIF] = COALESCE([SOURCE].[SUPERCIF], [TARGET].[SUPERCIF], [TARGET].[NOMORCIF])
+	FROM [MAIN].[RCG.LOAN_DAILY] [TARGET]
+	LEFT JOIN [mapping].[PORTOFOLIO.ONBS.CIF_DETAIL] [SOURCE]
+		ON [TARGET].[NOMORCIF] = [SOURCE].[NOMORCIF]
+		AND [SOURCE].[NOMORCIF] != [SOURCE].[SUPERCIF];
+
+	---------------------------------------------------------------
+
+	SET @TABLE_NAME = (
+		SELECT TOP 1
+			CONCAT('[', SCHEMA_NAME(SCHEMA_ID), '].[', name, ']') AS NAME
+		FROM [sys].[objects]
+		WHERE type_desc = 'USER_TABLE'
+		AND name LIKE 'RCG.LOAN_DAILY.____-__-__%'
+		AND TRY_CAST(LEFT(REPLACE(name, 'RCG.LOAN_DAILY.', ''), 10) AS DATE) <= @TGL_DATA
+		AND TRY_CAST(LEFT(REPLACE(name, 'RCG.LOAN_DAILY.', ''), 10) AS DATE) = EOMONTH(TRY_CAST(LEFT(REPLACE(name, 'RCG.LOAN_DAILY.', ''), 10) AS DATE))
+		ORDER BY
+			TRY_CAST(LEFT(REPLACE(name, 'RCG.LOAN_DAILY.', ''), 10) AS DATE) DESC
+			,CASE
+				WHEN REPLACE(name, 'RCG.LOAN_DAILY.', '') = @TARGET THEN 2
+				WHEN name LIKE ('%(FINAL)') THEN 1
+				WHEN name LIKE ('%(QC)') THEN -1
+				ELSE 0
+			END DESC
+	);
+	
+	SET @SQL_QUERY = CONCAT(
+		'UPDATE [MAIN].[RCG.LOAN_DAILY]
+		SET
+			[DIVISI] = COALESCE([SOURCE].[DIVISI], [TARGET].[DIVISI])
+			,[PRODUK] = COALESCE([SOURCE].[PRODUK], [TARGET].[PRODUK])
+			,[PRODUK_DETAIL] = COALESCE([SOURCE].[PRODUK_DETAIL], [TARGET].[PRODUK_DETAIL])
+		FROM [MAIN].[RCG.LOAN_DAILY] [TARGET]
+		LEFT JOIN ', @TABLE_NAME, ' [SOURCE]
+			ON [SOURCE].[NOLOAN] = [TARGET].[NOLOAN]
+		WHERE [SOURCE].[NOLOAN] IS NOT NULL;'
+	);
+	
+	BEGIN TRY
+		EXEC(@SQL_QUERY);
+		PRINT CONCAT('MAPPING DIVISI & PRODUK: UPDATE DATA ', @TABLE_NAME, ' SUKSES!');
+	END TRY
+	BEGIN CATCH
+		PRINT CONCAT('MAPPING DIVISI & PRODUK: UPDATE DATA ', @TABLE_NAME, ' GAGAL! ', ERROR_MESSAGE());
+	END CATCH
+	
+	SET @SQL_QUERY = CONCAT(
+		'UPDATE [MAIN].[RCG.LOAN_DAILY]
+		SET
+			[DIVISI] = COALESCE([SOURCE].[DIVISI], [TARGET].[DIVISI])
+			,[PRODUK] = COALESCE([SOURCE].[PRODUK], [TARGET].[PRODUK])
+			,[PRODUK_DETAIL] = COALESCE([SOURCE].[PRODUK_DETAIL], [TARGET].[PRODUK_DETAIL])
+		FROM [MAIN].[RCG.LOAN_DAILY] [TARGET]
+		LEFT JOIN ', @TABLE_NAME, ' [SOURCE]
+			ON [SOURCE].[NOLOAN] = (
+				SELECT TOP 1
+					[NOLOAN_LAMA] 
+				FROM [mapping].[PORTOFOLIO_ONBS.COMPILE.JOIN.REKAP_NOLOAN.MUTASI_NOLOAN]
+				WHERE [NOLOAN_BARU] = [TARGET].[NOLOAN]
+				AND COALESCE([KETERANGAN], ''X'') NOT IN (''Invalid'', ''EKSEKUSI WO'')
+			)
+			AND [SOURCE].[NOMORCIF] = (
+				SELECT TOP 1
+					[NOCIF_LAMA] 
+				FROM [mapping].[PORTOFOLIO_ONBS.COMPILE.JOIN.REKAP_NOLOAN.MUTASI_NOLOAN]
+				WHERE [NOLOAN_BARU] = [TARGET].[NOLOAN]
+				AND COALESCE([KETERANGAN], ''X'') NOT IN (''Invalid'', ''EKSEKUSI WO'')
+			)
+		WHERE [SOURCE].[NOLOAN] IS NOT NULL;'
+	);
+	
+	BEGIN TRY
+		EXEC(@SQL_QUERY);
+		PRINT CONCAT('MAPPING DIVISI & PRODUK: UPDATE DATA ', @TABLE_NAME, ' (BUKA TUTUP) SUKSES!');
+	END TRY
+	BEGIN CATCH
+		PRINT CONCAT('MAPPING DIVISI & PRODUK: UPDATE DATA ', @TABLE_NAME, ' (BUKA TUTUP) GAGAL! ', ERROR_MESSAGE());
+	END CATCH
+	
+	---------------------------------------------------------------
+
+	UPDATE [MAIN].[RCG.LOAN_DAILY]
+	SET
+		[DIVISI] = [dbo].[fx_adjustment_divisi_bsi]([DIVISI]);
+	
+	---------------------------------------------------------------
+
+	UPDATE [MAIN].[RCG.LOAN_DAILY]
+	SET
+		[JENISPIUTANGPEMBIAYAAN] = CASE WHEN [JENISPIUTANGPEMBIAYAAN] NOT IN ('N/A') THEN [JENISPIUTANGPEMBIAYAAN] END;
+	
+	---------------------------------------------------------------
+
+	UPDATE [MAIN].[RCG.LOAN_DAILY]
+	SET
+		[JENISPIUTANGPEMBIAYAAN] =
+			CASE
+				WHEN LEFT([LOANTYPE], 3) IN ('IJR') THEN 'Ijarah'
+				WHEN LEFT([LOANTYPE], 3) IN ('IMB') THEN 'Ijarah'
+				WHEN LEFT([LOANTYPE], 3) IN ('IST') THEN 'Istishna'
+				WHEN LEFT([LOANTYPE], 3) IN ('MUD') THEN 'Mudharabah'
+				WHEN LEFT([LOANTYPE], 3) IN ('MUR') THEN 'Murabahah'
+				WHEN LEFT([LOANTYPE], 3) IN ('MUS') THEN 'Musyarakah'
+				WHEN LEFT([LOANTYPE], 3) IN ('MUT') THEN 'Musyarakah'
+				WHEN LEFT([LOANTYPE], 3) IN ('PDB') THEN 'Musyarakah'
+				WHEN LEFT([LOANTYPE], 3) IN ('QRD') THEN 'Qardh'
+				WHEN LEFT([LOANTYPE], 3) IN ('QRU') THEN 'Qardh'
+				WHEN LEFT([LOANTYPE], 3) IN ('QSF') THEN 'Qardh'
+				WHEN LEFT([LOANTYPE], 3) IN ('RHN') THEN 'Rahn'
+				WHEN LEFT([LOANTYPE], 3) IN ('RHS') THEN 'Rahn'
+			END
+	WHERE [JENISPIUTANGPEMBIAYAAN] IS NULL;
+	
+	---------------------------------------------------------------
+
+	UPDATE [MAIN].[RCG.LOAN_DAILY]
+	SET
+		[KODECABANG] = [SOURCE].[KODE OUTLET PENAMPUNG]
+		,[NAMACABANG] = [SOURCE].[NAMA OUTLET PENAMPUNG]
+	FROM [MAIN].[RCG.LOAN_DAILY] [TARGET]
+	LEFT JOIN [mapping].[PORTOFOLIO_JOIN.MAPPING.JOIN.CABANG_TUTUP] [SOURCE]
+		ON [TARGET].[KODECABANG] = [SOURCE].[KODEOUTLET]
+		AND [TARGET].[TGL_DATA] >= [SOURCE].[TANGGAL EFEKTIF PENUTUPAN]
+	WHERE [SOURCE].[KODEOUTLET] IS NOT NULL;
+	
+	PRINT ('UPDATE MAPPING CABANG TUTUP DONE!');
+	
+	---------------------------------------------------------------
+
+	UPDATE [MAIN].[RCG.LOAN_DAILY]
+	SET
+		[NAMACABANG] = [SOURCE].[cabangBSI_Desk]
+		,[AREA] = COALESCE([SOURCE].[areaBSI_Desk], [TARGET].[AREA])
+		,[REGION] = COALESCE([SOURCE].[regionBSI_Desk], [TARGET].[REGION])
+	FROM [MAIN].[RCG.LOAN_DAILY] [TARGET]
+	LEFT JOIN [mapping].[PORTOFOLIO_JOIN.MAPPING.JOIN.MAPPING_OUTLET_EDA] [SOURCE]
+		ON [TARGET].[KODECABANG] = [SOURCE].[cabangBSI]
+	WHERE [SOURCE].[cabangBSI] IS NOT NULL;
+	
+	PRINT ('UPDATE MAPPING AREA & REGION DONE!');
+		
+	---------------------------------------------------------------
+
+	UPDATE [MAIN].[RCG.LOAN_DAILY]
+	SET
+		[PRODUK] = NULL
+		,[PRODUK_DETAIL] = NULL
+	WHERE
+		(
+			([DIVISI] IN ('Konsumer') AND [PRODUK] NOT IN ('Griya', 'OTO', 'Pensiun', 'Mitraguna & Other', 'Mitraguna & Others'))
+			OR ([DIVISI] IN ('Pawning') AND [PRODUK] NOT IN ('Cicil Emas', 'Gadai Emas'))
+			OR ([DIVISI] IN ('SME') AND [PRODUK] NOT IN ('Linkage', 'Non Linkage', 'Value Chain', 'SME Local Champion'))
+			OR ([DIVISI] IN ('Mikro') AND [PRODUK] NOT IN ('KUR', 'Non KUR'))
+		)
+	AND [DIVISI] IN ('Konsumer', 'Pawning', 'SME', 'Mikro');
+
+	UPDATE [MAIN].[RCG.LOAN_DAILY]
+	SET
+		[DIVISI] = [SOURCE].[DIVISI_BSI]
+		,[PRODUK] = [SOURCE].[PRODUK]
+		,[PRODUK_DETAIL] = [SOURCE].[PRODUK_DETAIL]
+	FROM [MAIN].[RCG.LOAN_DAILY] [TARGET]
+	LEFT JOIN [MAPPING].[PORTOFOLIO.MAPPING.LOANTYPE] [SOURCE]
+		ON [TARGET].[LOANTYPE] = [SOURCE].[LOANTYPE]
+		AND [TARGET].[DIVISI] = [SOURCE].[DIVISI]
+	WHERE [TARGET].[PRODUK] IS NULL
+	AND [SOURCE].[LOANTYPE] IS NOT NULL;
+	
+	PRINT('UPDATE PRODUK BY LOANTYPE!');
+
+	---------------------------------------------------------------
+	
+	IF @USE_FOG = 'YES'
+	BEGIN
+		IF TRY_CAST(LEFT(@TARGET, 10) AS DATE) IS NOT NULL
+		BEGIN
+			SET @TABLE_NAME = (
+				SELECT TOP 1
+					CONCAT('[', SCHEMA_NAME(SCHEMA_ID), '].[', name, ']') AS NAME
+				FROM [sys].[objects]
+				WHERE type_desc = 'USER_TABLE'
+				AND name LIKE 'FOG.LOAN_DAILY.____-__-__%'
+				AND TRY_CAST(LEFT(REPLACE(name, 'FOG.LOAN_DAILY.', ''), 10) AS DATE) = TRY_CAST(LEFT(@TARGET, 10) AS DATE)
+				ORDER BY
+					TRY_CAST(LEFT(REPLACE(name, 'FOG.LOAN_DAILY.', ''), 10) AS DATE) DESC
+					,CASE
+						WHEN REPLACE(name, 'FOG.LOAN_DAILY.', '') = @TARGET THEN 2
+						WHEN name LIKE ('%(FINAL)') THEN 1
+						WHEN name LIKE ('%(QC)') THEN -1
+						ELSE 0
+					END DESC
+			);
+		END ELSE
+		BEGIN
+			SET @TABLE_NAME = '[source].[FOG.LOAN_DAILY]';
+		END
+		
+		SET @SQL_QUERY = CONCAT(
+			'UPDATE [MAIN].[RCG.LOAN_DAILY]
+			SET
+				[LOANTYPE] = COALESCE([TARGET].[LOANTYPE], [SOURCE].[LOANTYPE])
+				,[DIVISI] = [dbo].[fx_adjustment_divisi_bsi]([SOURCE].[DIVISI_FINAL])
+				,[PRODUK] =
+					CASE
+						WHEN [dbo].[fx_adjustment_divisi_bsi]([SOURCE].[DIVISI_FINAL]) IN (''Pawning'') AND [TARGET].[JENISPIUTANGPEMBIAYAAN] IN (''Rahn'') THEN ''Gadai Emas''
+						WHEN [dbo].[fx_adjustment_divisi_bsi]([SOURCE].[DIVISI_FINAL]) IN (''Pawning'') AND [TARGET].[JENISPIUTANGPEMBIAYAAN] NOT IN (''Rahn'') THEN ''Cicil Emas''
+						WHEN [SOURCE].[DIVISI_FINAL] IN (''BBG_B_TO_B'') THEN ''Linkage''
+						WHEN [SOURCE].[DIVISI_FINAL] IN (''BBG_B_TO_C'') THEN ''Non Linkage''
+					END
+				,[PRODUK_DETAIL] =
+					CASE
+						WHEN [dbo].[fx_adjustment_divisi_bsi]([SOURCE].[DIVISI_FINAL]) IN (''Pawning'') AND [TARGET].[JENISPIUTANGPEMBIAYAAN] IN (''Rahn'') THEN ''Gadai Emas''
+						WHEN [dbo].[fx_adjustment_divisi_bsi]([SOURCE].[DIVISI_FINAL]) IN (''Pawning'') AND [TARGET].[JENISPIUTANGPEMBIAYAAN] NOT IN (''Rahn'') THEN ''Cicil Emas''
+						WHEN [SOURCE].[DIVISI_FINAL] IN (''BBG_B_TO_B'') THEN ''Linkage''
+						WHEN [SOURCE].[DIVISI_FINAL] IN (''BBG_B_TO_C'') THEN ''Non Linkage''
+					END
+			FROM [MAIN].[RCG.LOAN_DAILY] [TARGET]
+			LEFT JOIN ', @TABLE_NAME,' [SOURCE]
+				ON [SOURCE].[NOLOAN] = [TARGET].[NOLOAN]
+			WHERE [TARGET].[DIVISI] != [dbo].[fx_adjustment_divisi_bsi]([SOURCE].[DIVISI_FINAL]);'
+		);
+		
+		BEGIN TRY
+			EXEC(@SQL_QUERY);
+		PRINT CONCAT('MAPPING DIVISI FOG: UPDATE DATA ', @TABLE_NAME, ' SUKSES!');
+		END TRY
+		BEGIN CATCH
+			PRINT CONCAT('MAPPING DIVISI FOG: UPDATE DATA ', @TABLE_NAME, ' GAGAL! ', ERROR_MESSAGE());
+		END CATCH
+	END
+	
+	---------------------------------------------------------------
+
+	UPDATE [MAIN].[RCG.LOAN_DAILY]
+	SET
+		[PRODUK] = NULL
+		,[PRODUK_DETAIL] = NULL
+	WHERE
+		(
+			([DIVISI] IN ('Konsumer') AND [PRODUK] NOT IN ('Griya', 'OTO', 'Pensiun', 'Mitraguna & Other', 'Mitraguna & Others'))
+			OR ([DIVISI] IN ('Pawning') AND [PRODUK] NOT IN ('Cicil Emas', 'Gadai Emas'))
+			OR ([DIVISI] IN ('SME') AND [PRODUK] NOT IN ('Linkage', 'Non Linkage', 'Value Chain', 'SME Local Champion'))
+			OR ([DIVISI] IN ('Mikro') AND [PRODUK] NOT IN ('KUR', 'Non KUR'))
+		)
+	AND [DIVISI] IN ('Konsumer', 'Pawning', 'SME', 'Mikro');
+
+	---------------------------------------------------------------
+	
+	UPDATE [MAIN].[RCG.LOAN_DAILY]
+	SET
+		[PRODUK] =
+			CASE
+				WHEN LEFT([NOLOAN], 2) IN ('30') THEN 'CLASSIC'
+				WHEN LEFT([NOLOAN], 2) IN ('31') THEN 'CLASSIC'
+				WHEN LEFT([NOLOAN], 2) IN ('32') THEN 'CLASSIC'
+				WHEN LEFT([NOLOAN], 2) IN ('33') THEN 'CLASSIC'
+				WHEN LEFT([NOLOAN], 2) IN ('40') THEN 'GOLD'
+				WHEN LEFT([NOLOAN], 2) IN ('41') THEN 'GOLD'
+				WHEN LEFT([NOLOAN], 2) IN ('42') THEN 'GOLD'
+				WHEN LEFT([NOLOAN], 2) IN ('43') THEN 'GOLD'
+				WHEN LEFT([NOLOAN], 2) IN ('50') THEN 'PLATINUM'
+				WHEN LEFT([NOLOAN], 2) IN ('51') THEN 'PLATINUM'
+				WHEN LEFT([NOLOAN], 2) IN ('52') THEN 'PLATINUM'
+				WHEN LEFT([NOLOAN], 2) IN ('53') THEN 'PLATINUM'
+			END
+		,[PRODUK_DETAIL] =
+			CASE
+				WHEN LEFT([NOLOAN], 2) IN ('30') THEN 'BIC BIRU REGULER'
+				WHEN LEFT([NOLOAN], 2) IN ('31') THEN 'BIC BIRU BIASA/SPESIAL'
+				WHEN LEFT([NOLOAN], 2) IN ('32') THEN 'BIC BIRU REFF MANAJEMEN'
+				WHEN LEFT([NOLOAN], 2) IN ('33') THEN 'BIC BIRU STAFF'
+				WHEN LEFT([NOLOAN], 2) IN ('40') THEN 'BIC EMAS REGULER'
+				WHEN LEFT([NOLOAN], 2) IN ('41') THEN 'BIC EMAS BIASA/SPESIAL'
+				WHEN LEFT([NOLOAN], 2) IN ('42') THEN 'BIC EMAS REFF MANAJEMEN'
+				WHEN LEFT([NOLOAN], 2) IN ('43') THEN 'BIC EMAS STAFF'
+				WHEN LEFT([NOLOAN], 2) IN ('50') THEN 'BIC PLATINUM REGULER'
+				WHEN LEFT([NOLOAN], 2) IN ('51') THEN 'BIC PLATINUM BIASA/SPESIAL'
+				WHEN LEFT([NOLOAN], 2) IN ('52') THEN 'BIC PLATINUM REFF MANAJEMEN'
+				WHEN LEFT([NOLOAN], 2) IN ('53') THEN 'BIC PLATINUM STAFF'
+			END
+	WHERE [DIVISI] = 'HASANAH CARD';
+	
+	PRINT('UPDATE PRODUK BY CARDTYPE!');
+
+	---------------------------------------------------------------
+
+	UPDATE [MAIN].[RCG.LOAN_DAILY]
+	SET
+		[KOL_LOAN] = COALESCE([KOL_SUPERCIF], [KOL_CIF])
+	WHERE [KOL_LOAN] IS NULL;
+	
+	PRINT('PATCHING KOL LOAN DONE!');
+
+	---------------------------------------------------------------
+
+	UPDATE [MAIN].[RCG.LOAN_DAILY]
+	SET
+		[KOL_LOAN] = [dbo].[fx_adjustment_kol]([KOL_LOAN], [DPD], [JENISPIUTANGPEMBIAYAAN], [TANGGAL_JATUH_TEMPO], [TGL_DATA], [NOLOAN], [REALISASI_BAGIHASIL], [PROYEKSI_BAGIHASIL]);
+	
+	PRINT('REKALIBRASI KOL LOAN DONE!');
+
+	---------------------------------------------------------------
+
+	UPDATE [MAIN].[RCG.LOAN_DAILY]
+	SET
+		[KOL_CIF] =
+			CASE
+-- 				WHEN [TARGET].[KOL_CIF] IS NULL AND [TARGET].[DIVISI] IN ('Hasanah Card') THEN [TARGET].[KOL_LOAN]
+				WHEN [TARGET].[KOL_CIF] IS NULL AND [TARGET].[DIVISI] IN ('Hasanah Card') THEN [KOL_HC].[KOL]
+				WHEN [TARGET].[KOL_CIF] IS NULL AND [TARGET].[KOL_LOAN] IN ('1') AND [TARGET].[DIVISI] IN ('Pawning') THEN [TARGET].[KOL_LOAN]
+-- 				WHEN [TARGET].[KOL_CIF] IS NULL AND [TARGET].[DIVISI] NOT IN ('Hasanah Card', 'Pawning') AND [KOL_REGULER].[KOL] IN ('1') THEN [KOL_REGULER].[KOL]
+				WHEN [TARGET].[KOL_CIF] IS NULL THEN (SELECT MAX([KOL]) FROM (VALUES([KOL_REGULER].[KOL]), ([KOL_PAWNING].[KOL]))[TEMP_TB]([KOL]))
+				WHEN [TARGET].[KOL_CIF] IN ('1', '5') THEN [TARGET].[KOL_CIF]
+				WHEN LEFT([TARGET].[KOL_CIF], 1) > COALESCE((SELECT MAX(LEFT([KOL], 1)) FROM (VALUES([KOL_REGULER].[KOL]), ([KOL_PAWNING].[KOL]))[TEMP_TB]([KOL])), LEFT([KOL_LOAN], 1)) THEN CONCAT(LEFT([TARGET].[KOL_CIF], 1), 'A')
+				WHEN LEFT([TARGET].[KOL_CIF], 1) < COALESCE((SELECT MAX(LEFT([KOL], 1)) FROM (VALUES([KOL_REGULER].[KOL]), ([KOL_PAWNING].[KOL]))[TEMP_TB]([KOL])), LEFT([KOL_LOAN], 1)) THEN CONCAT(LEFT([TARGET].[KOL_CIF], 1), 'C')
+				WHEN LEFT([TARGET].[KOL_CIF], 1) = COALESCE((SELECT MAX(LEFT([KOL], 1)) FROM (VALUES([KOL_REGULER].[KOL]), ([KOL_PAWNING].[KOL]))[TEMP_TB]([KOL])), LEFT([KOL_LOAN], 1)) THEN COALESCE((SELECT MAX([KOL]) FROM (VALUES([KOL_REGULER].[KOL]), ([KOL_PAWNING].[KOL]))[TEMP_TB]([KOL])), [KOL_LOAN])
+				ELSE [KOL_LOAN]
+			END
+	FROM [MAIN].[RCG.LOAN_DAILY] [TARGET]
+	OUTER APPLY (
+		SELECT
+			MAX([KOL_LOAN]) AS [KOL]
+		FROM [MAIN].[RCG.LOAN_DAILY]
+		WHERE [TARGET].[NOMORCIF] = [NOMORCIF]
+		AND [DIVISI] NOT IN ('Hasanah Card')
+	) [KOL_REGULER]
+	OUTER APPLY (
+		SELECT
+			MAX([KOL_LOAN]) AS [KOL]
+		FROM [MAIN].[RCG.LOAN_DAILY]
+		WHERE [TARGET].[NOMORCIF] = [NOMORCIF]
+		AND [DIVISI] IN ('Pawning')
+	) [KOL_PAWNING]
+	OUTER APPLY (
+		SELECT
+			MAX([KOL_LOAN]) AS [KOL]
+		FROM [MAIN].[RCG.LOAN_DAILY]
+		WHERE [TARGET].[NOMORCIF] = [NOMORCIF]
+		AND [DIVISI] IN ('Hasanah Card')
+	) [KOL_HC];
+	
+	PRINT('UPDATE KOL CIF DONE!');
+
+	---------------------------------------------------------------
+
+	UPDATE [MAIN].[RCG.LOAN_DAILY]
+	SET
+		[KOL_SUPERCIF] =
+			CASE
+				--WHEN [TARGET].[KOL_SUPERCIF] IS NULL AND [TARGET].[DIVISI] IN ('Hasanah Card') THEN [TARGET].[KOL_LOAN]
+				WHEN [TARGET].[KOL_SUPERCIF] IS NULL AND [TARGET].[DIVISI] IN ('Hasanah Card') THEN [KOL_HC].[KOL]
+				WHEN [TARGET].[KOL_SUPERCIF] IS NULL AND [TARGET].[KOL_LOAN] IN ('1') AND [TARGET].[DIVISI] IN ('Pawning') THEN [TARGET].[KOL_LOAN]
+-- 				WHEN [TARGET].[KOL_SUPERCIF] IS NULL AND [TARGET].[DIVISI] NOT IN ('Hasanah Card', 'Pawning') AND [KOL_REGULER].[KOL] IN ('1') THEN [KOL_REGULER].[KOL]
+				WHEN [TARGET].[KOL_SUPERCIF] IS NULL THEN (SELECT MAX([KOL]) FROM (VALUES([KOL_REGULER].[KOL]), ([KOL_PAWNING].[KOL]))[TEMP_TB]([KOL]))
+				WHEN [TARGET].[KOL_SUPERCIF] IN ('1', '5') THEN [TARGET].[KOL_SUPERCIF]
+				WHEN LEFT([TARGET].[KOL_SUPERCIF], 1) > COALESCE((SELECT MAX(LEFT([KOL], 1)) FROM (VALUES([KOL_REGULER].[KOL]), ([KOL_PAWNING].[KOL]))[TEMP_TB]([KOL])), LEFT([KOL_LOAN], 1)) THEN CONCAT(LEFT([TARGET].[KOL_SUPERCIF], 1), 'A')
+				WHEN LEFT([TARGET].[KOL_SUPERCIF], 1) < COALESCE((SELECT MAX(LEFT([KOL], 1)) FROM (VALUES([KOL_REGULER].[KOL]), ([KOL_PAWNING].[KOL]))[TEMP_TB]([KOL])), LEFT([KOL_LOAN], 1)) THEN CONCAT(LEFT([TARGET].[KOL_SUPERCIF], 1), 'C')
+				WHEN LEFT([TARGET].[KOL_SUPERCIF], 1) = COALESCE((SELECT MAX(LEFT([KOL], 1)) FROM (VALUES([KOL_REGULER].[KOL]), ([KOL_PAWNING].[KOL]))[TEMP_TB]([KOL])), LEFT([KOL_LOAN], 1)) THEN COALESCE((SELECT MAX([KOL]) FROM (VALUES([KOL_REGULER].[KOL]), ([KOL_PAWNING].[KOL]))[TEMP_TB]([KOL])), [KOL_LOAN])
+				ELSE [KOL_LOAN]
+			END
+	FROM [MAIN].[RCG.LOAN_DAILY] [TARGET]
+	OUTER APPLY (
+		SELECT
+			MAX([KOL_LOAN]) AS [KOL]
+		FROM [MAIN].[RCG.LOAN_DAILY]
+		WHERE [TARGET].[SUPERCIF] = [SUPERCIF]
+		AND [DIVISI] NOT IN ('Hasanah Card')
+	) [KOL_REGULER]
+	OUTER APPLY (
+		SELECT
+			MAX([KOL_LOAN]) AS [KOL]
+		FROM [MAIN].[RCG.LOAN_DAILY]
+		WHERE [TARGET].[SUPERCIF] = [SUPERCIF]
+		AND [DIVISI] IN ('Pawning')
+	) [KOL_PAWNING]
+	OUTER APPLY (
+		SELECT
+			MAX([KOL_LOAN]) AS [KOL]
+		FROM [MAIN].[RCG.LOAN_DAILY]
+		WHERE [TARGET].[SUPERCIF] = [SUPERCIF]
+		AND [DIVISI] IN ('Hasanah Card')
+	) [KOL_HC];
+	
+	PRINT('UPDATE KOL SUPERCIF DONE!');
+
+	---------------------------------------------------------------
+	
+	UPDATE [MAIN].[RCG.LOAN_DAILY]
+	SET
+		[DIVISI] = 'SEKURITISASI ASET'
+		,[PRODUK] = 'SEKURITISASI ASET'
+		,[PRODUK_DETAIL] = 'SEKURITISASI ASET'
+	WHERE [KODECABANG] IN ('ID0010971')
+	OR [NOLOAN] IN (SELECT NOMOR_LOAN FROM [NEW_BSI_DEV].[dbo].[PORTOFOLIO.ONBS.SEKURITISASI_ASET]);
+	
+	---------------------------------------------------------------
+	
+	SET @TABLE_NAME = (
+		SELECT TOP 1
+			CONCAT('[', SCHEMA_NAME(SCHEMA_ID), '].[', name, ']') AS NAME
+		FROM [sys].[objects]
+		WHERE type_desc = 'USER_TABLE'
+		AND name LIKE 'RCG.LOAN_DAILY.____-__-__%'
+		AND TRY_CAST(LEFT(REPLACE(name, 'RCG.LOAN_DAILY.', ''), 10) AS DATE) < @TGL_DATA
+		AND TRY_CAST(LEFT(REPLACE(name, 'RCG.LOAN_DAILY.', ''), 10) AS DATE) = EOMONTH(TRY_CAST(LEFT(REPLACE(name, 'RCG.LOAN_DAILY.', ''), 10) AS DATE))
+		ORDER BY
+			TRY_CAST(LEFT(REPLACE(name, 'RCG.LOAN_DAILY.', ''), 10) AS DATE) DESC
+			,CASE
+				WHEN name LIKE ('%(FINAL)') THEN 1
+				WHEN name LIKE ('%(QC)') THEN -1
+				ELSE 0
+			END DESC
+	);
+	
+	SET @SQL_QUERY = CONCAT(
+		'UPDATE [MAIN].[RCG.LOAN_DAILY]
+		SET
+			[AREA] = [SOURCE].[AREA]
+			,[REGION] = [SOURCE].[REGION]
+		FROM [MAIN].[RCG.LOAN_DAILY] [TARGET]
+		LEFT JOIN ', @TABLE_NAME, ' [SOURCE]
+			ON [TARGET].[NOLOAN] = [SOURCE].[NOLOAN]
+			AND [TARGET].[NOMORCIF] = [SOURCE].[NOMORCIF]
+		WHERE [TARGET].[KODECABANG] IN (''ID0010971'')
+		AND [SOURCE].[NOLOAN] IS NOT NULL;'
+	);
+	
+	BEGIN TRY
+		EXEC(@SQL_QUERY);
+		PRINT CONCAT('MAPPING AREA & REGION SEKURITISASI ASET: UPDATE DATA ', @TABLE_NAME, ' SUKSES!');
+	END TRY
+	BEGIN CATCH
+		PRINT CONCAT('MAPPING AREA & REGION SEKURITISASI ASET: UPDATE DATA ', @TABLE_NAME, ' GAGAL! ', ERROR_MESSAGE());
+	END CATCH
+	
+	SET @SQL_QUERY = CONCAT(
+		'UPDATE [MAIN].[RCG.LOAN_DAILY]
+		SET
+			[OS_POKOK_PSAK] =
+				CASE
+					WHEN [TARGET].[OS_POKOK] > 0.00
+					THEN [dbo].[fx_common_zerofy]([SOURCE].[OS_POKOK_PSAK] - [SOURCE].[OS_POKOK]) + [TARGET].[OS_POKOK]
+					ELSE 0.00
+				END
+		FROM [MAIN].[RCG.LOAN_DAILY] [TARGET]
+		LEFT JOIN ', @TABLE_NAME, ' [SOURCE]
+			ON [TARGET].[NOLOAN] = [SOURCE].[NOLOAN]
+		WHERE [TARGET].[OS_POKOK_PSAK] IS NULL;'
+	);
+	
+	BEGIN TRY
+		EXEC(@SQL_QUERY);
+		PRINT CONCAT('OS PSAK ACCRUE: UPDATE DATA ', @TABLE_NAME, ' SUKSES!');
+	END TRY
+	BEGIN CATCH
+		PRINT CONCAT('OS PSAK ACCRUE: UPDATE DATA ', @TABLE_NAME, ' GAGAL! ', ERROR_MESSAGE());
+	END CATCH
+	
+	SET @SQL_QUERY = CONCAT(
+		'UPDATE [MAIN].[RCG.LOAN_DAILY]
+		SET
+			[OS_POKOK_PSAK] =
+				CASE
+					WHEN [TARGET].[OS_POKOK] > 0.00
+					THEN [dbo].[fx_common_zerofy]([SOURCE].[OS_POKOK_PSAK] - [SOURCE].[OS_POKOK]) + [TARGET].[OS_POKOK]
+					ELSE 0.00
+				END
+		FROM [MAIN].[RCG.LOAN_DAILY] [TARGET]
+		OUTER APPLY (
+			SELECT
+				SUM([OS_POKOK_PSAK]) [OS_POKOK_PSAK]
+				,SUM([OS_POKOK]) [OS_POKOK]
+			FROM ', @TABLE_NAME, '
+			WHERE [NOLOAN] IN (
+				SELECT
+					[NOLOAN_LAMA] 
+				FROM [mapping].[PORTOFOLIO_ONBS.COMPILE.JOIN.REKAP_NOLOAN.MUTASI_NOLOAN]
+				WHERE [NOLOAN_BARU] = [TARGET].[NOLOAN]
+				AND COALESCE([KETERANGAN], ''X'') NOT IN (''Invalid'', ''EKSEKUSI WO'')
+			)
+		) [SOURCE]	
+		WHERE [TARGET].[OS_POKOK_PSAK] IS NULL;'
+	);
+	
+	BEGIN TRY
+		EXEC(@SQL_QUERY);
+		PRINT CONCAT('OS PSAK ACCRUE: UPDATE DATA ', @TABLE_NAME, ' (BUKA TUTUP) SUKSES!');
+	END TRY
+	BEGIN CATCH
+		PRINT CONCAT('OS PSAK ACCRUE: UPDATE DATA ', @TABLE_NAME, ' (BUKA TUTUP) GAGAL! ', ERROR_MESSAGE());
+	END CATCH
+
+	---------------------------------------------------------------
+	
+	SET @SQL_QUERY = CONCAT(
+		'UPDATE [MAIN].[RCG.LOAN_DAILY]
+		SET
+			[CKPN] = [SOURCE].[CKPN]
+		FROM [MAIN].[RCG.LOAN_DAILY] [TARGET]
+		LEFT JOIN ', @TABLE_NAME, ' [SOURCE]
+			ON [TARGET].[NOLOAN] = [SOURCE].[NOLOAN]
+			AND
+				(
+					[TARGET].[NOMORCIF] = [SOURCE].[NOMORCIF]
+					OR [TARGET].[SUPERCIF] = [SOURCE].[SUPERCIF]
+				)
+		WHERE [TARGET].[CKPN] IS NULL;'
+	);
+	
+	BEGIN TRY
+		EXEC(@SQL_QUERY);
+		PRINT CONCAT('CKPN: UPDATE DATA ', @TABLE_NAME, ' SUKSES!');
+	END TRY
+	BEGIN CATCH
+		PRINT CONCAT('CKPN: UPDATE DATA ', @TABLE_NAME, ' GAGAL! ', ERROR_MESSAGE());
+	END CATCH
+	
+-- 	SET @SQL_QUERY = CONCAT(
+-- 		'UPDATE [MAIN].[RCG.LOAN_DAILY]
+-- 		SET
+-- 			[CKPN] = [SOURCE].[CKPN]
+-- 		FROM [MAIN].[RCG.LOAN_DAILY] [TARGET]
+-- 		OUTER APPLY (
+-- 			SELECT
+-- 				SUM([CKPN]) [CKPN]
+-- 			FROM ', @TABLE_NAME, '
+-- 			WHERE [NOLOAN] IN (
+-- 				SELECT
+-- 					[NOLOAN_LAMA] 
+-- 				FROM [mapping].[PORTOFOLIO_ONBS.COMPILE.JOIN.REKAP_NOLOAN.MUTASI_NOLOAN]
+-- 				WHERE [NOLOAN_BARU] = [TARGET].[NOLOAN]
+-- 				AND COALESCE([KETERANGAN], ''X'') NOT IN (''Invalid'', ''EKSEKUSI WO'')
+-- 			)
+-- 		) [SOURCE]	
+-- 		WHERE [TARGET].[CKPN] IS NULL
+-- 		AND [SOURCE].[CKPN] IS NOT NULL;'
+-- 	);
+-- 	
+-- 	BEGIN TRY
+-- 		EXEC(@SQL_QUERY);
+-- 		PRINT CONCAT('CKPN: UPDATE DATA ', @TABLE_NAME, ' (BUKA TUTUP) SUKSES!');
+-- 	END TRY
+-- 	BEGIN CATCH
+-- 		PRINT CONCAT('CKPN: UPDATE DATA ', @TABLE_NAME, ' (BUKA TUTUP) GAGAL! ', ERROR_MESSAGE());
+-- 	END CATCH
+	
+	---------------------------------------------------------------
+	
+	SET @TABLE_NAME = CONCAT('[series].[RCG.LOAN_DAILY.', COALESCE(NULLIF(@TARGET, ''), LEFT(@TGL_DATA, 10)),']');
+	
+	SET @SQL_QUERY = CONCAT('DROP TABLE ', @TABLE_NAME);
+	
+	BEGIN TRY
+		EXEC(@SQL_QUERY);
+		PRINT CONCAT('DROP DATA ', @TABLE_NAME, ' SUKSES!');
+	END TRY
+	BEGIN CATCH
+		PRINT CONCAT('DROP DATA ', @TABLE_NAME, ' GAGAL! ', ERROR_MESSAGE());
+	END CATCH
+	
+	SET @SQL_QUERY = CONCAT('SELECT * INTO ', @TABLE_NAME, ' FROM [main].[RCG.LOAN_DAILY]');
+	
+	BEGIN TRY
+		EXEC(@SQL_QUERY);
+		PRINT CONCAT('BACKUP DATA ', @TABLE_NAME, ' SUKSES!');
+	END TRY
+	BEGIN CATCH
+		PRINT CONCAT('BACKUP DATA ', @TABLE_NAME, ' GAGAL! ', ERROR_MESSAGE());
+	END CATCH
+	
+END
+GO
+
+
+-- ----------------------------
+-- procedure structure for sp_procc_aging_rbh_pbh
+-- ----------------------------
+IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[main].[sp_procc_aging_rbh_pbh]') AND type IN ('P', 'PC', 'RF', 'X'))
+	DROP PROCEDURE[main].[sp_procc_aging_rbh_pbh]
+GO
+
+CREATE PROCEDURE [main].[sp_procc_aging_rbh_pbh]
+  @TGL_DATA AS varchar(max)
+AS
+BEGIN
+	DECLARE @sql_query varchar(max) = '', @TARGET varchar(max), @POINTER INTEGER = 1;
+  -- routine body goes here, e.g.
+  -- SELECT 'Navicat for SQL Server'
+	
+	----------------------------------------------------------------
+	
+	SET @TGL_DATA = TRY_CAST(NULLIF(@TGL_DATA, '') AS DATE);
+	
+	----------------------------------------------------------------
+	
+	BEGIN TRY
+		CREATE TABLE [mapping].[AGING.RBH_PBH] (
+			[PERIODE_DATA] DATE NOT NULL,
+			[LEGACY] varchar(200) NOT NULL,
+			[NOLOAN] varchar(200) NOT NULL,
+			[RBH_PBH_M-1] decimal(20,4),
+			[RBH_PBH_M-2] decimal(20,4),
+			[RBH_PBH_M-3] decimal(20,4),
+			[RBH_PBH_M-4] decimal(20,4),
+			[RBH_PBH_M-5] decimal(20,4),
+			[RBH_PBH_M-6] decimal(20,4),
+			[RBH_PBH_M-7] decimal(20,4),
+			[RBH_PBH_M-8] decimal(20,4),
+			[RBH_PBH_M-9] decimal(20,4),
+			[PBH_LAST_MONTH] decimal(20,2)
+		);
+	END TRY
+	BEGIN CATCH
+	END CATCH
+	
+	----------------------------------------------------------------
+	
+	CREATE TABLE #SOURCE (
+		LEGACY VARCHAR(100)
+		,NOLOAN VARCHAR(100)
+		,RBH_PBH DECIMAL(20, 2)
+		,PBH_LAST_MONTH DECIMAL(20, 2)
+	)
+	----------------------------------------------------------------
+	
+	IF @TGL_DATA IS NOT NULL
+	BEGIN
+		SET @TARGET = (
+			SELECT TOP 1
+				CONCAT('[', SCHEMA_NAME(SCHEMA_ID), '].[', name, ']') AS NAME
+			FROM [sys].[objects]
+			WHERE type_desc = 'USER_TABLE'
+			AND name LIKE 'IFOIS.LOAN_DAILY.____-__-__%'
+			AND TRY_CAST(LEFT(REPLACE(name, 'IFOIS.LOAN_DAILY.', ''), 10) AS DATE) < TRY_CAST(@TGL_DATA AS DATE)
+			AND TRY_CAST(LEFT(REPLACE(name, 'IFOIS.LOAN_DAILY.', ''), 10) AS DATE) = EOMONTH(TRY_CAST(LEFT(REPLACE(name, 'IFOIS.LOAN_DAILY.', ''), 10) AS DATE))
+			ORDER BY
+				TRY_CAST(LEFT(REPLACE(name, 'IFOIS.LOAN_DAILY.', ''), 10) AS DATE) DESC
+				,CASE
+					WHEN name LIKE ('%(FINAL)') THEN 1
+					WHEN name LIKE ('%(QC)') THEN -1
+					ELSE 0
+				END
+		);
+		
+		IF NULLIF(@TARGET, '') IS NOT NULL
+		BEGIN
+			SET @sql_query = CONCAT(
+				'MERGE [mapping].[AGING.RBH_PBH] [TARGET]
+				USING
+				(
+					SELECT					
+						''', EOMONTH(TRY_CAST(@TGL_DATA AS DATE)), ''' AS [PERIODE_DATA]
+						,''BSM'' AS [LEGACY]
+						,[NOLOAN]
+					FROM ', @TARGET, '
+					WHERE TRY_CAST(REALISASI_BAGIHASIL AS DECIMAL(20,2)) IS NOT NULL AND NULLIF(TRY_CAST(PROYEKSI_BAGIHASIL AS DECIMAL(20, 2)), 0.00) IS NOT NULL
+					AND (TRY_CAST(REALISASI_BAGIHASIL AS DECIMAL(20,2))/COALESCE(NULLIF(TRY_CAST(PROYEKSI_BAGIHASIL AS DECIMAL(20, 2)), 0.00), NULLIF(TRY_CAST(REALISASI_BAGIHASIL AS DECIMAL(20,2)), 0.00), 1.00) < 0.8)
+				) [SOURCE]
+					ON [TARGET].[PERIODE_DATA] = [SOURCE].[PERIODE_DATA]
+					AND [TARGET].[LEGACY] = [SOURCE].[LEGACY]
+					AND [TARGET].[NOLOAN] = [SOURCE].[NOLOAN]
+				WHEN NOT MATCHED BY TARGET THEN
+				INSERT
+				(
+					PERIODE_DATA
+					,LEGACY
+					,NOLOAN
+				)
+				VALUES
+				(
+					[SOURCE].PERIODE_DATA
+					,[SOURCE].LEGACY
+					,[SOURCE].NOLOAN
+				);'
+			);
+					
+			BEGIN TRY
+				EXEC(@sql_query);
+			END TRY
+			BEGIN CATCH
+				PRINT CONCAT('ERROR INSERT IFOIS: ', ERROR_MESSAGE());
+			END CATCH
+		END
+		
+		SET @TARGET = (
+			SELECT TOP 1
+				CONCAT('[', SCHEMA_NAME(SCHEMA_ID), '].[', name, ']') AS NAME
+			FROM [sys].[objects]
+			WHERE type_desc = 'USER_TABLE'
+			AND name LIKE 'MIS.IFOS_JFAST.____-__-__%'
+			AND TRY_CAST(LEFT(REPLACE(name, 'MIS.IFOS_JFAST.', ''), 10) AS DATE) < TRY_CAST(@TGL_DATA AS DATE)
+			AND TRY_CAST(LEFT(REPLACE(name, 'MIS.IFOS_JFAST.', ''), 10) AS DATE) = EOMONTH(TRY_CAST(LEFT(REPLACE(name, 'MIS.IFOS_JFAST.', ''), 10) AS DATE))
+			ORDER BY
+				TRY_CAST(LEFT(REPLACE(name, 'MIS.IFOS_JFAST.', ''), 10) AS DATE) DESC
+				,CASE
+					WHEN name LIKE ('%(FINAL)') THEN 1
+					WHEN name LIKE ('%(QC)') THEN -1
+					ELSE 0
+				END
+		);
+		
+		IF NULLIF(@TARGET, '') IS NOT NULL
+		BEGIN
+			SET @sql_query = CONCAT(
+				'MERGE [mapping].[AGING.RBH_PBH] [TARGET]
+				USING
+				(
+					SELECT					
+						''', EOMONTH(TRY_CAST(@TGL_DATA AS DATE)), ''' AS [PERIODE_DATA]
+						, ''BSM'' AS [LEGACY]
+						,[NOLOAN]
+					FROM ', @TARGET, '
+					WHERE TRY_CAST(REALISASI_BAGIHASIL AS DECIMAL(20,2)) IS NOT NULL AND NULLIF(TRY_CAST(PROYEKSI_BAGIHASIL AS DECIMAL(20, 2)), 0.00) IS NOT NULL
+					AND (TRY_CAST(REALISASI_BAGIHASIL AS DECIMAL(20,2))/COALESCE(NULLIF(TRY_CAST(PROYEKSI_BAGIHASIL AS DECIMAL(20, 2)), 0.00), NULLIF(TRY_CAST(REALISASI_BAGIHASIL AS DECIMAL(20,2)), 0.00), 1.00) < 0.8)
+				) [SOURCE]
+					ON [TARGET].[PERIODE_DATA] = [SOURCE].[PERIODE_DATA]
+					AND [TARGET].[LEGACY] = [SOURCE].[LEGACY]
+					AND [TARGET].[NOLOAN] = [SOURCE].[NOLOAN]
+				WHEN NOT MATCHED BY TARGET THEN
+				INSERT
+				(
+					PERIODE_DATA
+					,LEGACY
+					,NOLOAN
+				)
+				VALUES
+				(
+					[SOURCE].PERIODE_DATA
+					,[SOURCE].LEGACY
+					,[SOURCE].NOLOAN
+				);'
+			);
+					
+			BEGIN TRY
+				EXEC(@sql_query);
+			END TRY
+			BEGIN CATCH
+				PRINT CONCAT('ERROR INSERT JFAST: ', ERROR_MESSAGE());
+			END CATCH
+		END
+		
+		SET @TARGET = (
+			SELECT TOP 1
+				CONCAT('[', SCHEMA_NAME(SCHEMA_ID), '].[', name, ']') AS NAME
+			FROM [sys].[objects]
+			WHERE type_desc = 'USER_TABLE'
+			AND name LIKE 'RCG.LOAN_DAILY.____-__-__%'
+			AND TRY_CAST(LEFT(REPLACE(name, 'RCG.LOAN_DAILY.', ''), 10) AS DATE) < TRY_CAST(@TGL_DATA AS DATE)
+			AND TRY_CAST(LEFT(REPLACE(name, 'RCG.LOAN_DAILY.', ''), 10) AS DATE) = EOMONTH(TRY_CAST(LEFT(REPLACE(name, 'RCG.LOAN_DAILY.', ''), 10) AS DATE))
+			ORDER BY
+				TRY_CAST(LEFT(REPLACE(name, 'RCG.LOAN_DAILY.', ''), 10) AS DATE) DESC
+				,CASE
+					WHEN name LIKE ('%(FINAL)') THEN 1
+					WHEN name LIKE ('%(QC)') THEN -1
+					ELSE 0
+				END
+		);
+		
+		IF NULLIF(@TARGET, '') IS NOT NULL
+		BEGIN
+			SET @sql_query = CONCAT(
+				'MERGE [mapping].[AGING.RBH_PBH] [TARGET]
+				USING
+				(
+					SELECT					
+						''', EOMONTH(TRY_CAST(@TGL_DATA AS DATE)), ''' AS [PERIODE_DATA]
+						,CASE WHEN DIVISI IN (''HASANAH CARD'') THEN ''BNIS'' ELSE ''BSM'' END AS [LEGACY]
+						,[NOLOAN]
+					FROM ', @TARGET, '
+					WHERE TRY_CAST(REALISASI_BAGIHASIL AS DECIMAL(20,2)) IS NOT NULL AND NULLIF(TRY_CAST(PROYEKSI_BAGIHASIL AS DECIMAL(20, 2)), 0.00) IS NOT NULL
+					AND (TRY_CAST(REALISASI_BAGIHASIL AS DECIMAL(20,2))/COALESCE(NULLIF(TRY_CAST(PROYEKSI_BAGIHASIL AS DECIMAL(20, 2)), 0.00), NULLIF(TRY_CAST(REALISASI_BAGIHASIL AS DECIMAL(20,2)), 0.00), 1.00) < 0.8)
+				) [SOURCE]
+					ON [TARGET].[PERIODE_DATA] = [SOURCE].[PERIODE_DATA]
+					AND [TARGET].[LEGACY] = [SOURCE].[LEGACY]
+					AND [TARGET].[NOLOAN] = [SOURCE].[NOLOAN]
+				WHEN NOT MATCHED BY TARGET THEN
+				INSERT
+				(
+					PERIODE_DATA
+					,LEGACY
+					,NOLOAN
+				)
+				VALUES
+				(
+					[SOURCE].PERIODE_DATA
+					,[SOURCE].LEGACY
+					,[SOURCE].NOLOAN
+				);'
+			);
+					
+			BEGIN TRY
+				EXEC(@sql_query);
+			END TRY
+			BEGIN CATCH
+				PRINT CONCAT('ERROR RCG DAILY: ', ERROR_MESSAGE());
+			END CATCH
+		END
+		
+		WHILE @POINTER <= 9
+		BEGIN
+			
+			TRUNCATE TABLE #SOURCE;
+			
+			SET @TARGET = (
+				SELECT TOP 1
+					CONCAT('[', SCHEMA_NAME(SCHEMA_ID), '].[', name, ']') AS NAME
+				FROM [sys].[objects]
+				WHERE type_desc = 'USER_TABLE'
+				AND name LIKE 'RCG.LOAN_DAILY.____-__-__%'
+				AND TRY_CAST(LEFT(REPLACE(name, 'RCG.LOAN_DAILY.', ''), 10) AS DATE) < TRY_CAST(DATEADD(MONTH, 9 - @POINTER, @TGL_DATA) AS DATE)
+				AND TRY_CAST(LEFT(REPLACE(name, 'RCG.LOAN_DAILY.', ''), 10) AS DATE) = EOMONTH(TRY_CAST(LEFT(REPLACE(name, 'RCG.LOAN_DAILY.', ''), 10) AS DATE))
+				ORDER BY
+					TRY_CAST(LEFT(REPLACE(name, 'RCG.LOAN_DAILY.', ''), 10) AS DATE) DESC
+					,CASE
+						WHEN name LIKE ('%(FINAL)') THEN 1
+						WHEN name LIKE ('%(QC)') THEN -1
+						ELSE 0
+					END
+			);
+			
+			IF NULLIF(@TARGET, '') IS NOT NULL
+			BEGIN
+				SET @sql_query =
+					CONCAT('INSERT INTO #SOURCE
+					SELECT
+						''BSM'' AS LEGACY
+						,[NOLOAN] AS NOLOAN
+						,TRY_CAST([REALISASI_BAGIHASIL] AS DECIMAL(20, 2)) / COALESCE(NULLIF(TRY_CAST([PROYEKSI_BAGIHASIL] AS DECIMAL(20, 2)), 0.00), COALESCE(NULLIF(TRY_CAST([PROYEKSI_BAGIHASIL] AS DECIMAL(20, 2)), 0.00), 1.00)) AS RBH_PBH
+						,COALESCE(NULLIF(TRY_CAST([PROYEKSI_BAGIHASIL] AS DECIMAL(20, 2)), 0.00), 0.00) AS PBH_LAST_MONTH
+					FROM ', @TARGET, ';');
+					
+				BEGIN TRY
+					EXEC(@sql_query);
+				END TRY
+				BEGIN CATCH
+					PRINT CONCAT('ERROR UPDATE SOURCE: ', ERROR_MESSAGE());
+				END CATCH
+			END
+			
+			--------------------------------------------------UPDATE BY NOLOAN AKHIR--------------------------------------------------
+
+			SET @sql_query = CONCAT(
+				'UPDATE [mapping].[AGING.RBH_PBH]
+				SET
+					[RBH_PBH_M-', 10 - @POINTER, '] = COALESCE([GET].RBH_PBH, [SOURCE].[RBH_PBH_M-', 10 - @POINTER, '])
+					,[PBH_LAST_MONTH] = COALESCE([GET].PBH_LAST_MONTH, [SOURCE].[PBH_LAST_MONTH])
+				FROM [mapping].[AGING.RBH_PBH] [SOURCE]
+				LEFT JOIN [mapping].[PORTOFOLIO_ONBS.MAPPING.JOIN.REKAP_NOLOAN.MUTASI_NOLOAN_CURRENT] [MAPPING]
+					ON [SOURCE].LEGACY = [MAPPING].LEGACY_CURRENT
+					AND [SOURCE].NOLOAN = [MAPPING].NOLOAN_CURRENT
+				LEFT JOIN
+					(
+						SELECT
+							COALESCE([MAPPING].LEGACY_AKHIR, [CURRENT].LEGACY) AS LEGACY
+							,COALESCE([MAPPING].NOLOAN_AKHIR, [CURRENT].NOLOAN) AS NOLOAN
+							,[CURRENT].RBH_PBH
+							,[CURRENT].PBH_LAST_MONTH
+						FROM
+							#SOURCE [CURRENT]
+						LEFT JOIN
+							[mapping].[PORTOFOLIO_ONBS.MAPPING.JOIN.REKAP_NOLOAN.MUTASI_NOLOAN_CURRENT] [MAPPING]
+							ON [CURRENT].LEGACY = [MAPPING].LEGACY_CURRENT
+							AND [CURRENT].NOLOAN = [MAPPING].NOLOAN_CURRENT
+					) [GET]
+					ON [GET].LEGACY = COALESCE([MAPPING].LEGACY_AKHIR, [SOURCE].LEGACY)
+					AND [GET].NOLOAN = COALESCE([MAPPING].NOLOAN_AKHIR, [SOURCE].NOLOAN)
+				WHERE [SOURCE].[PERIODE_DATA] = ''', TRY_CAST(EOMONTH(@TGL_DATA) AS DATE), ''';'
+			);
+					
+			BEGIN TRY
+				EXEC(@sql_query);
+			END TRY
+			BEGIN CATCH
+				PRINT CONCAT('ERROR BY NOLOAN AFTER: ', ERROR_MESSAGE());
+			END CATCH
+
+			--------------------------------------------------UPDATE BY NOLOAN AFTER--------------------------------------------------
+
+			SET @sql_query = CONCAT(
+				'UPDATE [mapping].[AGING.RBH_PBH]
+				SET
+					[RBH_PBH_M-', 10 - @POINTER, '] = COALESCE([GET].RBH_PBH, [SOURCE].[RBH_PBH_M-', 10 - @POINTER, '])
+					,[PBH_LAST_MONTH] = COALESCE([GET].PBH_LAST_MONTH, [SOURCE].[PBH_LAST_MONTH])
+				FROM [mapping].[AGING.RBH_PBH] [SOURCE]
+				LEFT JOIN [mapping].[PORTOFOLIO_ONBS.COMPILE.JOIN.REKAP_NOLOAN.MUTASI_NOLOAN] [MAPPING]
+					ON [SOURCE].LEGACY = [MAPPING].LEGACY_LAMA
+					AND [SOURCE].NOLOAN = [MAPPING].NOLOAN_LAMA
+					AND [MAPPING].KETERANGAN != ''INVALID''
+				LEFT JOIN
+					(
+						SELECT
+							COALESCE([MAPPING].LEGACY_BARU, [CURRENT].LEGACY) AS LEGACY
+							,COALESCE([MAPPING].NOLOAN_BARU, [CURRENT].NOLOAN) AS NOLOAN
+							,[CURRENT].RBH_PBH
+							,[CURRENT].PBH_LAST_MONTH
+						FROM
+							#SOURCE [CURRENT]
+						LEFT JOIN
+							[mapping].[PORTOFOLIO_ONBS.COMPILE.JOIN.REKAP_NOLOAN.MUTASI_NOLOAN] [MAPPING]
+							ON [CURRENT].LEGACY = [MAPPING].LEGACY_LAMA
+							AND [CURRENT].NOLOAN = [MAPPING].NOLOAN_LAMA
+							AND [MAPPING].KETERANGAN != ''INVALID'' 
+					) [GET]
+					ON [GET].LEGACY = COALESCE([MAPPING].LEGACY_BARU, [SOURCE].LEGACY)
+					AND [GET].NOLOAN = COALESCE([MAPPING].NOLOAN_BARU, [SOURCE].NOLOAN)
+				WHERE [SOURCE].[PERIODE_DATA] = ''', TRY_CAST(EOMONTH(@TGL_DATA) AS DATE), ''';'
+			);
+					
+			BEGIN TRY
+				EXEC(@sql_query);
+			END TRY
+			BEGIN CATCH
+				PRINT CONCAT('ERROR BY NOLOAN AFTER: ', ERROR_MESSAGE());
+			END CATCH
+			
+			SET @POINTER = @POINTER + 1;
+			
+		END
+		
+	END
+
+END
+GO
+

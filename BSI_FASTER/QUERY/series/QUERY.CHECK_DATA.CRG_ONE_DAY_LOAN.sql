@@ -1,0 +1,114 @@
+DECLARE @TABLE_CUR VARCHAR(MAX), @TABLE_BEFORE VARCHAR(MAX), @TABLE_AFTER VARCHAR(MAX), @POINTER INT = 1, @TGL_DATA DATE = '2023-06-01', @SQL_QUERY VARCHAR(MAX);
+
+CREATE TABLE #RESULT (
+	[TGL_DATA] DATE
+	,[NOLOAN] VARCHAR(255)
+	,[NomorCIF] VARCHAR(255)
+	,[NomorCIF_Super] VARCHAR(255)
+	,[NAMANASABAH] VARCHAR(255)
+	,[KodeOutlet_BSI] VARCHAR(255)
+	,[Nama_Outlet_BSI] VARCHAR(255)
+	,[Area_BSI] VARCHAR(255)
+	,[Regional_BSI] VARCHAR(255)
+	,[Segmen_BSI] VARCHAR(255)
+	,[Produk_BSI] VARCHAR(255)
+	,[Produk_BSI_Detail] VARCHAR(255)
+	,[KolCIF_BulanLalu] VARCHAR(255)
+	,[Kol_Loan] VARCHAR(255)
+	,[Kol_CIF] VARCHAR(255)
+	,[Kol_SUPERCIF] VARCHAR(255)
+);
+
+WHILE @POINTER <= 22
+BEGIN
+
+	SET @TABLE_BEFORE = (
+		SELECT TOP 1
+			CONCAT('[', SCHEMA_NAME(SCHEMA_ID), '].[', name, ']') AS NAME
+		FROM [sys].[objects]
+		WHERE type_desc = 'USER_TABLE'
+		AND name LIKE 'CRG.LOAN_DAILY.____-__-__%'
+		AND TRY_CAST(LEFT(REPLACE(name, 'CRG.LOAN_DAILY.', ''), 10) AS DATE) < @TGL_DATA
+		ORDER BY
+			TRY_CAST(LEFT(REPLACE(name, 'CRG.LOAN_DAILY.', ''), 10) AS DATE) DESC
+			,CASE
+				WHEN name LIKE ('%(FINAL)') THEN 1
+				WHEN name LIKE ('%(QC)') THEN -1
+				ELSE 0
+			END DESC
+	);
+	
+	SET @TABLE_CUR = (
+		SELECT TOP 1
+			CONCAT('[', SCHEMA_NAME(SCHEMA_ID), '].[', name, ']') AS NAME
+		FROM [sys].[objects]
+		WHERE type_desc = 'USER_TABLE'
+		AND name LIKE 'CRG.LOAN_DAILY.____-__-__%'
+		AND TRY_CAST(LEFT(REPLACE(name, 'CRG.LOAN_DAILY.', ''), 10) AS DATE) <= @TGL_DATA
+		ORDER BY
+			TRY_CAST(LEFT(REPLACE(name, 'CRG.LOAN_DAILY.', ''), 10) AS DATE) DESC
+			,CASE
+				WHEN name LIKE ('%(FINAL)') THEN 1
+				WHEN name LIKE ('%(QC)') THEN -1
+				ELSE 0
+			END DESC
+	);
+	
+	SET @TABLE_AFTER = (
+		SELECT TOP 1
+			CONCAT('[', SCHEMA_NAME(SCHEMA_ID), '].[', name, ']') AS NAME
+		FROM [sys].[objects]
+		WHERE type_desc = 'USER_TABLE'
+		AND name LIKE 'CRG.LOAN_DAILY.____-__-__%'
+		AND TRY_CAST(LEFT(REPLACE(name, 'CRG.LOAN_DAILY.', ''), 10) AS DATE) > @TGL_DATA
+		ORDER BY
+			TRY_CAST(LEFT(REPLACE(name, 'CRG.LOAN_DAILY.', ''), 10) AS DATE) ASC
+			,CASE
+				WHEN name LIKE ('%(FINAL)') THEN 1
+				WHEN name LIKE ('%(QC)') THEN -1
+				ELSE 0
+			END DESC
+	);
+	
+	SET @SQL_QUERY = CONCAT(
+		'SELECT
+			[CUR].[FICMISDATE] [TGL_DATA]
+			,[CUR].[NOLOAN] [NOLOAN]
+			,[CUR].[NomorCIF] [NomorCIF]
+			,[CUR].[NomorCIF_Super] [NomorCIF_Super]
+			,[CUR].[NAMANASABAH] [NAMANASABAH]
+			,[CUR].[KodeOutlet_BSI]
+			,[CUR].[Nama_Outlet_BSI]
+			,[CUR].[Area_BSI]
+			,[CUR].[Regional_BSI]
+			,[CUR].[Segmen_BSI]
+			,[CUR].[Produk_BSI]
+			,[CUR].[Produk_BSI_Detail]
+			,[CUR].[KolCIF_BulanLalu]
+			,[CUR].[KolLoan] [Kol_Loan]
+			,[CUR].[KolCIF_NONSUPER] [Kol_CIF]
+			,[CUR].[KolCIF] [Kol_SUPERCIF]
+		FROM ', @TABLE_CUR, ' [CUR]
+		LEFT JOIN ', @TABLE_BEFORE, ' [D-1]
+			ON [CUR].[NOLOAN] = [D-1].[NOLOAN]
+		LEFT JOIN ', @TABLE_AFTER, ' [D+1]
+			ON [CUR].[NOLOAN] = [D+1].[NOLOAN]
+		WHERE [D-1].[NOLOAN] IS NULL
+		AND [D+1].[NOLOAN] IS NULL;'
+	);
+	
+	BEGIN TRY
+		INSERT INTO #RESULT
+		EXEC(@SQL_QUERY);
+		PRINT CONCAT('EKSEKUSI DATA PER ', @TGL_DATA, ' BASED ON BEFORE ', @TABLE_BEFORE, ', CURRENT ', @TABLE_CUR, ', AFTER ', @TABLE_AFTER);
+	END TRY
+	BEGIN CATCH
+		PRINT CONCAT('ERROR! ', ERROR_MESSAGE());
+	END CATCH
+	
+	SET @POINTER = @POINTER + 1;
+	SET @TGL_DATA = DATEADD(DAY, 1, @TGL_DATA);
+END
+
+SELECT * FROM #RESULT;
+DROP TABLE #RESULT;

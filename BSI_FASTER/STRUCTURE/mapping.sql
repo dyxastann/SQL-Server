@@ -1,0 +1,1277 @@
+/*
+ Navicat Premium Data Transfer
+
+ Source Server         : NEW_BSI_COLLECTION
+ Source Server Type    : SQL Server
+ Source Server Version : 11006020
+ Source Host           : PC-RCG-KP54\RCGPC004_SQLSVR:1433
+ Source Catalog        : BSI_FASTER
+ Source Schema         : mapping
+
+ Target Server Type    : SQL Server
+ Target Server Version : 11006020
+ File Encoding         : 65001
+
+ Date: 30/08/2023 18:25:30
+*/
+
+
+-- ----------------------------
+-- Table structure for AGING.RBH_PBH
+-- ----------------------------
+IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[mapping].[AGING.RBH_PBH]') AND type IN ('U'))
+	DROP TABLE [mapping].[AGING.RBH_PBH]
+GO
+
+CREATE TABLE [mapping].[AGING.RBH_PBH] (
+  [PERIODE_DATA] date  NOT NULL,
+  [LEGACY] varchar(200) COLLATE SQL_Latin1_General_CP1_CI_AS  NOT NULL,
+  [NOLOAN] varchar(200) COLLATE SQL_Latin1_General_CP1_CI_AS  NOT NULL,
+  [RBH_PBH_M-1] decimal(20,4)  NULL,
+  [RBH_PBH_M-2] decimal(20,4)  NULL,
+  [RBH_PBH_M-3] decimal(20,4)  NULL,
+  [RBH_PBH_M-4] decimal(20,4)  NULL,
+  [RBH_PBH_M-5] decimal(20,4)  NULL,
+  [RBH_PBH_M-6] decimal(20,4)  NULL,
+  [RBH_PBH_M-7] decimal(20,4)  NULL,
+  [RBH_PBH_M-8] decimal(20,4)  NULL,
+  [RBH_PBH_M-9] decimal(20,4)  NULL,
+  [PBH_LAST_MONTH] decimal(20,2)  NULL
+)
+GO
+
+ALTER TABLE [mapping].[AGING.RBH_PBH] SET (LOCK_ESCALATION = TABLE)
+GO
+
+
+-- ----------------------------
+-- Table structure for COLLSYS.MAPPING.LOAN
+-- ----------------------------
+IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[mapping].[COLLSYS.MAPPING.LOAN]') AND type IN ('U'))
+	DROP TABLE [mapping].[COLLSYS.MAPPING.LOAN]
+GO
+
+CREATE TABLE [mapping].[COLLSYS.MAPPING.LOAN] (
+  [SOURCE] nvarchar(1023) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NOLOAN] nvarchar(1023) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NOLOAN_CLEANSE] nvarchar(1023) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NOLOAN_FINAL] varchar(1023) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NOMORCIF] nvarchar(1023) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [TGL_AKTIF_AKHIR] date  NULL,
+  [KODECABANG_BSI] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NAMACABANG_BSI] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [AREA_BSI] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [REGION_BSI] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [DIVISI_BSI] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [FLAG_DATA] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [UPDATE_STATUS] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL
+)
+GO
+
+ALTER TABLE [mapping].[COLLSYS.MAPPING.LOAN] SET (LOCK_ESCALATION = TABLE)
+GO
+
+
+-- ----------------------------
+-- Table structure for FILTER.ANOMALI.INVALID_CONTACT
+-- ----------------------------
+IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[mapping].[FILTER.ANOMALI.INVALID_CONTACT]') AND type IN ('U'))
+	DROP TABLE [mapping].[FILTER.ANOMALI.INVALID_CONTACT]
+GO
+
+CREATE TABLE [mapping].[FILTER.ANOMALI.INVALID_CONTACT] (
+  [CONTACT] varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL
+)
+GO
+
+ALTER TABLE [mapping].[FILTER.ANOMALI.INVALID_CONTACT] SET (LOCK_ESCALATION = TABLE)
+GO
+
+
+-- ----------------------------
+-- Table structure for FILTER.ANOMALI.INVALID_KTP
+-- ----------------------------
+IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[mapping].[FILTER.ANOMALI.INVALID_KTP]') AND type IN ('U'))
+	DROP TABLE [mapping].[FILTER.ANOMALI.INVALID_KTP]
+GO
+
+CREATE TABLE [mapping].[FILTER.ANOMALI.INVALID_KTP] (
+  [KTP] varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL
+)
+GO
+
+ALTER TABLE [mapping].[FILTER.ANOMALI.INVALID_KTP] SET (LOCK_ESCALATION = TABLE)
+GO
+
+
+-- ----------------------------
+-- Table structure for FILTER.ANOMALI.INVALID_NPWP
+-- ----------------------------
+IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[mapping].[FILTER.ANOMALI.INVALID_NPWP]') AND type IN ('U'))
+	DROP TABLE [mapping].[FILTER.ANOMALI.INVALID_NPWP]
+GO
+
+CREATE TABLE [mapping].[FILTER.ANOMALI.INVALID_NPWP] (
+  [NPWP] varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL
+)
+GO
+
+ALTER TABLE [mapping].[FILTER.ANOMALI.INVALID_NPWP] SET (LOCK_ESCALATION = TABLE)
+GO
+
+
+-- ----------------------------
+-- Table structure for PORTOFOLIO.LIST_EXCLUDE.COP
+-- ----------------------------
+IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[mapping].[PORTOFOLIO.LIST_EXCLUDE.COP]') AND type IN ('U'))
+	DROP TABLE [mapping].[PORTOFOLIO.LIST_EXCLUDE.COP]
+GO
+
+CREATE TABLE [mapping].[PORTOFOLIO.LIST_EXCLUDE.COP] (
+  [INDEX] int  IDENTITY(1,1) NOT NULL,
+  [NOLOAN] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NOMORCIF] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NAMANASABAH] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [ID] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [KETERANGAN] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL
+)
+GO
+
+ALTER TABLE [mapping].[PORTOFOLIO.LIST_EXCLUDE.COP] SET (LOCK_ESCALATION = TABLE)
+GO
+
+
+-- ----------------------------
+-- Table structure for PORTOFOLIO.MAPPING.DATI2
+-- ----------------------------
+IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[mapping].[PORTOFOLIO.MAPPING.DATI2]') AND type IN ('U'))
+	DROP TABLE [mapping].[PORTOFOLIO.MAPPING.DATI2]
+GO
+
+CREATE TABLE [mapping].[PORTOFOLIO.MAPPING.DATI2] (
+  [KOTA/KAB] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [KODE DATI II] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [PROVINSI] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [KODE DATI I] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [KODE POS] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [PULAU] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL
+)
+GO
+
+ALTER TABLE [mapping].[PORTOFOLIO.MAPPING.DATI2] SET (LOCK_ESCALATION = TABLE)
+GO
+
+
+-- ----------------------------
+-- Table structure for PORTOFOLIO.MAPPING.DATI2_BY_OUTLET
+-- ----------------------------
+IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[mapping].[PORTOFOLIO.MAPPING.DATI2_BY_OUTLET]') AND type IN ('U'))
+	DROP TABLE [mapping].[PORTOFOLIO.MAPPING.DATI2_BY_OUTLET]
+GO
+
+CREATE TABLE [mapping].[PORTOFOLIO.MAPPING.DATI2_BY_OUTLET] (
+  [OUTLET CODE] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [KOTA/KAB] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [KODE DATI II] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [PROVINSI] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [KODE DATI I] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [KODE POS] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL
+)
+GO
+
+ALTER TABLE [mapping].[PORTOFOLIO.MAPPING.DATI2_BY_OUTLET] SET (LOCK_ESCALATION = TABLE)
+GO
+
+
+-- ----------------------------
+-- Table structure for PORTOFOLIO.MAPPING.LOANTYPE
+-- ----------------------------
+IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[mapping].[PORTOFOLIO.MAPPING.LOANTYPE]') AND type IN ('U'))
+	DROP TABLE [mapping].[PORTOFOLIO.MAPPING.LOANTYPE]
+GO
+
+CREATE TABLE [mapping].[PORTOFOLIO.MAPPING.LOANTYPE] (
+  [INDEX] bigint  IDENTITY(1,1) NOT NULL,
+  [LOANTYPE] varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [DIVISI] varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [DIVISI_BSI] varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [PRODUK] varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [PRODUK_DETAIL] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [TANGGAL_CAIR] date  NULL,
+  [SOURCE] varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL
+)
+GO
+
+ALTER TABLE [mapping].[PORTOFOLIO.MAPPING.LOANTYPE] SET (LOCK_ESCALATION = TABLE)
+GO
+
+
+-- ----------------------------
+-- Table structure for PORTOFOLIO.ONBS.CIF_DETAIL
+-- ----------------------------
+IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[mapping].[PORTOFOLIO.ONBS.CIF_DETAIL]') AND type IN ('U'))
+	DROP TABLE [mapping].[PORTOFOLIO.ONBS.CIF_DETAIL]
+GO
+
+CREATE TABLE [mapping].[PORTOFOLIO.ONBS.CIF_DETAIL] (
+  [INDEX] bigint  IDENTITY(1,1) NOT NULL,
+  [LEGACY] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NOMORCIF] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [SUPERCIF] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NAMANASABAH] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NPWP] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [KTP] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NO_HP] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NO_TELP] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NO_KANTOR] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [ALT_CONTACT_1] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [ALT_CONTACT_2] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [ALT_CONTACT_3] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [TANGGAL_LAHIR] date  NULL,
+  [PEKERJAAN] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [ALAMAT] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [GENDER] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [TANGGAL_AWAL_MENUNGGAK] date  NULL,
+  [UPDATE_METHOD] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NAMAPERUSAHAANNASABAH] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [JENISNASABAH] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [ALAMATPERUSAHAANNASABAH] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [STATUSPEKERJAAN] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [BIDANGUSAHAPERUSAHAAN] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [TEMPATLAHIR] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NAMAIBUKANDUNG] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [KODEPOS] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL
+)
+GO
+
+ALTER TABLE [mapping].[PORTOFOLIO.ONBS.CIF_DETAIL] SET (LOCK_ESCALATION = TABLE)
+GO
+
+
+-- ----------------------------
+-- Table structure for PORTOFOLIO.ONBS.LOAN_DETAIL
+-- ----------------------------
+IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[mapping].[PORTOFOLIO.ONBS.LOAN_DETAIL]') AND type IN ('U'))
+	DROP TABLE [mapping].[PORTOFOLIO.ONBS.LOAN_DETAIL]
+GO
+
+CREATE TABLE [mapping].[PORTOFOLIO.ONBS.LOAN_DETAIL] (
+  [INDEX] bigint  IDENTITY(1,1) NOT NULL,
+  [LEGACY] varchar(10) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NOLOAN] varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NOMORCIF] varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [JENISPIUTANGPEMBIAYAAN] varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [KODEOUTLET] varchar(10) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [CURRENCY] varchar(10) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [DIVISI] varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [PRODUK] varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [PRODUK_DETAIL] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [LOANTYPE] varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [KODESEKTOREKONOMI] varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [PENCAIRANPOKOKCONVERSION] decimal(32,2)  NULL,
+  [PENCAIRANMARGINCONVERSION] decimal(32,2)  NULL,
+  [TANGGAL_CAIR] date  NULL,
+  [TANGGAL_JATUH_TEMPO] date  NULL,
+  [JENISPENGGUNAANCODE] varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [INTERESTRATE] decimal(32,2)  NULL,
+  [RELATED_TRN] varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [REKPEMBYPOKOK] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [SCHD_DT] date  NULL,
+  [SCHEDTYPE] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [STATUS_PENCAIRAN] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [STATUS_PEMBIAYAA] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [DESC_CHG] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NAPNO] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [LEGACY_ID] varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NO_AKAD] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [FLAG_RESTRUKTUR_TERAKHIR] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [TGL_RESTRUKTUR_TERAKHIR] date  NULL,
+  [TANGGAL_AWAL_MENUNGGAK] date  NULL,
+  [FLAG_FPD] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [FLAG_EPD3] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [FLAG_EPD6] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [UPDATE_METHOD] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL
+)
+GO
+
+ALTER TABLE [mapping].[PORTOFOLIO.ONBS.LOAN_DETAIL] SET (LOCK_ESCALATION = TABLE)
+GO
+
+
+-- ----------------------------
+-- Table structure for PORTOFOLIO.ONBS.REMOVE_LOAN
+-- ----------------------------
+IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[mapping].[PORTOFOLIO.ONBS.REMOVE_LOAN]') AND type IN ('U'))
+	DROP TABLE [mapping].[PORTOFOLIO.ONBS.REMOVE_LOAN]
+GO
+
+CREATE TABLE [mapping].[PORTOFOLIO.ONBS.REMOVE_LOAN] (
+  [NOLOAN] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NOMORCIF] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [TANGGAL_AWAL_EFEKTIF] date  NULL,
+  [TANGGAL_AKHIR_EFEKTIF] date  NULL,
+  [KETERANGAN] varchar(1023) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [SOURCE] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL
+)
+GO
+
+ALTER TABLE [mapping].[PORTOFOLIO.ONBS.REMOVE_LOAN] SET (LOCK_ESCALATION = TABLE)
+GO
+
+
+-- ----------------------------
+-- Table structure for PORTOFOLIO_JOIN.MAPPING.JOIN.CABANG_TUTUP
+-- ----------------------------
+IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[mapping].[PORTOFOLIO_JOIN.MAPPING.JOIN.CABANG_TUTUP]') AND type IN ('U'))
+	DROP TABLE [mapping].[PORTOFOLIO_JOIN.MAPPING.JOIN.CABANG_TUTUP]
+GO
+
+CREATE TABLE [mapping].[PORTOFOLIO_JOIN.MAPPING.JOIN.CABANG_TUTUP] (
+  [NO] int  NULL,
+  [KODEOUTLET] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NAMA OUTLET] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [KODE OUTLET PENAMPUNG] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NAMA OUTLET PENAMPUNG] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [PERIODE] int  NULL,
+  [TANGGAL EFEKTIF PENUTUPAN] date  NULL,
+  [TUTUP] nvarchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL
+)
+GO
+
+ALTER TABLE [mapping].[PORTOFOLIO_JOIN.MAPPING.JOIN.CABANG_TUTUP] SET (LOCK_ESCALATION = TABLE)
+GO
+
+
+-- ----------------------------
+-- Table structure for PORTOFOLIO_JOIN.MAPPING.JOIN.MAPPING_OUTLET_EDA
+-- ----------------------------
+IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[mapping].[PORTOFOLIO_JOIN.MAPPING.JOIN.MAPPING_OUTLET_EDA]') AND type IN ('U'))
+	DROP TABLE [mapping].[PORTOFOLIO_JOIN.MAPPING.JOIN.MAPPING_OUTLET_EDA]
+GO
+
+CREATE TABLE [mapping].[PORTOFOLIO_JOIN.MAPPING.JOIN.MAPPING_OUTLET_EDA] (
+  [bankLegacy] varchar(10) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [cabangLegacy] varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [cabangBSI] varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [cabangBSI_Desk] varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [cabangBSI_Utama] varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [areaBSI] varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [areaBSI_Desk] varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [regionBSI] varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [regionBSI_Desk] varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [provinsi] varchar(35) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [zonaWaktu] varchar(5) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [latitude] numeric(32,15)  NULL,
+  [longitude] numeric(32,15)  NULL,
+  [koordinat] varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [regionBSI_Number] int  NULL,
+  [flagClosed] varchar(10) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [cabangBSIPenampung] varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [cabangBSIPenampung_Desk] varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [tanggalClosed] date  NULL,
+  [Kd_Antasena] varchar(30) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [Nama_Cab_Antasena] varchar(150) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL
+)
+GO
+
+ALTER TABLE [mapping].[PORTOFOLIO_JOIN.MAPPING.JOIN.MAPPING_OUTLET_EDA] SET (LOCK_ESCALATION = TABLE)
+GO
+
+
+-- ----------------------------
+-- Table structure for PORTOFOLIO_ONBS.COMPILE.JOIN.REKAP_NOLOAN.MUTASI_NOLOAN
+-- ----------------------------
+IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[mapping].[PORTOFOLIO_ONBS.COMPILE.JOIN.REKAP_NOLOAN.MUTASI_NOLOAN]') AND type IN ('U'))
+	DROP TABLE [mapping].[PORTOFOLIO_ONBS.COMPILE.JOIN.REKAP_NOLOAN.MUTASI_NOLOAN]
+GO
+
+CREATE TABLE [mapping].[PORTOFOLIO_ONBS.COMPILE.JOIN.REKAP_NOLOAN.MUTASI_NOLOAN] (
+  [LEGACY_LAMA] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NOLOAN_LAMA] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NOCIF_LAMA] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [KODECABANG_LAMA] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NAMANASABAH_LAMA] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [LEGACY_BARU] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NOLOAN_BARU] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NOCIF_BARU] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [KODECABANG_BARU] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NAMANASABAH_BARU] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [FLAG_DATA] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [TGL_EFEKTIF] date  NULL,
+  [KETERANGAN] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL
+)
+GO
+
+ALTER TABLE [mapping].[PORTOFOLIO_ONBS.COMPILE.JOIN.REKAP_NOLOAN.MUTASI_NOLOAN] SET (LOCK_ESCALATION = TABLE)
+GO
+
+
+-- ----------------------------
+-- Table structure for PORTOFOLIO_ONBS.COMPILE.JOIN.REKAP_NOLOAN.RESTRU
+-- ----------------------------
+IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[mapping].[PORTOFOLIO_ONBS.COMPILE.JOIN.REKAP_NOLOAN.RESTRU]') AND type IN ('U'))
+	DROP TABLE [mapping].[PORTOFOLIO_ONBS.COMPILE.JOIN.REKAP_NOLOAN.RESTRU]
+GO
+
+CREATE TABLE [mapping].[PORTOFOLIO_ONBS.COMPILE.JOIN.REKAP_NOLOAN.RESTRU] (
+  [LEGACY] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [FICMISDATE] date  NULL,
+  [NOLOAN] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NOMORCIF] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NAMANASABAH] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [KODECABANGBARU] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [DIVISI] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [RESTRUCTFLAG] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [RESTRUCTDATE] date  NULL
+)
+GO
+
+ALTER TABLE [mapping].[PORTOFOLIO_ONBS.COMPILE.JOIN.REKAP_NOLOAN.RESTRU] SET (LOCK_ESCALATION = TABLE)
+GO
+
+
+-- ----------------------------
+-- Table structure for PORTOFOLIO_ONBS.DATABASE.BSM.AGUNAN_DETAIL
+-- ----------------------------
+IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[mapping].[PORTOFOLIO_ONBS.DATABASE.BSM.AGUNAN_DETAIL]') AND type IN ('U'))
+	DROP TABLE [mapping].[PORTOFOLIO_ONBS.DATABASE.BSM.AGUNAN_DETAIL]
+GO
+
+CREATE TABLE [mapping].[PORTOFOLIO_ONBS.DATABASE.BSM.AGUNAN_DETAIL] (
+  [AS_OF_DT] date  NULL,
+  [IDCOLL] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [COLLATERAL_TYPE] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [JENISAGUNAN] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NILAIPENGIKATAN] numeric(38,2)  NULL,
+  [TGLPENGIKATAN] date  NULL,
+  [JENISPENGIKATAN] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NAMANOTARIS] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NILAIASURANSI] numeric(38,2)  NULL,
+  [TGLJTASURANSI] date  NULL,
+  [NAMAASURANSI] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NILAILIKUIDITAS] numeric(38,2)  NULL,
+  [NILAIPASAR] numeric(38,2)  NULL,
+  [TGLTAKSASI] date  NULL,
+  [PENILAI] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [BUKTIKEPEMILIKAN] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [FLAGTGLTAKSASI] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [ALAMAT_AGUNAN] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [KODE_KOTA] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [LAND_DIMENSION] numeric(38,8)  NULL,
+  [BUILD_DIMENSION] numeric(38,8)  NULL,
+  [PAWNED_TYPE] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [KARATASE] int  NULL,
+  [UNIT_NO] int  NULL,
+  [CURRENCY] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [EXPIRY_DATE] date  NULL,
+  [DESCRIPTION] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [APPLICATION_ID] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [EXECUTION_VALUE] numeric(38,2)  NULL,
+  [CENTRAL_BANK_VALUE] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [COLL_RANK_LEVEL] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [COLL_RATE_INST] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [COLL_RATE_DATE] date  NULL,
+  [NOTARY_NO] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [BI_ASURANCE] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [OWN_AUTH_NAME] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [SID_LOC_CODE] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [FLAG_APPRAISAL] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [IN_APPRAISER] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL
+)
+GO
+
+ALTER TABLE [mapping].[PORTOFOLIO_ONBS.DATABASE.BSM.AGUNAN_DETAIL] SET (LOCK_ESCALATION = TABLE)
+GO
+
+
+-- ----------------------------
+-- Table structure for PORTOFOLIO_ONBS.DATABASE.BSM.AGUNAN_LINK
+-- ----------------------------
+IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[mapping].[PORTOFOLIO_ONBS.DATABASE.BSM.AGUNAN_LINK]') AND type IN ('U'))
+	DROP TABLE [mapping].[PORTOFOLIO_ONBS.DATABASE.BSM.AGUNAN_LINK]
+GO
+
+CREATE TABLE [mapping].[PORTOFOLIO_ONBS.DATABASE.BSM.AGUNAN_LINK] (
+  [AS_OF_DT] date  NULL,
+  [IDCOLL] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NOLOAN] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [PERCENALLOC] numeric(38,8)  NULL,
+  [LIMIT_REFERENCE] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL
+)
+GO
+
+ALTER TABLE [mapping].[PORTOFOLIO_ONBS.DATABASE.BSM.AGUNAN_LINK] SET (LOCK_ESCALATION = TABLE)
+GO
+
+
+-- ----------------------------
+-- Table structure for PORTOFOLIO_ONBS.DATABASE.JOIN.EKSEKUSI_WO
+-- ----------------------------
+IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[mapping].[PORTOFOLIO_ONBS.DATABASE.JOIN.EKSEKUSI_WO]') AND type IN ('U'))
+	DROP TABLE [mapping].[PORTOFOLIO_ONBS.DATABASE.JOIN.EKSEKUSI_WO]
+GO
+
+CREATE TABLE [mapping].[PORTOFOLIO_ONBS.DATABASE.JOIN.EKSEKUSI_WO] (
+  [LEGACY] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NOLOAN] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NOCIF] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [KODE_CABANG] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NAMA_CABANG] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [LOANTYPE_LEGACY] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [PRODUK] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [TGL_WO] date  NULL,
+  [CURRENCY] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [BAKI_DEBET] float(53)  NULL,
+  [MARGIN_AWAL] float(53)  NULL,
+  [PENALTY_AWAL] float(53)  NULL,
+  [BAKI_DEBET_IDR] float(53)  NULL,
+  [MARGIN_AWAL_IDR] float(53)  NULL,
+  [PENALTY_AWAL_IDR] float(53)  NULL,
+  [NOLOAN_WO] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [DIVISI] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [SEKTOREKONOMI] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [SEKTOREKONOMI_STD] varchar(6) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [SEKTOREKONOMI_DSC] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [OS_PSAK_LAST] float(53)  NULL,
+  [OS_SYSTEM_LAST] float(53)  NULL,
+  [LEGACY_SBLM_MIGRASI] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NOLOAN_SBLM_MIGRASI] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [PRODUK_DETAIL] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL
+)
+GO
+
+ALTER TABLE [mapping].[PORTOFOLIO_ONBS.DATABASE.JOIN.EKSEKUSI_WO] SET (LOCK_ESCALATION = TABLE)
+GO
+
+
+-- ----------------------------
+-- Table structure for PORTOFOLIO_ONBS.MAPPING.JOIN.REKAP_NOLOAN.MUTASI_NOLOAN_CURRENT
+-- ----------------------------
+IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[mapping].[PORTOFOLIO_ONBS.MAPPING.JOIN.REKAP_NOLOAN.MUTASI_NOLOAN_CURRENT]') AND type IN ('U'))
+	DROP TABLE [mapping].[PORTOFOLIO_ONBS.MAPPING.JOIN.REKAP_NOLOAN.MUTASI_NOLOAN_CURRENT]
+GO
+
+CREATE TABLE [mapping].[PORTOFOLIO_ONBS.MAPPING.JOIN.REKAP_NOLOAN.MUTASI_NOLOAN_CURRENT] (
+  [LEGACY_AWAL] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NOLOAN_AWAL] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NOCIF_AWAL] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [KODECABANG_AWAL] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NAMANASABAH_AWAL] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [LEGACY_BEFORE] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NOLOAN_BEFORE] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NOCIF_BEFORE] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [KODECABANG_BEFORE] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NAMANASABAH_BEFORE] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [LEGACY_CURRENT] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NOLOAN_CURRENT] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NOCIF_CURRENT] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [KODECABANG_CURRENT] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NAMANASABAH_CURRENT] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [LEGACY_AFTER] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NOLOAN_AFTER] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NOCIF_AFTER] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [KODECABANG_AFTER] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NAMANASABAH_AFTER] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [LEGACY_AKHIR] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NOLOAN_AKHIR] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NOCIF_AKHIR] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [KODECABANG_AKHIR] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [NAMANASABAH_AKHIR] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [FLAG_DATA] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [FLAG_DATA_AKHIR] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [TGL_EFEKTIF] date  NULL,
+  [TGL_EFEKTIF_AKHIR] date  NULL,
+  [KETERANGAN] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [KETERANGAN_AKHIR] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL
+)
+GO
+
+ALTER TABLE [mapping].[PORTOFOLIO_ONBS.MAPPING.JOIN.REKAP_NOLOAN.MUTASI_NOLOAN_CURRENT] SET (LOCK_ESCALATION = TABLE)
+GO
+
+
+-- ----------------------------
+-- procedure structure for sp_dataget_cif_detail
+-- ----------------------------
+IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[mapping].[sp_dataget_cif_detail]') AND type IN ('P', 'PC', 'RF', 'X'))
+	DROP PROCEDURE[mapping].[sp_dataget_cif_detail]
+GO
+
+CREATE PROCEDURE [mapping].[sp_dataget_cif_detail]
+  @TARGET varchar(max) = ''
+	,@USE_DAILY VARCHAR(max) = 'YES'
+	,@USE_DDM VARCHAR(max) = 'NO'
+AS
+BEGIN
+
+	DECLARE
+		@TABLE_NAME VARCHAR(MAX)
+		,@SQL_QUERY VARCHAR(MAX);
+		
+	--------------------------------------------------------------------------	
+	
+	SET @USE_DDM = CASE WHEN COALESCE(@USE_DDM, 'NO') IN ('1', 'YES', 'YA', 'y', 'OK', 'TRUE', 'OKEH') THEN 'YES' ELSE 'NO' END;
+	SET @USE_DAILY = CASE WHEN COALESCE(@USE_DAILY, 'YES') IN ('1', 'YES', 'YA', 'y', 'OK', 'TRUE', 'OKEH') THEN 'YES' ELSE 'NO' END;
+	
+	--------------------------------------------------------------------------	
+	
+	CREATE TABLE #TEMP_DETAIL (
+		[TGL_DATA] DATE
+		,[LEGACY] VARCHAR(MAX)
+		,[NOMORCIF] VARCHAR(MAX)
+		,[SUPERCIF] VARCHAR(MAX)
+		,[NAMANASABAH] VARCHAR(MAX)
+		,[PEKERJAAN] VARCHAR(MAX)
+		,[ALAMAT] VARCHAR(MAX)
+		,[NO_HP] VARCHAR(MAX)
+		,[TANGGAL_LAHIR] DATE
+		,[NPWP] VARCHAR(MAX)
+		,[KTP] VARCHAR(MAX)
+		,[GENDER] VARCHAR(MAX)
+		,[NAMAPERUSAHAANNASABAH] VARCHAR(MAX)
+		,[KOL] VARCHAR(MAX)
+		,[ACCT] INTEGER
+	);
+	
+	--------------------------------------------------------------------------	
+	
+	IF @USE_DAILY = 'YES'
+	BEGIN
+	
+		IF TRY_CAST(LEFT(@TARGET, 10) AS DATE) IS NOT NULL
+		BEGIN
+			SET @TABLE_NAME = (
+				SELECT TOP 1
+					CONCAT('[', SCHEMA_NAME(SCHEMA_ID), '].[', name, ']') AS NAME
+				FROM [sys].[objects]
+				WHERE type_desc = 'USER_TABLE'
+				AND name LIKE 'CARDLINK.LOAN_DAILY.____-__-__%'
+				AND TRY_CAST(LEFT(REPLACE(name, 'CARDLINK.LOAN_DAILY.', ''), 10) AS DATE) = TRY_CAST(LEFT(@TARGET, 10) AS DATE)
+				ORDER BY
+					TRY_CAST(LEFT(REPLACE(name, 'CARDLINK.LOAN_DAILY.', ''), 10) AS DATE) DESC
+					,CASE
+						WHEN REPLACE(name, 'CARDLINK.LOAN_DAILY.', '') = @TARGET THEN 2
+						WHEN name LIKE ('%(FINAL)') THEN 1
+						WHEN name LIKE ('%(QC)') THEN -1
+						ELSE 0
+					END DESC
+			);
+		END ELSE
+		BEGIN
+			SET @TABLE_NAME = '[source].[CARDLINK.LOAN_DAILY]';
+		END
+		
+		--------------------------------------------------------------------------	
+		
+		TRUNCATE TABLE #TEMP_DETAIL;
+		
+		--------------------------------------------------------------------------	
+		
+		SET @SQL_QUERY = CONCAT(
+			'SELECT
+				MAX(TRY_CAST(FILE_DATE AS DATE)) [TGL_DATA]
+				,''BNIS'' [LEGACY]
+				,RIGHT([CUSTNO], 15) [NOMORCIF]
+				,RIGHT([CUSTNO], 15) [SUPERCIF]
+				,[SHORT_NAME] [NAMANASABAH]
+				,NULL [PEKERJAAN]
+				,NULL [ALAMAT]
+				,MAX(CASE WHEN [mphone] IN (SELECT CONTACT FROM [NEW_BSI_DEV].[dbo].[FILTER.ANOMALI.INVALID_CONTACT]) THEN NULL ELSE [mphone] END)[NO_HP]
+				,NULL [TANGGAL_LAHIR]
+				,NULL [NPWP]
+				,NULL [KTP]
+				,NULL [GENDER]
+				,NULL [NAMAPERUSAHAANNASABAH]
+				,MAX(RIGHT(GOL, 1)) [KOL]
+				,ROW_NUMBER() OVER (
+					PARTITION BY
+						CUSTNO
+					ORDER BY
+						[SHORT_NAME] DESC
+						,MAX([mphone]) DESC
+				) [ACCT]
+			FROM ', @TABLE_NAME, '
+			WHERE 
+				COALESCE([PB], ''X'') NOT IN (''A'', ''G'', ''I'', ''K'', ''O'')
+				AND [POSTFLG] IN (''PP'')	
+			GROUP BY
+				[CUSTNO]
+				,[SHORT_NAME]'
+		);
+		
+		BEGIN TRY
+			INSERT INTO #TEMP_DETAIL EXEC(@SQL_QUERY);
+			DELETE FROM #TEMP_DETAIL WHERE [ACCT] > 1;
+		END TRY
+		BEGIN CATCH
+		END CATCH
+		
+		MERGE [mapping].[PORTOFOLIO.ONBS.CIF_DETAIL] [TARGET]
+		USING #TEMP_DETAIL [SOURCE]
+			ON COALESCE([TARGET].[LEGACY], 'X') = COALESCE([SOURCE].[LEGACY], 'Y')
+			AND COALESCE([TARGET].[NOMORCIF], 'X') = COALESCE([SOURCE].[NOMORCIF], 'Y')
+			AND COALESCE([TARGET].[NAMANASABAH], 'X') = COALESCE([SOURCE].[NAMANASABAH], 'Y')
+		WHEN MATCHED THEN UPDATE
+		SET
+			NAMANASABAH = COALESCE([TARGET].NAMANASABAH, [SOURCE].NAMANASABAH)
+			,[NO_HP] = COALESCE([TARGET].NO_HP, [SOURCE].NO_HP)
+			,[UPDATE_METHOD] = COALESCE([TARGET].[UPDATE_METHOD], 'LOAN DAILY')
+			,TANGGAL_AWAL_MENUNGGAK = COALESCE (
+				CASE WHEN COALESCE(KOL, '1') NOT IN ('1') AND TGL_DATA <= TANGGAL_AWAL_MENUNGGAK THEN TGL_DATA END,
+				[TARGET].TANGGAL_AWAL_MENUNGGAK
+				)
+		WHEN NOT MATCHED BY TARGET AND [SOURCE].ACCT = 1 THEN INSERT
+		(
+			[LEGACY]
+			,[NOMORCIF]
+			,[SUPERCIF]
+			,[NAMANASABAH]
+			,[NO_HP]
+			,[TANGGAL_AWAL_MENUNGGAK]
+			,[UPDATE_METHOD]
+		)
+		VALUES
+		(
+			[SOURCE].[LEGACY]
+			,[SOURCE].[NOMORCIF]
+			,[SOURCE].[SUPERCIF]
+			,[SOURCE].[NAMANASABAH]
+			,[SOURCE].[NO_HP]
+			,CASE WHEN COALESCE(KOL, '1') NOT IN ('1') THEN TGL_DATA END
+			,'LOAN DAILY'
+		);
+
+		--------------------------------------------------------------------------	
+		
+		IF TRY_CAST(LEFT(@TARGET, 10) AS DATE) IS NOT NULL
+		BEGIN
+			SET @TABLE_NAME = (
+				SELECT TOP 1
+					CONCAT('[', SCHEMA_NAME(SCHEMA_ID), '].[', name, ']') AS NAME
+				FROM [sys].[objects]
+				WHERE type_desc = 'USER_TABLE'
+				AND name LIKE 'MIS.IFOS_JFAST.____-__-__%'
+				AND TRY_CAST(LEFT(REPLACE(name, 'MIS.IFOS_JFAST.', ''), 10) AS DATE) = TRY_CAST(LEFT(@TARGET, 10) AS DATE)
+				ORDER BY
+					TRY_CAST(LEFT(REPLACE(name, 'MIS.IFOS_JFAST.', ''), 10) AS DATE) DESC
+					,CASE
+						WHEN REPLACE(name, 'MIS.IFOS_JFAST.', '') = @TARGET THEN 2
+						WHEN name LIKE ('%(FINAL)') THEN 1
+						WHEN name LIKE ('%(QC)') THEN -1
+						ELSE 0
+					END DESC
+			);
+		END ELSE
+		BEGIN
+			SET @TABLE_NAME = '[source].[MIS.IFOS_JFAST]';
+		END
+		
+		--------------------------------------------------------------------------	
+		
+		TRUNCATE TABLE #TEMP_DETAIL;
+		
+		--------------------------------------------------------------------------	
+		
+		SET @SQL_QUERY = CONCAT(
+			'SELECT	
+				MAX(TRY_CAST(FICMISDATE AS DATE)) [TGL_DATA]
+				,''BSM'' [LEGACY]
+				,[NOMORCIF] [NOMORCIF]
+				,[NOMORCIF] [SUPERCIF]
+				,[NAMALENGKAP] [NAMANASABAH]
+				,[PEKERJAAN] [PEKERJAAN]
+				,[ADDRESS] [ALAMAT]
+				,CASE WHEN [HP] IN (SELECT CONTACT FROM [NEW_BSI_DEV].[dbo].[FILTER.ANOMALI.INVALID_CONTACT]) THEN NULL ELSE [HP] END [NO_HP]
+				,TRY_CAST([TANGGAL_LAHIR] AS DATE) [TANGGAL_LAHIR]
+				,CASE WHEN [TAX_ID] IN (SELECT NPWP FROM [NEW_BSI_DEV].[dbo].[FILTER.ANOMALI.INVALID_NPWP]) THEN NULL ELSE [TAX_ID] END [NPWP]
+				,NULL [KTP]
+				,[GENDER] [GENDER]
+				,[NAMAPERUSAHAANNASABAH] [NAMAPERUSAHAANNASABAH]
+				,MAX(KOLCIF) [KOL]
+				,ROW_NUMBER() OVER (
+					PARTITION BY
+						NOMORCIF
+					ORDER BY
+						[NAMALENGKAP] DESC
+						,[PEKERJAAN] DESC
+						,[ADDRESS] DESC
+						,[HP] DESC
+						,[TANGGAL_LAHIR] DESC
+						,[TAX_ID] DESC
+						,[GENDER] DESC
+				) [ACCT]
+			FROM ', @TABLE_NAME, '
+			WHERE TRY_CAST(FICMISDATE AS DATE) IS NOT NULL
+			GROUP BY
+				[NOMORCIF]
+				,[NAMALENGKAP]
+				,[PEKERJAAN]
+				,[ADDRESS]
+				,[HP]
+				,[TANGGAL_LAHIR]
+				,[TAX_ID]
+				,[GENDER]
+				,[NAMAPERUSAHAANNASABAH];'
+		);
+		
+		BEGIN TRY
+			INSERT INTO #TEMP_DETAIL EXEC(@SQL_QUERY);
+			DELETE FROM #TEMP_DETAIL WHERE [ACCT] > 1;
+		END TRY
+		BEGIN CATCH
+		END CATCH
+		
+		--------------------------------------------------------------------------	
+		
+		MERGE [mapping].[PORTOFOLIO.ONBS.CIF_DETAIL] [TARGET]
+		USING #TEMP_DETAIL [SOURCE]
+			ON COALESCE([TARGET].[LEGACY], 'X') = COALESCE([SOURCE].[LEGACY], 'Y')
+			AND COALESCE([TARGET].[NOMORCIF], 'X') = COALESCE([SOURCE].[NOMORCIF], 'Y')
+		WHEN MATCHED THEN UPDATE
+		SET
+			NAMANASABAH = COALESCE([TARGET].NAMANASABAH, [SOURCE].NAMANASABAH)
+			,[PEKERJAAN] = COALESCE([TARGET].PEKERJAAN, [SOURCE].PEKERJAAN)
+			,[ALAMAT] = COALESCE([TARGET].ALAMAT, [SOURCE].ALAMAT)
+			,[NO_HP] = COALESCE([TARGET].NO_HP, [SOURCE].NO_HP)
+			,[TANGGAL_LAHIR] = COALESCE([TARGET].TANGGAL_LAHIR, [SOURCE].TANGGAL_LAHIR)
+			,[NPWP] = COALESCE([TARGET].NPWP, [SOURCE].NPWP)
+			,[GENDER] = COALESCE([TARGET].GENDER, [SOURCE].GENDER)
+			,[NAMAPERUSAHAANNASABAH] = COALESCE([TARGET].NAMAPERUSAHAANNASABAH, [SOURCE].NAMAPERUSAHAANNASABAH)
+			,TANGGAL_AWAL_MENUNGGAK = COALESCE (
+				CASE WHEN COALESCE(KOL, '1') NOT IN ('1') AND TGL_DATA <= TANGGAL_AWAL_MENUNGGAK THEN TGL_DATA END,
+				[TARGET].TANGGAL_AWAL_MENUNGGAK
+			)
+			,[UPDATE_METHOD] = COALESCE([TARGET].[UPDATE_METHOD], 'LOAN DAILY')
+		WHEN NOT MATCHED BY TARGET AND [SOURCE].ACCT = 1 THEN INSERT
+		(
+			[LEGACY]
+			,[NOMORCIF]
+			,[SUPERCIF]
+			,[NAMANASABAH]
+			,[PEKERJAAN]
+			,[ALAMAT]
+			,[NO_HP]
+			,[TANGGAL_LAHIR]
+			,[NPWP]
+			,[GENDER]
+			,[NAMAPERUSAHAANNASABAH]
+			,[TANGGAL_AWAL_MENUNGGAK]
+			,[UPDATE_METHOD]
+		)
+		VALUES
+		(
+			[SOURCE].[LEGACY]
+			,[SOURCE].[NOMORCIF]
+			,[SOURCE].[SUPERCIF]
+			,[SOURCE].[NAMANASABAH]
+			,[SOURCE].[PEKERJAAN]
+			,[SOURCE].[ALAMAT]
+			,[SOURCE].[NO_HP]
+			,[SOURCE].[TANGGAL_LAHIR]
+			,[SOURCE].[NPWP]
+			,[SOURCE].[GENDER]
+			,[SOURCE].[NAMAPERUSAHAANNASABAH]
+			,CASE WHEN COALESCE(KOL, '1') NOT IN ('1') THEN TGL_DATA END
+			,'LOAN DAILY'
+		);
+		
+		--------------------------------------------------------------------------	
+		
+		IF TRY_CAST(LEFT(@TARGET, 10) AS DATE) IS NOT NULL
+		BEGIN
+			SET @TABLE_NAME = (
+				SELECT TOP 1
+					CONCAT('[', SCHEMA_NAME(SCHEMA_ID), '].[', name, ']') AS NAME
+				FROM [sys].[objects]
+				WHERE type_desc = 'USER_TABLE'
+				AND name LIKE 'IFOIS.LOAN_DAILY.____-__-__%'
+				AND TRY_CAST(LEFT(REPLACE(name, 'IFOIS.LOAN_DAILY.', ''), 10) AS DATE) = TRY_CAST(LEFT(@TARGET, 10) AS DATE)
+				ORDER BY
+					TRY_CAST(LEFT(REPLACE(name, 'IFOIS.LOAN_DAILY.', ''), 10) AS DATE) DESC
+					,CASE
+						WHEN REPLACE(name, 'IFOIS.LOAN_DAILY.', '') = @TARGET THEN 2
+						WHEN name LIKE ('%(FINAL)') THEN 1
+						WHEN name LIKE ('%(QC)') THEN -1
+						ELSE 0
+					END DESC
+			);
+		END ELSE
+		BEGIN
+			SET @TABLE_NAME = '[source].[IFOIS.LOAN_DAILY]';
+		END
+		
+		--------------------------------------------------------------------------	
+		
+		TRUNCATE TABLE #TEMP_DETAIL
+		
+		--------------------------------------------------------------------------	
+		
+		SET @SQL_QUERY = CONCAT(
+			'SELECT
+				TRY_CAST(FICMISDATE AS DATE) [TGL_DATA]
+				,''BSM'' [LEGACY]
+				,[NOMORCIF] [NOMORCIF]
+				,[NOMORCIF] [SUPERCIF]
+				,[NAMALENGKAP] [NAMANASABAH]
+				,[PEKERJAAN] [PEKERJAAN]
+				,[ADDRESS] [ALAMAT]
+				,CASE WHEN [HP] IN (SELECT CONTACT FROM [NEW_BSI_DEV].[dbo].[FILTER.ANOMALI.INVALID_CONTACT]) THEN NULL ELSE [HP] END [NO_HP]
+				,TRY_CAST([TANGGAL_LAHIR] AS DATE) [TANGGAL_LAHIR]
+				,CASE WHEN [TAX_ID] IN (SELECT NPWP FROM [NEW_BSI_DEV].[dbo].[FILTER.ANOMALI.INVALID_NPWP]) THEN NULL ELSE [TAX_ID] END [NPWP]
+-- 				,CASE WHEN [LEGAL_ID_NO] IN (SELECT KTP FROM [NEW_BSI_DEV].[dbo].[FILTER.ANOMALI.INVALID_KTP]) THEN NULL ELSE [LEGAL_ID_NO] END [KTP]
+				,NULL [KTP]
+				,[GENDER] [GENDER]
+				,[NAMAPERUSAHAANNASABAH] [NAMAPERUSAHAANNASABAH]
+				,MAX([KOLCIF]) [KOL]
+				,ROW_NUMBER() OVER (
+					PARTITION BY
+						NOMORCIF
+					ORDER BY
+						[NAMALENGKAP] DESC
+						,[PEKERJAAN] DESC
+						,[ADDRESS] DESC
+						,[HP] DESC
+						,[TANGGAL_LAHIR] DESC
+						,[TAX_ID] DESC
+-- 							,[LEGAL_ID_NO] DESC
+						,[GENDER] DESC
+				) [ACCT]
+			FROM ', @TABLE_NAME, '
+			WHERE TRY_CAST(FICMISDATE AS DATE) IS NOT NULL
+			GROUP BY
+				[NOMORCIF]
+				,[NAMALENGKAP]
+				,[PEKERJAAN]
+				,[ADDRESS]
+				,[HP]
+				,[TANGGAL_LAHIR]
+				,[TAX_ID]
+				,[GENDER]
+				,[NAMAPERUSAHAANNASABAH]
+-- 					,[LEGAL_ID_NO];'
+		);
+		
+		BEGIN TRY
+			INSERT INTO #TEMP_DETAIL EXEC(@SQL_QUERY);
+			DELETE FROM #TEMP_DETAIL WHERE [ACCT] > 1;
+		END TRY
+		BEGIN CATCH
+		END CATCH
+		
+		-------------------------------------------------------------------------------------------
+
+		MERGE [mapping].[PORTOFOLIO.ONBS.CIF_DETAIL] [TARGET]
+		USING #TEMP_DETAIL [SOURCE]
+			ON COALESCE([TARGET].[LEGACY], 'X') = COALESCE([SOURCE].[LEGACY], 'Y')
+			AND COALESCE([TARGET].[NOMORCIF], 'X') = COALESCE([SOURCE].[NOMORCIF], 'Y')
+		WHEN MATCHED THEN UPDATE
+		SET
+			NAMANASABAH = COALESCE([TARGET].NAMANASABAH, [SOURCE].NAMANASABAH)
+			,[PEKERJAAN] = COALESCE([TARGET].PEKERJAAN, [SOURCE].PEKERJAAN)
+			,[ALAMAT] = COALESCE([TARGET].ALAMAT, [SOURCE].ALAMAT)
+			,[NO_HP] = COALESCE([TARGET].NO_HP, [SOURCE].NO_HP)
+			,[TANGGAL_LAHIR] = COALESCE([TARGET].TANGGAL_LAHIR, [SOURCE].TANGGAL_LAHIR)
+			,[NPWP] = COALESCE([TARGET].NPWP, [SOURCE].NPWP)
+			,[KTP] = COALESCE([TARGET].KTP, [SOURCE].KTP)
+			,[GENDER] = COALESCE([TARGET].GENDER, [SOURCE].GENDER)
+			,[NAMAPERUSAHAANNASABAH] = COALESCE([TARGET].NAMAPERUSAHAANNASABAH, [SOURCE].NAMAPERUSAHAANNASABAH)
+			,TANGGAL_AWAL_MENUNGGAK = COALESCE (
+				CASE WHEN COALESCE(KOL, '1') NOT IN ('1') AND TGL_DATA <= TANGGAL_AWAL_MENUNGGAK THEN TGL_DATA END,
+				[TARGET].TANGGAL_AWAL_MENUNGGAK
+			)
+			,[UPDATE_METHOD] = COALESCE([TARGET].[UPDATE_METHOD], 'LOAN DAILY')
+		WHEN NOT MATCHED BY TARGET AND [SOURCE].ACCT = 1 THEN INSERT
+		(
+			[LEGACY]
+			,[NOMORCIF]
+			,[SUPERCIF]
+			,[NAMANASABAH]
+			,[PEKERJAAN]
+			,[ALAMAT]
+			,[NO_HP]
+			,[TANGGAL_LAHIR]
+			,[NPWP]
+			,[KTP]
+			,[GENDER]
+			,[NAMAPERUSAHAANNASABAH]
+			,[TANGGAL_AWAL_MENUNGGAK]
+			,[UPDATE_METHOD]
+		)
+		VALUES
+		(
+			[SOURCE].[LEGACY]
+			,[SOURCE].[NOMORCIF]
+			,[SOURCE].[SUPERCIF]
+			,[SOURCE].[NAMANASABAH]
+			,[SOURCE].[PEKERJAAN]
+			,[SOURCE].[ALAMAT]
+			,[SOURCE].[NO_HP]
+			,[SOURCE].[TANGGAL_LAHIR]
+			,[SOURCE].[NPWP]
+			,[SOURCE].[KTP]
+			,[SOURCE].[GENDER]
+			,[SOURCE].[NAMAPERUSAHAANNASABAH]
+			,CASE WHEN COALESCE(KOL, '1') NOT IN ('1') THEN TGL_DATA END
+			,'LOAN DAILY'
+		);
+	END
+-------------------------------------------------------------------------------------------
+/*
+	MERGE [mapping].[PORTOFOLIO.ONBS.CIF_DETAIL] [TARGET]
+	USING
+	(
+		SELECT
+			MAX([AS_OF_DT]) AS [TGL_DATA]
+			,'BSM' AS [LEGACY]
+			,[CIF_NO] AS [NOMORCIF]
+			,[NAMA] AS NAMANASABAH
+			--,[PEKERJAAN]
+			,[ADDRESS] AS ALAMAT
+			,CASE WHEN [HP] IN (SELECT CONTACT FROM [NEW_BSI_DEV].[dbo].[FILTER.ANOMALI.INVALID_CONTACT]) THEN NULL ELSE [HP] END AS NO_HP
+			--,TRY_CAST([TANGGAL_LAHIR] AS DATE) AS [TANGGAL_LAHIR]
+			--,CASE WHEN [TAX_ID] IN (SELECT NPWP FROM [NEW_BSI_DEV].[dbo].[FILTER.ANOMALI.INVALID_NPWP]) THEN NULL ELSE [TAX_ID] END AS NPWP
+			--,[GENDER]
+			,'WO' AS [KOL]
+			,ROW_NUMBER() OVER (
+				PARTITION BY
+					CIF_NO
+				ORDER BY
+					[NAMA] DESC
+					--,[PEKERJAAN] DESC
+					,[ADDRESS] DESC
+					,[HP] DESC
+					--,[TANGGAL_LAHIR] DESC
+					--,[TAX_ID] DESC
+					--,[GENDER] DESC
+			) AS ACCT
+		FROM [NEW_BSI_COLLECTION].[dbo].[PORTOFOLIO_WO.SOURCE.BSM.WO_DAILY]
+		GROUP BY
+			[CIF_NO]
+			,[NAMA]
+			--,[PEKERJAAN]
+			,[ADDRESS]
+			,[HP]
+			--,[TANGGAL_LAHIR]
+			--,[TAX_ID]
+			--,[GENDER]
+	) [SOURCE]
+		ON COALESCE([TARGET].[LEGACY], 'X') = COALESCE([SOURCE].[LEGACY], 'X')
+		AND COALESCE([TARGET].[NOMORCIF], 'X') = COALESCE([SOURCE].[NOMORCIF], 'X')
+	WHEN MATCHED AND [SOURCE].ACCT = 1 AND COALESCE([TARGET].[UPDATE_METHOD], 'LOAN DAILY') = 'LOAN DAILY' THEN UPDATE SET
+		NAMANASABAH = COALESCE([TARGET].NAMANASABAH, [SOURCE].NAMANASABAH)
+		--,[PEKERJAAN] = COALESCE([TARGET].PEKERJAAN, [SOURCE].PEKERJAAN)
+		,[ALAMAT] = COALESCE([TARGET].ALAMAT, [SOURCE].ALAMAT)
+		,[NO_HP] = COALESCE([TARGET].NO_HP, [SOURCE].NO_HP)
+		--,[TANGGAL_LAHIR] = COALESCE([TARGET].TANGGAL_LAHIR, [SOURCE].TANGGAL_LAHIR)
+		--,[NPWP] = COALESCE([TARGET].NPWP, [SOURCE].NPWP)
+		--,[GENDER] = COALESCE([TARGET].GENDER, [SOURCE].GENDER)
+		,TANGGAL_AWAL_MENUNGGAK = COALESCE (
+			CASE WHEN KOL NOT IN ('1') AND TGL_DATA <= TANGGAL_AWAL_MENUNGGAK THEN TGL_DATA END,
+			[TARGET].TANGGAL_AWAL_MENUNGGAK
+		)
+		,[UPDATE_METHOD] = COALESCE([TARGET].[UPDATE_METHOD], 'LOAN DAILY')
+	WHEN NOT MATCHED BY TARGET AND [SOURCE].ACCT = 1 THEN INSERT
+	(
+		[LEGACY]
+		,[NOMORCIF]
+		,[NAMANASABAH]
+		--,[PEKERJAAN]
+		,[ALAMAT]
+		,[NO_HP]
+		--,[TANGGAL_LAHIR]
+		--,[NPWP]
+		--,[GENDER]
+		,[TANGGAL_AWAL_MENUNGGAK]
+		,[UPDATE_METHOD]
+	)
+	VALUES
+	(
+		[SOURCE].[LEGACY]
+		,[SOURCE].[NOMORCIF]
+		,[SOURCE].[NAMANASABAH]
+		--,[SOURCE].[PEKERJAAN]
+		,[SOURCE].[ALAMAT]
+		,[SOURCE].[NO_HP]
+		--,[SOURCE].[TANGGAL_LAHIR]
+		--,[SOURCE].[NPWP]
+		--,[SOURCE].[GENDER]
+		,CASE WHEN KOL NOT IN ('1') THEN TGL_DATA END
+		,'LOAN DAILY'
+	);
+	--OUTPUT deleted.*, $action, inserted.*;
+*/
+-------------------------------------------------------------------------------------------
+
+	IF @USE_DDM = 'YES'
+	BEGIN
+	
+		IF TRY_CAST(LEFT(@TARGET, 10) AS DATE) IS NOT NULL
+		BEGIN
+			SET @TABLE_NAME = (
+				SELECT TOP 1
+					CONCAT('[', SCHEMA_NAME(SCHEMA_ID), '].[', name, ']') AS NAME
+				FROM [sys].[objects]
+				WHERE type_desc = 'USER_TABLE'
+				AND name LIKE 'DDM.LOAN_DAILY.____-__-__%'
+				AND TRY_CAST(LEFT(REPLACE(name, 'DDM.LOAN_DAILY.', ''), 10) AS DATE) = TRY_CAST(LEFT(@TARGET, 10) AS DATE)
+				ORDER BY
+					TRY_CAST(LEFT(REPLACE(name, 'DDM.LOAN_DAILY.', ''), 10) AS DATE) DESC
+					,CASE
+						WHEN REPLACE(name, 'DDM.LOAN_DAILY.', '') = @TARGET THEN 2
+						WHEN name LIKE ('%(FINAL)') THEN 1
+						WHEN name LIKE ('%(QC)') THEN -1
+						ELSE 0
+					END DESC
+			);
+		END ELSE
+		BEGIN
+			SET @TABLE_NAME = '[source].[DDM.LOAN_DAILY]';
+		END
+		
+		--------------------------------------------------------------------------	
+		
+		TRUNCATE TABLE #TEMP_DETAIL
+		
+		--------------------------------------------------------------------------	
+		
+		SET @SQL_QUERY = CONCAT(
+			'SELECT
+				MAX(TRY_CAST(periodeData AS DATE)) [TGL_DATA]
+				,CASE WHEN [segmenBSI] IN (''Hasanah Card'') THEN ''BNIS'' ELSE ''BSM'' END [LEGACY]
+				,[NEW_BSI_COLLECTION].[dbo].[fx_trim]([noCIF_Legacy]) [NOMORCIF]
+				,COALESCE([noCIF], [NEW_BSI_COLLECTION].[dbo].[fx_trim]([noCIF_Legacy])) [SUPERCIF]
+				,[namaNasabah] [NAMANASABAH]
+				,NULL [PEKERJAAN]
+				,NULL [ALAMAT]
+				,NULL [NO_HP]
+				,NULL [TANGGAL_LAHIR]
+				,NULL [NPWP]
+				,NULL [KTP]
+				,NULL [GENDER]
+				,NULL [KOL]
+				,ROW_NUMBER() OVER (
+					PARTITION BY
+						[NEW_BSI_COLLECTION].[dbo].[fx_trim]([noCIF_Legacy])
+					ORDER BY
+						CASE WHEN noCIF != [NEW_BSI_COLLECTION].[dbo].[fx_trim]([noCIF_Legacy]) THEN 1 ELSE 0 END DESC
+						,[namaNasabah] DESC
+				) [ACCT]
+			FROM ', @TABLE_NAME, '
+			GROUP BY
+				noCIF_Legacy
+				,COALESCE([noCIF], [NEW_BSI_COLLECTION].[dbo].[fx_trim]([noCIF_Legacy]))
+				,[namaNasabah]
+				,[segmenBSI];'
+		);
+		
+		BEGIN TRY
+			INSERT INTO #TEMP_DETAIL EXEC(@SQL_QUERY);
+			DELETE FROM #TEMP_DETAIL WHERE [ACCT] > 1;
+		END TRY
+		BEGIN CATCH
+		END CATCH
+		
+		-------------------------------------------------------------------------------------------
+		
+		MERGE [mapping].[PORTOFOLIO.ONBS.CIF_DETAIL] [TARGET]
+		USING #TEMP_DETAIL [SOURCE]
+			ON COALESCE([TARGET].[LEGACY], 'X') = COALESCE([SOURCE].[LEGACY], 'X')
+			AND COALESCE([TARGET].[NOMORCIF], 'X') = COALESCE([SOURCE].[NOMORCIF], 'X')
+		WHEN MATCHED THEN UPDATE
+		SET
+			NAMANASABAH = COALESCE([TARGET].NAMANASABAH, [SOURCE].NAMANASABAH)
+			,[SUPERCIF] = COALESCE(CASE WHEN [SOURCE].SUPERCIF != [SOURCE].NOMORCIF AND [TARGET].SUPERCIF = [TARGET].NOMORCIF THEN [SOURCE].SUPERCIF END, [TARGET].SUPERCIF)
+		WHEN NOT MATCHED BY TARGET AND [SOURCE].ACCT = 1 THEN INSERT
+		(
+			[LEGACY]
+			,[NOMORCIF]
+			,[SUPERCIF]
+			,[NAMANASABAH]
+		)
+		VALUES
+		(
+			[SOURCE].[LEGACY]
+			,[SOURCE].[NOMORCIF]
+			,[SOURCE].[SUPERCIF]
+			,[SOURCE].[NAMANASABAH]
+		);
+	END
+	
+	PRINT CONCAT('DATAGET CIF DAILY PER ', @TARGET, ' DONE!');
+
+	UPDATE [mapping].[PORTOFOLIO.ONBS.CIF_DETAIL]
+	SET
+		[SUPERCIF] = [NOMORCIF]
+	WHERE [SUPERCIF] IS NULL;
+	
+	WITH CTE AS
+	(
+		SELECT
+			[TARGET].[NOMORCIF]
+			,[TARGET].[SUPERCIF]
+			,[SOURCE].[SUPERCIF] [SUPERCIF_UPDATE]
+		FROM [mapping].[PORTOFOLIO.ONBS.CIF_DETAIL] [TARGET]
+		LEFT JOIN
+			(
+				SELECT
+					[NOMORCIF]
+					,[SUPERCIF]
+				FROM [mapping].[PORTOFOLIO.ONBS.CIF_DETAIL]
+				GROUP BY
+					[NOMORCIF]
+					,[SUPERCIF]
+			)[SOURCE]
+			ON [TARGET].[SUPERCIF] = [SOURCE].[NOMORCIF]
+		WHERE [TARGET].[SUPERCIF] != [SOURCE].[SUPERCIF]
+	) UPDATE CTE SET [SUPERCIF] = [SUPERCIF_UPDATE];
+	
+	DROP TABLE #TEMP_DETAIL;
+END
+GO
+
+
+-- ----------------------------
+-- Auto increment value for PORTOFOLIO.LIST_EXCLUDE.COP
+-- ----------------------------
+DBCC CHECKIDENT ('[mapping].[PORTOFOLIO.LIST_EXCLUDE.COP]', RESEED, 30)
+GO
+
+
+-- ----------------------------
+-- Auto increment value for PORTOFOLIO.MAPPING.LOANTYPE
+-- ----------------------------
+DBCC CHECKIDENT ('[mapping].[PORTOFOLIO.MAPPING.LOANTYPE]', RESEED, 1256)
+GO
+
+
+-- ----------------------------
+-- Auto increment value for PORTOFOLIO.ONBS.CIF_DETAIL
+-- ----------------------------
+DBCC CHECKIDENT ('[mapping].[PORTOFOLIO.ONBS.CIF_DETAIL]', RESEED, 3175143)
+GO
+
+
+-- ----------------------------
+-- Primary Key structure for table PORTOFOLIO.ONBS.CIF_DETAIL
+-- ----------------------------
+ALTER TABLE [mapping].[PORTOFOLIO.ONBS.CIF_DETAIL] ADD CONSTRAINT [PK__PORTOFOL__E61849D8F38D0E8D] PRIMARY KEY CLUSTERED ([INDEX])
+WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)  
+ON [PRIMARY]
+GO
+
+
+-- ----------------------------
+-- Auto increment value for PORTOFOLIO.ONBS.LOAN_DETAIL
+-- ----------------------------
+DBCC CHECKIDENT ('[mapping].[PORTOFOLIO.ONBS.LOAN_DETAIL]', RESEED, 7499991)
+GO
+
+
+-- ----------------------------
+-- Primary Key structure for table PORTOFOLIO.ONBS.LOAN_DETAIL
+-- ----------------------------
+ALTER TABLE [mapping].[PORTOFOLIO.ONBS.LOAN_DETAIL] ADD CONSTRAINT [PK__PORTOFOL__E61849D859F23C27] PRIMARY KEY CLUSTERED ([INDEX])
+WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)  
+ON [PRIMARY]
+GO
+

@@ -1,0 +1,31 @@
+/** NOT YET
+SELECT
+	[CUR].[TGL_DATA]
+	,[CUR].[NOLOAN]
+	,[CUR].[NOMORCIF]
+	,[CUR].[SUPERCIF]
+	,[CUR].[NAMANASABAH]
+	,[CUR].[KODECABANG]
+	,[CUR].[NAMACABANG]
+	,[CUR].[AREA]
+	,[CUR].[REGION]
+	,[CUR].[DIVISI]
+	,[CUR].[PRODUK]
+	,[CUR].[PRODUK_DETAIL]
+	,[CUR].[KOL_LOAN]
+	,[CUR].[KOL_CIF]
+	,[CUR].[KOL_SUPERCIF]
+	,[CUR].[OS_POKOK_PSAK]
+	,[CUR].[OS_POKOK]
+FROM [series].[RCG.LOAN_DAILY.2023-05-31 (FINAL)] [CUR]
+WHERE
+	(
+		[CUR].[DIVISI] = 'Konsumer'
+		AND [CUR].[KOL_LOAN] IN ('2A', '2C', '3A')
+	)
+	OR
+	(
+		[CUR].[DIVISI] IN ('SME', 'Mikro')
+		AND [CUR].[KOL_LOAN] IN ('3A')
+	)
+*/

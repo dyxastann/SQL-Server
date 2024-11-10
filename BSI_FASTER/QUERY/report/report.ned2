@@ -1,0 +1,52 @@
+{
+  "paper": {
+    "name": "A3",
+    "leftMargin": 0.0,
+    "rightMargin": 0.0,
+    "topMargin": 0.0,
+    "bottomMargin": 0.0,
+    "isPortriat": false
+  },
+  "modelVersion": 2.01,
+  "defaultSchema": "Default",
+  "server": {
+    "objectType": "Server_MSSQL",
+    "name": "Default",
+    "serverVersion": 11006020,
+    "edition": "Unknown",
+    "catalogs": [
+      {
+        "objectType": "Catalog_MSSQL",
+        "name": "Default",
+        "schemas": [
+          {
+            "objectType": "Schema_MSSQL",
+            "name": "Default",
+            "comment": "",
+            "tables": [],
+            "views": []
+          }
+        ]
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "name": "Diagram 1",
+      "paperWidth": 1,
+      "paperHeight": 1,
+      "tableFont": "Arial Unicode MS",
+      "tableFontSize": 14,
+      "isBalckWhite": false,
+      "showDBSchemaName": false,
+      "showViewRelations": true,
+      "notation": "default",
+      "showFieldComment": false,
+      "showTableComment": false,
+      "shapes": [],
+      "layers": [],
+      "relations": [],
+      "viewRelations": []
+    }
+  ]
+}
